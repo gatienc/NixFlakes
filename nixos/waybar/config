@@ -1,0 +1,148 @@
+// -*- mode: json -*-
+{
+	"layer": "top",
+	"position": "top",
+	"modules-left": [
+		"custom/launcher",
+		"hyprland/workspaces",
+	],
+	"modules-center": [
+		"clock",
+	],
+	"modules-right": [
+		"pulseaudio",
+		"backlight",
+		"memory",
+		// "cpu",
+		"bluetooth",
+		"battery"
+		// "disk",
+		// "custom/left-arrow-light",
+		// "custom/left-arrow-dark",
+		// "tray"
+	],
+	"bluetooth": {
+		"format": " {status}",
+		"format-connected": " {device_alias}",
+		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+		// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+		"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+	},
+
+	// "backlight/slider": {
+	//     "min": 1,
+	//     "max": 100,
+	//     "orientation": "horizontal",
+	//     "device": "intel_backlight"
+	// },
+	"backlight": {
+	    "device": "intel_backlight",
+	    "format": "{percent}% {icon}",
+	    "format-icons": ["", ""],
+	    "min": 10,
+	    "max": 100,
+	},
+	"custom/launcher": {
+		"format": "",
+		"on-click": "rofi -show drun -show-icons"
+	},
+	
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate",
+		"all-outputs": true,
+		"sort-by-number": true,
+		"format-icons": {
+			"default": "",
+			"0": "0",
+			"1": "1",
+			"2": "2",
+			"3": "3",
+			"4": "4",
+			"5": "5",
+			"6": "6",
+			"7": "7",
+			"8": "8",
+			"9": "9",
+			"10": "10",
+			"11": "11",
+			"12": "12",
+			"13": "13",
+			"14": "14",
+			"15": "15",
+			"16": "16",
+			"17": "17",
+			"18": "18",
+			"19": "19",
+			"20": "20",
+			"101": "",
+			"102": "󰙯"
+		}
+	},
+	"clock": {
+		"format": "{:%A %d %B : %H:%M}",
+		//"locale": "fr_FR.UTF-8",
+		"timezone": "Europe/Paris",
+		//"tooltip": false
+	},
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon} {volume}% ",
+		"format-muted": "{icon} Muted",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				" ",
+				" "
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "Mem {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+	},
+	"battery": {
+		"interval": 5,
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			" ",
+			" ",
+			" ",
+			" ",
+			" "
+		]
+	},
+	"disk": {
+		"interval": 5,
+		"format": "Disk {percentage_used:2}%",
+		"path": "/"
+	},
+	"custom/notification": {
+		"tooltip": false,
+		"format": "",
+		"return-type": "json",
+		"exec-if": "which swaync-client",
+		"exec": "swaync-client -swb",
+		"on-click": "swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"escape": true
+	},
+	"tray": {
+		"icon-size": 20
+	}
+}
