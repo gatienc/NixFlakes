@@ -10,7 +10,7 @@
     auto-optimise-store = true;
   };
   nixpkgs.config.allowUnfree = true;
-  networking.hostName = "blitzar";
+  networking.hostName = "glacius";
   networking.networkmanager.enable = true;
 
   boot.loader.systemd-boot.enable = true;

@@ -1,5 +1,5 @@
 {
-  description = "An example of a configured misterio77/nix-starter-config for impermanence";
+  description = "Gatienc's config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -11,7 +11,7 @@
 
   outputs = inputs@{ nixpkgs, impermanence, home-manager, ... }: {
     nixosConfigurations = {
-      blitzar = nixpkgs.lib.nixosSystem {
+      glacius = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         # Pass inputs into the NixOS module system
