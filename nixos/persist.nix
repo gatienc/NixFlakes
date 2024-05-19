@@ -21,6 +21,8 @@
         ".local/share/zoxide"
         ".config/gnome-initial-setup-done"
         ".config/hypr"
+        ".config/waybar"
+        ".ssh"
         "Downloads"
       ];
       files = [

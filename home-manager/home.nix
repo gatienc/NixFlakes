@@ -13,9 +13,11 @@
   	fastfetch
 	age
 	ssh-to-age
-    #age-keygen
 
 
+	# media playing 
+	playerctl
+	
     glow # markdown previewer in terminal
     btop  # replacement of htop/nmo
     iotop # io monitoring

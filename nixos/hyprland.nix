@@ -5,6 +5,11 @@
         #package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     };
 
+	programs.nm-applet = {
+		enable = true;
+		indicator=true;
+	};
+	
   environment.systemPackages = with pkgs; [
         waybar
         dunst

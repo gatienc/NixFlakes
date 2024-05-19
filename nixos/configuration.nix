@@ -2,7 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ./persist.nix
-    #./hyprland.nix
+    ./hyprland.nix
   ];
 
   nix.settings = {
@@ -40,12 +40,12 @@
   
   environment.variables.EDITOR ="micro";
 
-  services.xserver = {
-    enable = true;
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
-    xkb.layout = "fr";
-  };
+  # services.xserver = {
+  #   enable = true;
+  #   desktopManager.gnome.enable = true;
+  #   displayManager.gdm.enable = true;
+  #   xkb.layout = "fr";
+  # };
   console.keyMap = "fr";
 
 
