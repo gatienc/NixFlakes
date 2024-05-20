@@ -1,6 +1,6 @@
 { inputs, pkgs, lib, config, ... }: {
   imports = [
-    ./hardware-configuration.nix
+    #./hardware-configuration.nix
     ./persist.nix
     ./hyprland.nix
   ];
@@ -10,7 +10,6 @@
     auto-optimise-store = true;
   };
   nixpkgs.config.allowUnfree = true;
-  networking.hostName = "glacius";
   networking.networkmanager.enable = true;
 
   boot.loader.systemd-boot.enable = true;
@@ -36,16 +35,17 @@
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     micro
+    kitty
   ];
   
   environment.variables.EDITOR ="micro";
 
-  # services.xserver = {
-  #   enable = true;
-  #   desktopManager.gnome.enable = true;
-  #   displayManager.gdm.enable = true;
-  #   xkb.layout = "fr";
-  # };
+   services.xserver = {
+     enable = true;
+     desktopManager.gnome.enable = true;
+     displayManager.gdm.enable = true;
+     xkb.layout = "fr";
+   };
   console.keyMap = "fr";
 
 
