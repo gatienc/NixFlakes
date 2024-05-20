@@ -4,8 +4,9 @@
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
     sleep 1
+    ${pkgs.swww}/bin/swww img ${~/Pictures/wallpaper/Kanagawa.png} &
     '';
-    #${pkgs.swww}/bin/swww img ${./wallpaper.png} &
+
 	in
 {
   wayland.windowManager.hyprland = {
@@ -25,9 +26,11 @@
       [
       	"$mainMod, T, exec, $terminal"
       	"$mainMod, B, exec, $browser"
-	    "$mainMod, F ,fullscreen "
-	    "$mainMod, V, togglefloating,"
+        "$mainMod, F, fullscreen "
+        "$mainMod, escape, killactive"
+	      "$mainMod, V, togglefloating,"
       	"$mainMod, M, exit," #quit Hyprland
+
 
       	"$mainMod, ampersand, workspace, 1"
       	"$mainMod, eacute, workspace, 2"
@@ -50,8 +53,8 @@
         "SUPER_SHIFT, underscore, movetoworkspace, 8"
         "SUPER_SHIFT, ccedilla, movetoworkspace, 9"
         "SUPER_SHIFT, agrave, movetoworkspace, 10"
-      	"ALT,TAB,workspace,previous"
-
+      	
+        "ALT,TAB,workspace,previous"
         "$mainMod, space, exec, rofi -show drun -show-icons"
       ];
       exec-once = ''${startupScript}/bin/start'';

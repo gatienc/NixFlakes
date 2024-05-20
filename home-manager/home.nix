@@ -1,17 +1,25 @@
-# home.nix
-
-{ pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, ... }:
 	{
     imports = [
     ./hyprland.nix
+    ./firefox.nix
   ];
+  programs.firefox = {
+    enable = true;
+    profiles.gatien = 
+    {
+        extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+            bitwarden
+            ublock-origin
+        ];
+    };
+  };
   home = {
     username = "gatien";
     homeDirectory = "/home/gatien";
   };
 
   home.packages = with pkgs; [ 
-    firefox
     obsidian
     bitwarden
   	vscode
@@ -20,6 +28,8 @@
 	  age
 	  ssh-to-age
     
+    grim
+    slurp
 
     waybar
     swww
@@ -38,6 +48,7 @@
 
     ani-cli
   	spicetify-cli
+    spotify
 
     # Terminal
     tree 
