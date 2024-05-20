@@ -4,7 +4,7 @@
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
     sleep 1
-    ${pkgs.swww}/bin/swww img ${~/Pictures/wallpaper/Kanagawa.png} &
+    ${pkgs.swww}/bin/swww img ${../assets/wallpaper/Kanagawa.png} &
     '';
 
 	in
