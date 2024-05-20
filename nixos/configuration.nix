@@ -1,6 +1,5 @@
 { inputs, pkgs, lib, config, ... }: {
   imports = [
-    #./hardware-configuration.nix
     ./persist.nix
     ./hyprland.nix
   ];

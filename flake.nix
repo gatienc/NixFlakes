@@ -24,7 +24,7 @@
 
         modules = [
           impermanence.nixosModules.impermanence
-          ./hardware/glacius.nix
+          ./hosts/glacius.nix
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {
@@ -42,7 +42,7 @@
 
         modules = [
           impermanence.nixosModules.impermanence
-          ./hardware/icicle.nix
+          ./hosts/icicle.nix
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {

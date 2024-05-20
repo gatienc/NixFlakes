@@ -19,7 +19,6 @@
         ".local/share/zoxide"
         ".config/waybar"
         ".ssh"
-        "Pictures/wallpaper"
         "Downloads"
       ];
       files = [
