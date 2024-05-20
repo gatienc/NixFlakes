@@ -15,12 +15,8 @@
     ];
     users.gatien = {
       directories = [
-        ".local/share/kscreen"
-        ".local/share/kwalletd"
         ".local/share/sddm"
         ".local/share/zoxide"
-        ".config/gnome-initial-setup-done"
-        ".config/hypr"
         ".config/waybar"
         ".ssh"
         "Downloads"

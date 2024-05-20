@@ -1,14 +1,14 @@
-
-  #let
-  #  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-  #    ${pkgs.waybar}/bin/waybar &
-  #    ${pkgs.swww}/bin/swww init &
-  #
-  #    sleep 1
-  #
-  #    '';#${pkgs.swww}/bin/swww img ${./wallpaper.png} &
-	#in
-wayland.windowManager.hyprland = {
+{ pkgs, lib, config, ... }:
+  let
+    startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    ${pkgs.waybar}/bin/waybar &
+    ${pkgs.swww}/bin/swww init &
+    sleep 1
+    '';
+    #${pkgs.swww}/bin/swww img ${./wallpaper.png} &
+	in
+{
+  wayland.windowManager.hyprland = {
     enable = true;
 
     settings = {
@@ -20,13 +20,13 @@ wayland.windowManager.hyprland = {
     	};
       "$mainMod" = "SUPER";#windows key as modifier
       "$terminal" = "kitty";
-      "$brower" = "firefox";
+      "$browser" = "firefox";
       bind = 
       [
       	"$mainMod, T, exec, $terminal"
       	"$mainMod, B, exec, $browser"
-		    "$mainMod, F ,fullscreen "
-		    "$mainMod, V, togglefloating,"
+	    "$mainMod, F ,fullscreen "
+	    "$mainMod, V, togglefloating,"
       	"$mainMod, M, exit," #quit Hyprland
 
       	"$mainMod, ampersand, workspace, 1"
@@ -54,7 +54,8 @@ wayland.windowManager.hyprland = {
 
         "$mainMod, space, exec, rofi -show drun -show-icons"
       ];
-      #exec-once = ''${startupScript}/bin/start'';
+      exec-once = ''${startupScript}/bin/start'';
       
     };
   };
+}
