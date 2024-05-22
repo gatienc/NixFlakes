@@ -15,13 +15,21 @@
     settings = {
     	input = {
     		kb_layout = "fr";
+        follow_mouse = 1;
     		touchpad = {
     			natural_scroll = true;
           };
     	};
+
+      gestures = {
+          # See https://wiki.hyprland.org/Configuring/Variables/ for more
+          workspace_swipe = true ;
+      };
+
       "$mainMod" = "SUPER";#windows key as modifier
       "$terminal" = "kitty";
       "$browser" = "firefox";
+
       bind = 
       [
       	"$mainMod, T, exec, $terminal"
@@ -53,9 +61,13 @@
         "SUPER_SHIFT, underscore, movetoworkspace, 8"
         "SUPER_SHIFT, ccedilla, movetoworkspace, 9"
         "SUPER_SHIFT, agrave, movetoworkspace, 10"
+
+        # Scroll through existing workspaces with mainMod + scroll
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
       	
-        "ALT,TAB,workspace,previous"
-        "$mainMod, space, exec, rofi -show drun -show-icons"
+        "ALT,TAB,workspace,next"
+        "$mainMod, space, exec, fuzzel"
       ];
       exec-once = ''${startupScript}/bin/start'';
       

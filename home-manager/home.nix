@@ -2,18 +2,8 @@
 	{
     imports = [
     ./hyprland.nix
-    ./firefox.nix
   ];
-  programs.firefox = {
-    enable = true;
-    profiles.gatien = 
-    {
-        extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-            bitwarden
-            ublock-origin
-        ];
-    };
-  };
+
   home = {
     username = "gatien";
     homeDirectory = "/home/gatien";
@@ -28,18 +18,21 @@
 	  age
 	  ssh-to-age
     
-    grim
-    slurp
+    #grim
+    #slurp
 
     waybar
     swww
-    rofi-wayland
+    fuzzel
     dunst
     libnotify
 
 
     # media playing 
-    playerctl
+    #playerctl
+
+    #brightnessctl
+    #pamixer
 	
     glow # markdown previewer in terminal
     btop  # replacement of htop/nmo
@@ -78,7 +71,7 @@
       userName = "Gatien Chenu";
       userEmail = "gatien+dev@chenu.me";
     };
-
+    firefox.enable = true;
     alacritty.enable = true;
     fzf.enable = true; # enables zsh integration by default
     starship.enable = true;
@@ -93,6 +86,9 @@
       enable = true;
       enableZshIntegration = true;
     };
+
+    
+
   };
 
   # Nicely reload system units when changing configs

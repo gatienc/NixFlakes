@@ -2,6 +2,7 @@
   imports = [
     ./persist.nix
     ./hyprland.nix
+    ./hardware.nix
   ];
 
   nix.settings = {

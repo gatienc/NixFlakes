@@ -15,9 +15,9 @@
     ];
     users.gatien = {
       directories = [
-        ".local/share/sddm"
         ".local/share/zoxide"
         ".config/waybar"
+        ".mozilla"
         ".ssh"
         "Downloads"
       ];
