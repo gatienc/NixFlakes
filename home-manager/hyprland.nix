@@ -82,7 +82,6 @@
           workspace_swipe = true ;
       };
 
-      "device:mosart-semi.-2.4g-keyboard-mouse-1" = { sensitivity = -0.5; };
 
       "$mainMod" = "SUPER";#windows key as modifier
       "$terminal" = "kitty";

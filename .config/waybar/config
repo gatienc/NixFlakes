@@ -1,0 +1,190 @@
+// -*- mode: json -*-
+{
+	"layer": "top",
+	"position": "top",
+	"modules-left": [
+		"custom/launcher",
+		"tray",
+		"clock"
+		//"hyprland/window"
+	],
+	"modules-center": [
+	"hyprland/workspaces"
+	],
+	"modules-right": [
+		"pulseaudio",
+		"backlight",
+		"memory",
+		"cpu",
+		"bluetooth",
+		"network",
+		"battery",
+		"temperature",
+		"disk"
+		//"tray"
+	],
+
+
+	"custom/launcher": {
+		"format": "",
+		"on-click": "fuzzel"
+	},
+		
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate",
+		"all-outputs": true,
+		"sort-by-number": true,
+		"format-icons": {
+			"default": "",
+			"0": "0",
+			"1": "一",
+			"2": "二",
+			"3": "三",
+			"4": "四",
+			"5": "五",
+			"6": "六",
+			"7": "七",
+			"8": "八",
+			"9": "九",
+			"10": "十",
+			"11": "11",
+			"12": "12",
+			"13": "13",
+			"14": "14",
+			"15": "15",
+			"16": "16",
+			"17": "17",
+			"18": "18",
+			"19": "19",
+		},
+	    "window-rewrite": {
+	      "title<.*youtube.*>": " ",
+	      "title<.*amazon.*>": " ",
+          "title<.*reddit.*>": " ",
+          "title<.*Picture-in-Picture.*>": " ",
+	      "class<firefox>": " ",
+          "class<kitty>": " ",
+          "class<konsole>": " ",
+          "class<thunar>": "󰝰 ",
+          "class<discord>": " ",
+          "class<subl>": "󰅳 ",
+          "class<celluloid>": " ",
+          "class<Cider>": "󰎆 ",
+          "class<code-oss>": "󰨞 ",
+          "class<codeblocks>": "󰅩 ",
+	    }
+	},
+
+    "hyprland/window": {
+        "format": "{title}",
+	    "separate-outputs": true
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰈀  Ethernet",
+        "tooltip": false,
+        "format-linked": "󰤭  {ifname}",
+        "format-disconnected": "󰤭   Disconnected",
+        "format-alt": "{icon} {signalStrength}%	| {essid}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+	    "on-click-right": "kitty nmtui"
+    },
+
+
+
+	
+	"bluetooth": {
+		"format": " {status}",
+		"format-connected": " {device_alias}",
+		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+		// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+		"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+	},
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": [""]
+    },
+
+	"backlight": {
+	    "device": "intel_backlight",
+	    "format": "{percent}% {icon}",
+	    "format-icons": ["󰹐","󱩎","󱩏","󱩐","󱩑","󱩒","󱩓","󱩔","󱩕","󱩖"],
+	    "min": 10,
+	    "max": 100,
+	},
+		
+	"clock": {
+		"timezone": "Europe/Paris",
+        "format": "{:%H:%M}",
+        "format-alt": "{:%A %B %e | %H:%M }",
+	        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+	},
+	
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon} {volume}% ",
+		"format-muted": "{icon} Muted",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"󰖁 ",
+				" ",
+				" "
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "Mem {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+	},
+	"battery": {
+		"interval": 5,
+	    "states": {
+            "good": 95,
+            "warning": 40,
+            "critical": 20
+        },
+		"format": "{icon} {capacity}%",
+        "format": "{capacity}%  {icon}",
+        "format-charging": "{capacity}%  󰂄",
+        "format-plugged": "{capacity}% 󰚥",
+        "format-alt": "{time}  {icon}",
+        "format-icons": [" ", " ", " ", " ", " "]
+
+	},
+	"disk": {
+		"interval": 5,
+		"format": "Disk {percentage_used:2}%",
+		"path": "/"
+	},
+	"custom/notification": {
+		"tooltip": false,
+		"format": "",
+		"return-type": "json",
+		"exec-if": "which swaync-client",
+		"exec": "swaync-client -swb",
+		"on-click": "swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"escape": true
+	},
+	"tray": {
+		"icon-size": 20
+	}
+}
