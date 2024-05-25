@@ -7,9 +7,14 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        modules-left = [ "clock" ];
+        modules-center = [  "hyprland/workspaces" ];
+        modules-right = [ "idle_inhibitor" "backlight" "pulseaudio" "network" "battery" "tray" ];
+
+
+        height = 10; # noting to be auto
         output = [ "eDP-1" "HDMI-A-1" ];
-        margin = "20 20 0 20";
+        margin = "5 10 0 10";
 
         battery = {
           format-plugged =
@@ -41,15 +46,68 @@
         };
 
         clock = {
-          format = "{:%I:%M %p} <span rise='250' size='large'> </span>";
+          timezone = "Europe/Paris";
+          format = "{:%H:%M}";
+          #locale = "fr";
+          "format-alt" = "{:%A %B %e | %H:%M }";
+            "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
 
         tray = { spacing = 10; };
 
-        modules-right = [ "backlight" "pulseaudio" "battery" "tray" ];
-        modules-center = [ "clock" ];
-        modules-left = [ "hyprland/workspaces" ];
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          on-click = "activate";
+          all-outputs = true;
+          sort-by-number = true;
+          format-icons = {
+            "0" = "0";
+            "1" = "一";
+            "2" = "二";
+            "3" = "三";
+            "4" = "四";
+            "5" = "五";
+            "6" = "六";
+            "7" = "七";
+            "8" = "八";
+            "9" = "九";
+            "10" = "十";
 
+          };
+          window-rewrite = {
+              "title<.*youtube.*>"= " ";
+              "title<.*amazon.*>"= " ";
+              "title<.*reddit.*>"= " ";
+              "title<.*Picture-in-Picture.*>"= " ";
+              "class<firefox>"= " ";
+              "class<kitty>"= " ";
+              "class<konsole>"= " ";
+              "class<thunar>"= "󰝰 ";
+              "class<discord>"= " ";
+              "class<subl>"= "󰅳 ";
+              "class<celluloid>"= " ";
+              "class<Cider>"= "󰎆 ";
+              "class<code-oss>"= "󰨞 ";
+              "class<codeblocks>"= "󰅩 ";
+            };
+        };
+      idle_inhibitor = {
+        format = "{icon}";
+        "format-icons" = {
+            "activated" = "";
+            "deactivated" = "";
+        };
+      network = {
+        format-wifi = "{icon}";
+        format-ethernet = "󰈀  Ethernet";
+        tooltip = false;
+        format-linked = "󰤭  {ifname}";
+        format-disconnected = "󰤭   Disconnected";
+        format-alt = "{icon} {signalStrength}%	| {essid}";
+        format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+	      on-click-right = "kitty nmtui";
+        };
+      };
       };
     };
     style = ''
@@ -60,8 +118,10 @@
       #8FBCBB */
 
       * {
+        font-family: "JetBrainsMono Nerd Font";
       	border-radius: 0;
       	font-size: 12px;
+        font-weight: 900;
       	min-height: 0;
       }
 
@@ -82,42 +142,28 @@
       }
 
       #workspaces {
-      	border: none;
       	background-color: rgba(0, 0, 0, 0);
-      	border: solid 1px #8FBCBB;
-      	padding: 0 10px;
-      	padding-left: 0px;
-      	padding-right: 5px;
-      	border-radius: 19px;
+        border: none;
       }
 
       #workspaces button {
-      	font-size: 10px;
-      	color: rgba(0, 0, 0, 0);
-      	background-color: #ECEFF4;
-      	padding: 0;
-      	padding-left: 1px;
-      	margin-left: 5px;
-      	margin-top: 5px;
-      	margin-bottom: 5px;
-      	border-radius: 100%;
+        color :  #ECEFF4;
+        border-radius: 19px;
       }
 
       #workspaces button.active {
-      	background: #8FBCBB;
-      	padding-left: 15px;
-      	border-radius: 30px;
+        color: #8FBCBB;
+        background: #ECEFF4 ,
       }
 
       #workspaces button:hover {
-      	color: #ECEFF4;
-      	background: #8FBCBB;
-      	text-shadow: none;
-      	border: solid 1px #8FBCBB;
+      	color:  #ECEFF4 ;
+        background:#8FBCBB,
       }
 
       #workspaces button.active:hover {
-      	color: rgba(0, 0, 0, 0);
+        color:  #ECEFF4 ;
+        background:#8FBCBB,
       }
 
       #network {

@@ -18,6 +18,7 @@
         ".local/share/zoxide"
         ".mozilla"
         ".ssh"
+        ".vscode"
         "Downloads"
       ];
       files = [

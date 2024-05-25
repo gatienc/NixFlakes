@@ -20,12 +20,12 @@
 	  ssh-to-age
 
     direnv
-    
+
+    font-manager
+
     grim
     slurp
 
-	  hyprlock
-    hypridle
     swww
     fuzzel
     dunst
