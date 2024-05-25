@@ -18,6 +18,8 @@
   	fastfetch
 	  age
 	  ssh-to-age
+
+    direnv
     
     grim
     slurp

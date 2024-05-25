@@ -146,6 +146,8 @@
       	
         "ALT,TAB,workspace,next"
         "$mainMod, space, exec, fuzzel"
+
+        " , mouse:274, exec, ;" #disable middle click paste
       ];
 
       bindm = [
@@ -167,7 +169,7 @@
       misc = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         disable_hyprland_logo = true;
-        middle_click_paste = false;
+        enable_swallow = true;
       };
 
       exec-once = ''${startupScript}/bin/start'';
