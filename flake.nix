@@ -7,7 +7,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
-    hypridle.url = "github:hyprwm/hypridle";
+    stylix.url = "github:danth/stylix";
     
   };
 
@@ -24,6 +24,7 @@
           ./hosts/glacius.nix
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
+          inputs.stylix.nixosModules.stylix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -41,6 +42,7 @@
           impermanence.nixosModules.impermanence
           ./hosts/icicle.nix
           ./nixos/configuration.nix
+          inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

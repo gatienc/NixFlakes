@@ -3,6 +3,7 @@
     ./persist.nix
     ./hyprland.nix
     ./hardware.nix
+    ./stylix.nix
   ];
   services.greetd = {
     enable = true;

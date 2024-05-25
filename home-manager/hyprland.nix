@@ -88,7 +88,7 @@
         gaps_in = 5;
         gaps_out = [ 5 5 5 5 ];
         border_size = 2;
-        "col.active_border" = "rgb(5E81AC)";
+        "col.active_border" =   lib.mkForce "rgb(${config.stylix.base16Scheme.base0E})";   #fix to enable stylix
         "col.inactive_border" = "rgba(595959aa)";
 
         layout = "dwindle";
@@ -167,8 +167,8 @@
       	"$mainMod, quotedbl, workspace, 3"
       	"$mainMod, apostrophe, workspace, 4"
       	"$mainMod, parenleft, workspace, 5"
-      	"$mainMod, egrave, workspace, 6"
-      	"$mainMod, minus, workspace, 7"
+      	"$mainMod, minus, workspace, 6"
+      	"$mainMod, egrave, workspace, 7"
       	"$mainMod, underscore, workspace, 8"
       	"$mainMod, ccedilla, workspace, 9"
       	"$mainMod, agrave, workspace, 10"
@@ -178,11 +178,14 @@
         "SUPER_SHIFT, quotedbl, movetoworkspace, 3"
         "SUPER_SHIFT, apostrophe, movetoworkspace, 4"
         "SUPER_SHIFT, parenleft, movetoworkspace, 5"
-        "SUPER_SHIFT, egrave, movetoworkspace, 6"
-        "SUPER_SHIFT, minus, movetoworkspace, 7"
+        "SUPER_SHIFT, minus, movetoworkspace, 6"
+        "SUPER_SHIFT, egrave, movetoworkspace, 7"
         "SUPER_SHIFT, underscore, movetoworkspace, 8"
         "SUPER_SHIFT, ccedilla, movetoworkspace, 9"
         "SUPER_SHIFT, agrave, movetoworkspace, 10"
+
+        "SUPER_SHIFT, Delete, exec, fuzzel"
+
 
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
@@ -239,4 +242,5 @@
       
     };
   };
+
 }
