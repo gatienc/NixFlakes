@@ -18,9 +18,11 @@
 	  age
 	  ssh-to-age
     
-    #grim
-    #slurp
+    grim
+    slurp
 
+	  hyprlock
+    hypridle
     waybar
     swww
     fuzzel
@@ -46,9 +48,10 @@
     # Terminal
     tree 
     nnn # terminal file manager
-    
+    bat # replacement for cat
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
+    wl-clipboard
     
     # archives
     zip
@@ -80,6 +83,25 @@
       enable = true;
       enableCompletion = true;
       autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+
+      shellAliases = {
+        nixswitch = "sudo nixos-rebuild switch";
+        nixconfig = "$EDITOR /etc/nixos/";
+        cd = "z";
+        ls = "eza --icons --group-directories-first";
+        ll = "eza --icons -l --group-directories-first";
+        tree = "eza --tree --icons";
+        cat = "bat";
+        clip = "wl-copy";
+        whatismyip = "curl https://ipinfo.io/ip";
+        logout = "hyprctl dispatch exit";
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "node" "npm" ];
+      };
     };
 
     zoxide = {
@@ -87,7 +109,16 @@
       enableZshIntegration = true;
     };
 
-    
+    helix = {
+      enable = true;
+      settings = { theme = "nord"; };
+      themes = {
+        nord = {
+          inherits = "nord";
+          "ui.background" = "none";
+        };
+      };
+    };
 
   };
 
