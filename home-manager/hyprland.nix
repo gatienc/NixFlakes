@@ -3,6 +3,7 @@
     startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
+    hypridle &
     ${pkgs.swww}/bin/swww img ${../assets/wallpaper/Kanagawa.png} &
     '';
 
@@ -66,9 +67,10 @@
     };
   };
 
-  home.file.".config/hypr/hypridle.conf" = {
-    text = (builtins.readFile /etc/nixos/nixflakes/.config/hypr/hypridle.conf);
-  };
+  #hypridle
+  #home.file.".config/hypr/hypridle.conf" = {
+  #  text = (builtins.readFile /etc/nixos/nixflakes/.config/hypr/hypridle.conf);
+  #};
 
   wayland.windowManager.hyprland = {
     enable = true;

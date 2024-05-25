@@ -20,6 +20,7 @@
 	  ssh-to-age
 
     direnv
+    brillo
 
     font-manager
 
