@@ -19,6 +19,8 @@
 	  age
 	  ssh-to-age
 
+    protonup
+
     direnv
     brillo
 
@@ -114,7 +116,7 @@
 
     helix = {
       enable = true;
-      settings = { theme = "nord"; };
+      settings = { theme = lib.mkDefault "nord"; };
       themes = {
         nord = {
           inherits = "nord";

@@ -3,7 +3,6 @@
     startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
-    hypridle &
     ${pkgs.swww}/bin/swww img ${../assets/wallpaper/Kanagawa.png} &
     '';
 
@@ -67,11 +66,6 @@
     };
   };
 
-  #hypridle
-  #home.file.".config/hypr/hypridle.conf" = {
-  #  text = (builtins.readFile /etc/nixos/nixflakes/.config/hypr/hypridle.conf);
-  #};
-
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -88,8 +82,8 @@
         gaps_in = 5;
         gaps_out = [ 5 5 5 5 ];
         border_size = 2;
-        "col.active_border" =   lib.mkForce "rgb(${config.stylix.base16Scheme.base0E})";   #fix to enable stylix
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = lib.mkDefault "rgb(5E81AC)";
+        "col.inactive_border" = lib.mkDefault "rgba(595959aa)";
 
         layout = "dwindle";
 
@@ -111,7 +105,7 @@
         drop_shadow = "yes";
         shadow_range = 4;
         shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        "col.shadow" = lib.mkDefault "rgba(1a1a1aee)";
       };
 
       animations = {

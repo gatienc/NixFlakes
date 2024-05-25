@@ -1,7 +1,8 @@
-{ pkgs, ... }: 
+{ pkgs,lib, ... }: 
 {
       stylix.cursor.package = pkgs.bibata-cursors;
       stylix.cursor.name = "Bibata-Modern-Ice";
+      stylix.cursor.size = 12;
       stylix.image = ../assets/wallpaper/Kanagawa.png;
       stylix.fonts = {
             monospace = {
@@ -26,6 +27,7 @@
       };
       
       stylix.polarity = "dark"; # "light" or "either"
+
 }
 
 
