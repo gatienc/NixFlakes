@@ -19,7 +19,10 @@
 	  age
 	  ssh-to-age
 
-    protonup
+    lutris
+    heroic
+    bottles
+
 
     direnv
     brillo

@@ -4,7 +4,7 @@
     ./hyprland.nix
     ./hardware.nix
     ./stylix.nix
-    ./steam.nix
+    ./gaming.nix
   ];
   services.greetd = {
     enable = true;
