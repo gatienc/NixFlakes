@@ -23,7 +23,6 @@
 
 	  hyprlock
     hypridle
-    waybar
     swww
     fuzzel
     dunst

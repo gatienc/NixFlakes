@@ -16,7 +16,6 @@
     users.gatien = {
       directories = [
         ".local/share/zoxide"
-        ".config/waybar"
         ".mozilla"
         ".ssh"
         "Downloads"
