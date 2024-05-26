@@ -27,7 +27,7 @@
 
 	"custom/launcher": {
 		"format": "",
-		"on-click": "fuzzel"
+		"on-click": "wofi --show run"
 	},
 		
 	"hyprland/workspaces": {

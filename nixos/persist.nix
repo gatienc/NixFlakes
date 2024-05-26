@@ -20,6 +20,7 @@
         ".ssh"
         ".vscode"
         "Downloads"
+        "Games"
       ];
       files = [
         ".bash_history"

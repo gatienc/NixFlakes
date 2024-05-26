@@ -7,7 +7,7 @@
       mainBar = {
         layer = "top";
         position = "top";
-        modules-left = [ "clock" ];
+        modules-left = ["custom/launcher" "clock" ];
         modules-center = [  "hyprland/workspaces" ];
         modules-right = [ "idle_inhibitor" "backlight" "pulseaudio" "network" "battery" "tray" ];
 
@@ -54,6 +54,11 @@
         };
 
         tray = { spacing = 10; };
+        "custom/launcher" = {
+            "format" = "";
+            "on-click" = "wofi --show run";
+          };
+		
 
         "hyprland/workspaces" = {
           format = "{icon}";

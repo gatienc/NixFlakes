@@ -7,7 +7,7 @@
     ${pkgs.swayidle} -w timeout 1200 "systemctl hibernate" &             # hibernate after 20 mins of idle
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
-    ${pkgs.swww}/bin/swww img ${../assets/wallpaper/Kanagawa.png} &
+    ${pkgs.swww}/bin/swww img ${../assets/wallpaper/cloud.png} &
     '';
 
 	in
@@ -17,7 +17,7 @@
     settings = {
       background = {
         #monitor =;
-        path = "/etc/nixos/nixflakes/assets/wallpaper/Kanagawa.png";
+        path = "/etc/nixos/nixflakes/assets/wallpaper/cloud.png";
         blur_passes = 1;
         contrast = 0.8916;
         brightness = 0.8172;
@@ -182,7 +182,6 @@
         "SUPER_SHIFT, ccedilla, movetoworkspace, 9"
         "SUPER_SHIFT, agrave, movetoworkspace, 10"
 
-        "SUPER_SHIFT, Delete, exec, reboot"
 
 
         # Scroll through existing workspaces with mainMod + scroll
@@ -208,10 +207,10 @@
         "$mainMod CTRL, Up, resizeactive, 0 -50"
         "$mainMod CTRL, Down, resizeactive, 0 50"
       	
-        "ALT,TAB,workspace,next"
-        
+        "ALT,TAB,workspace,previous"
+        "SUPER_SHIFT, Delete, exec, hyprlock"
         "$mainMod, space, exec, fuzzel"
-
+        
         " , mouse:274, exec, ;" #disable middle click paste
       ];
 
