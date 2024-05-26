@@ -49,6 +49,7 @@
   environment.systemPackages = with pkgs; [
     micro
     kitty
+    base16-schemes
   ];
   
   environment.variables.EDITOR ="micro";

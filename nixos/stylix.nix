@@ -4,7 +4,7 @@
       stylix.cursor.name = "Bibata-Modern-Ice";
       stylix.cursor.size = 12;
       stylix.image = ../assets/wallpaper/cloud.png;
-      #stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/humanoid-dark.yaml";
+      stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
       stylix.fonts = {
             monospace = {
                   package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
