@@ -25,7 +25,8 @@
 
 
     direnv
-    brillo
+    
+
 
     font-manager
 
