@@ -56,7 +56,8 @@
         tray = { spacing = 10; };
         "custom/launcher" = {
             "format" = "";
-            "on-click" = "wofi --show run";
+            
+            "on-click" = "fuzzel";
           };
 		
 
@@ -134,6 +135,7 @@
       	background: #4c566a;
       	color: #ECEFF4;
       	border-radius: 25;
+
       }
 
       .modules-left {
@@ -234,6 +236,10 @@
       #tray {
       	border: solid 1px #8FBCBB;
       	color: #ECEFF4;
+      }
+
+      #custom {
+        font-size : 20;
       }
     '';
   };

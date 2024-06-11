@@ -33,8 +33,9 @@
     grim
     slurp
 
-    swww
     fuzzel
+    
+    swww
     dunst
     libnotify
 

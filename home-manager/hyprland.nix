@@ -74,6 +74,7 @@
     enable = true;
 
     settings = {
+      monitor = ",preferred,auto,1" ;
     	input = {
     		kb_layout = "fr";
         follow_mouse = 1;
@@ -86,8 +87,11 @@
         gaps_in = 5;
         gaps_out = [ 5 5 5 5 ];
         border_size = 2;
-        "col.active_border" = lib.mkDefault "rgb(5E81AC)";
-        "col.inactive_border" = lib.mkDefault "rgba(595959aa)";
+        "col.active_border"= lib.mkForce "0x00000000";
+        "col.inactive_border"= lib.mkForce "0x00000000";
+        
+        #"col.active_border" = lib.mkDefault "rgb(5E81AC)";
+        #"col.inactive_border" = lib.mkDefault "rgba(595959aa)";
 
         layout = "dwindle";
 

@@ -3,7 +3,7 @@
       stylix.cursor.package = pkgs.bibata-cursors;
       stylix.cursor.name = "Bibata-Modern-Ice";
       stylix.cursor.size = 12;
-      stylix.image = ../assets/wallpaper/cloud.png;
+      stylix.image = ../assets/wallpaper/pixel_kanagawa.png;
       stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
       stylix.fonts = {
             monospace = {
