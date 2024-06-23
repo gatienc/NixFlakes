@@ -20,9 +20,10 @@
         specialArgs = { inherit inputs; };
 
         modules = [
-          impermanence.nixosModules.impermanence
+          # impermanence.nixosModules.impermanence
           ./hosts/glacius.nix
           ./nixos/configuration.nix
+          ./nixos/persist.nix
           home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
           {
@@ -40,6 +41,8 @@
 
         modules = [
           impermanence.nixosModules.impermanence
+            ./persist.nix
+
           ./hosts/icicle.nix
           ./nixos/configuration.nix
           inputs.stylix.nixosModules.stylix

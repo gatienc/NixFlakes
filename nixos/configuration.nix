@@ -1,6 +1,5 @@
 { inputs, pkgs, lib, config, ... }: {
   imports = [
-    ./persist.nix
     ./hyprland.nix
     ./hardware.nix
     ./stylix.nix
