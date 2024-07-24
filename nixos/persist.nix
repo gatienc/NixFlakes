@@ -22,6 +22,7 @@
         "Downloads"
         "Games"
         "NixFlakes"
+        ".config/Code"#TODO: Nixify Vscode settings
       ];
       files = [
         ".bash_history"
