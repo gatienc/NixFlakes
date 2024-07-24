@@ -118,7 +118,7 @@ in
       };
       }
     ];
-    style =concatStrings[''
+    style =''
       /* colors */
       /* #5E81AC
       #81A1C1
@@ -238,7 +238,7 @@ in
       	border: solid 1px #8FBCBB;
       	color: #ECEFF4;
       }
-    ''];
+    '';
   };
 }                                                      
   

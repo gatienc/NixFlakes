@@ -26,7 +26,8 @@
 
     direnv
     
-    ranger
+    ranger # terminal file manager
+    fd # replacement for find
 
     font-manager
 
