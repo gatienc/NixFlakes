@@ -1,6 +1,6 @@
 { inputs, pkgs, lib, config, ... }:
-	{
-    imports = [
+{
+  imports = [
     ./hyprland.nix
     ./waybar.nix
   ];
@@ -10,22 +10,24 @@
     homeDirectory = "/home/gatien";
   };
 
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     obsidian
     bitwarden
-  	vscode
-  	discord
-  	fastfetch
-	  age
-	  ssh-to-age
+    vscode
+    discord
+    fastfetch
+    age
+    ssh-to-age
+
+    nixpkgs-fmt # nix formatting tool
 
     lutris
     heroic
     bottles
 
 
-    direnv
-    
+    direnv # environment variable manager
+
     ranger # terminal file manager
     fd # replacement for find
 
@@ -39,30 +41,31 @@
     dunst
     libnotify
 
+      python3Full # python3 with all the packages
 
     # media playing 
     #playerctl
 
     #brightnessctl
     #pamixer
-	
+
     glow # markdown previewer in terminal
-    btop  # replacement of htop/nmo
+    btop # replacement of htop/nmo
     iotop # io monitoring
     iftop # network monitoring
 
     ani-cli
-  	spicetify-cli
+    spicetify-cli
     spotify
 
     # Terminal
-    tree 
+    tree
     nnn # terminal file manager
     bat # replacement for cat
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
     wl-clipboard
-    
+
     # archives
     zip
     unzip
@@ -71,11 +74,11 @@
 
     # Other
     cowsay
-    xclip 
-    ripgrep 
-    
-    
-    ];
+    xclip
+    ripgrep
+
+
+  ];
 
   programs = {
     home-manager.enable = true;
