@@ -25,7 +25,6 @@
       ];
       files = [
         ".bash_history"
-        ".config/systemsettingsrc"
         ".zsh_history"
       ];
     };
