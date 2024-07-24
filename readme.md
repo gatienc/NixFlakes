@@ -5,7 +5,7 @@ heavily inspired from Will Bush and Vimjoyer
 
 
 ```bash
-sudo nixos-rebuild switch --flake .#blitzar
+sudo nixos-rebuild switch --flake .#glacius
 ```
 
 `initialHashedPassword`
