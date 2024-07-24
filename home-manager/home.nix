@@ -26,7 +26,7 @@
 
     direnv
     
-
+    ranger
 
     font-manager
 
