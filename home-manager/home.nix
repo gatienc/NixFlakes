@@ -70,7 +70,7 @@
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
     wl-clipboard
-
+    w3m # Display image in terminal
     # archives
     zip
     unzip
