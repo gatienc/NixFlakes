@@ -47,7 +47,6 @@
     };
   };
 
-  inputs.zen-browser.packages."${system}".default
 
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
