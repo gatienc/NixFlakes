@@ -19,7 +19,7 @@
     age
     ssh-to-age
 
-    
+
 
     nixpkgs-fmt # nix formatting tool
 
@@ -76,7 +76,7 @@
     zip
     unzip
 
-
+    brightnessctl # control screen brightness
 
     # Other
     cowsay
