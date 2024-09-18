@@ -17,7 +17,7 @@ in
     settings = {
       background = {
         #monitor =;
-        path = "/etc/nixos/nixflakes/assets/wallpaper/cloud.png";
+        path = "${../assets/wallpaper/cloud.png}";
         blur_passes = 1;
         contrast = 0.8916;
         brightness = 0.8172;
@@ -250,7 +250,8 @@ in
       ];
 
       bindl = [
-        # Lock screen with mainMod + L
+        # Lock screen when closing laptop lid
+
         ",switch:Lid Switch, exec, hyprlock"
       ];
 
