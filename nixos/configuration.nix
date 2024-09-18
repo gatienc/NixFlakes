@@ -72,13 +72,14 @@
     noto-fonts
     inconsolata
     iosevka
+    twemoji-color-font
+    openmoji-color
     (nerdfonts.override {
         fonts = [
           "JetBrainsMono"
         ];
       }) # fonts name can get in ``https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix`
-      twemoji-color-font
-      OpenMoji Color
+
   ];
   fonts.fontconfig = {
       defaultFonts = {
