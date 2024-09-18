@@ -71,6 +71,7 @@
     fzf # A command-line fuzzy finder
     wl-clipboard
     w3m # Display image in terminal
+    ueberzug
     # archives
     zip
     unzip
@@ -119,6 +120,7 @@
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" "node" "npm" ];
+        theme = "af-magic";
       };
     };
 

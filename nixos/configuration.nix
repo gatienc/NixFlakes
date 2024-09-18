@@ -5,6 +5,7 @@
     ./hardware.nix
     ./stylix.nix
     #./gaming.nix
+    ./zen.nix
   ];
 
   services.greetd = {
@@ -84,7 +85,7 @@
   ];
   fonts.fontconfig = {
       defaultFonts = {
-        emoji = [ "OpenMoji Color" ];
+        emoji = [ "apple-color-emoji" ];
       };
   };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
