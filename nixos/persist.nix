@@ -22,7 +22,9 @@
         "Downloads"
         "Games"
         "NixFlakes"
-        ".config/Code"#TODO: Nixify Vscode settings
+        ".config/Code" #TODO: Nixify Vscode settings
+        ".steam"
+        ".cache/lutris"
       ];
       files = [
         ".bash_history"

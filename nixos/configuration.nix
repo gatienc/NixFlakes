@@ -18,8 +18,8 @@
     };
   };
   services.gvfs.enable = true; # for Nautilus
-  
-  
+
+
 
   nix.settings = {
     experimental-features = "nix-command flakes";
@@ -54,16 +54,17 @@
     micro
     kitty
     base16-schemes
+    gnome.adwaita-icon-theme # for icons in nautilus
   ];
-  
-  environment.variables.EDITOR ="micro";
 
-   #services.xserver = {
-   #  enable = true;
-   #  desktopManager.gnome.enable = true;
-   #  displayManager.gdm.enable = true;
-   #  xkb.layout = "fr";
-   #};
+  environment.variables.EDITOR = "micro";
+
+  #services.xserver = {
+  #  enable = true;
+  #  desktopManager.gnome.enable = true;
+  #  displayManager.gdm.enable = true;
+  #  xkb.layout = "fr";
+  #};
   console.keyMap = "fr";
   fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
@@ -77,16 +78,16 @@
     twemoji-color-font
     openmoji-color
     (nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-        ];
-      }) # fonts name can get in ``https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix`
+      fonts = [
+        "JetBrainsMono"
+      ];
+    }) # fonts name can get in ``https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix`
 
   ];
   fonts.fontconfig = {
-      defaultFonts = {
-        emoji = [ "apple-color-emoji" ];
-      };
+    defaultFonts = {
+      emoji = [ "apple-color-emoji" ];
+    };
   };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
