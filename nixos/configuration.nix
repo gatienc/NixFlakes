@@ -6,6 +6,7 @@
     ./stylix.nix
     #./gaming.nix
   ];
+
   services.greetd = {
     enable = true;
     settings = {
@@ -15,6 +16,7 @@
       };
     };
   };
+  services.gvfs.enable = true; # for Nautilus
   
   
 
@@ -61,11 +63,13 @@
    #  xkb.layout = "fr";
    #};
   console.keyMap = "fr";
-
-
+  fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
+    fira-code
+    fira-code-symbols
     fira-mono
     hack-font
+    noto-fonts
     inconsolata
     iosevka
     (nerdfonts.override {
@@ -74,8 +78,13 @@
         ];
       }) # fonts name can get in ``https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix`
       twemoji-color-font
+      OpenMoji Color
   ];
-
+  fonts.fontconfig = {
+      defaultFonts = {
+        emoji = [ "OpenMoji Color" ];
+      };
+  };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }

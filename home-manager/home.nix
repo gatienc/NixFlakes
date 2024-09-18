@@ -19,6 +19,8 @@
     age
     ssh-to-age
 
+    
+
     nixpkgs-fmt # nix formatting tool
 
     lutris
@@ -28,8 +30,11 @@
 
     direnv # environment variable manager
 
+    gnome.nautilus # Cli file manager
     ranger # terminal file manager
     fd # replacement for find
+
+    gthumb
 
     font-manager
 
@@ -41,7 +46,7 @@
     dunst
     libnotify
 
-      python3Full # python3 with all the packages
+    python3Full # python3 with all the packages
 
     # media playing 
     #playerctl

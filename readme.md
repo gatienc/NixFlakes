@@ -22,3 +22,7 @@ snippets to find the new files created
 ```sh
  sudo fd --one-file-system --base-directory / --type f --hidden --exclude "{tmp,etc/passwd}" 
 ```
+
+
+I am using 
+/home/gatien/.local/share/fonts/Google/TrueType/Apple Color Emoji/Apple_Color_Emoji_Regular.ttf
