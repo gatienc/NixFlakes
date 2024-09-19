@@ -4,12 +4,12 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    pyprland.url = "github:hyprland-community/pyprland";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     stylix.url = "github:danth/stylix";
-    
   };
 
   outputs = inputs@{ nixpkgs, impermanence, home-manager, ... }: {
