@@ -8,6 +8,4 @@
 
   security.pam.services.hyprlock = { }; # to enable hyprlock auth	
 
-  # Pyprland
-  #environment.systemPackages = [ pyprland ];
 }

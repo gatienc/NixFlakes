@@ -1,8 +1,9 @@
-{ inputs, pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, pyprland, ... }:
 {
   imports = [
     ./hyprland.nix
     ./waybar.nix
+    ./pyprland.nix
   ];
 
   home = {
@@ -75,6 +76,8 @@
     # archives
     zip
     unzip
+
+    pyprland
 
     brightnessctl # control screen brightness
 
