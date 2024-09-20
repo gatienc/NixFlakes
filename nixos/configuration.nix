@@ -34,9 +34,6 @@
 
   time.timeZone = "Europe/Paris";
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
   users.mutableUsers = false;
 
