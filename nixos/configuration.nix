@@ -5,7 +5,8 @@
     ./hardware.nix
     ./stylix.nix
     #./gaming.nix
-    ./zen.nix
+    #./zen.nix
+    ./ssh.nix
   ];
 
   services.greetd = {
