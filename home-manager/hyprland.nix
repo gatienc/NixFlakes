@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, ... }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     # idle
@@ -12,6 +12,9 @@ let
 
 in
 {
+  imports = [
+    inputs.ags.homeManagerModules.default
+  ];
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -94,7 +97,10 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-
+    #plugins = [
+    #  # ... whatever
+    #  inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+    #];
     settings = {
       input = {
         kb_layout = "fr";
@@ -266,6 +272,9 @@ in
     };
   };
 
+  programs.ags = {
+    enable = true;
+  };
 
 
 }

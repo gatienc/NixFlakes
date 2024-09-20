@@ -55,6 +55,13 @@
     kitty
     base16-schemes
     gnome.adwaita-icon-theme # for icons in nautilus
+    morewaita-icon-theme
+
+
+    #pyprland
+    hyprpicker
+    hyprcursor
+
   ];
 
   environment.variables.EDITOR = "micro";

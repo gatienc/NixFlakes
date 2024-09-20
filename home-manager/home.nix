@@ -1,9 +1,8 @@
-{ inputs, pkgs, lib, config, pyprland, ... }:
+{ inputs, pkgs, lib, config, ... }:
 {
   imports = [
     ./hyprland.nix
     ./waybar.nix
-    ./pyprland.nix
   ];
 
   home = {
@@ -34,6 +33,8 @@
     gnome.nautilus # Cli file manager
     ranger # terminal file manager
     fd # replacement for find
+
+    zellij # tmux alternative
 
     gthumb
 
@@ -77,7 +78,6 @@
     zip
     unzip
 
-    pyprland
 
     brightnessctl # control screen brightness
 
