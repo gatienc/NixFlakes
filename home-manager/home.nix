@@ -30,7 +30,7 @@
 
     direnv # environment variable manager
 
-    gnome.nautilus # Cli file manager
+    nautilus # Cli file manager
     ranger # terminal file manager
     fd # replacement for find
 

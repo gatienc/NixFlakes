@@ -7,6 +7,14 @@
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
+      ../nixos/configuration.nix
+      ../nixos/persist.nix
+      ../nixos/hyprland.nix
+      ../nixos/hardware.nix
+      ../nixos/stylix.nix
+      #../nixos/gaming.nix
+      #../nixos/zen.nix
+      ../nixos/ssh.nix
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];

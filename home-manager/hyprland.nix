@@ -12,9 +12,9 @@ let
 
 in
 {
-  imports = [
-    inputs.ags.homeManagerModules.default
-  ];
+  #imports = [
+  #  inpsuts.ags.homeManagerModules.default
+  #];
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -207,6 +207,8 @@ in
           "SUPER_SHIFT, ccedilla, movetoworkspace, 9"
           "SUPER_SHIFT, agrave, movetoworkspace, 10"
 
+          "$mainMod SHIFT, space, overview:toggle, "
+
 
 
           # Scroll through existing workspaces with mainMod + scroll
@@ -272,9 +274,9 @@ in
     };
   };
 
-  programs.ags = {
-    enable = true;
-  };
+  #programs.ags = {
+  #  enable = true;
+  #};
 
 
 }

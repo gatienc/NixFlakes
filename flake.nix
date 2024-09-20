@@ -34,7 +34,6 @@
         modules = [
           impermanence.nixosModules.impermanence
           ./hosts/glacius.nix
-          ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
           {

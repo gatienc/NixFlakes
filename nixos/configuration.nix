@@ -1,14 +1,4 @@
 { inputs, pkgs, lib, config, ... }: {
-  imports = [
-    ./persist.nix
-    ./hyprland.nix
-    ./hardware.nix
-    ./stylix.nix
-    #./gaming.nix
-    #./zen.nix
-    ./ssh.nix
-  ];
-
   services.greetd = {
     enable = true;
     settings = {
@@ -54,7 +44,7 @@
     micro
     kitty
     base16-schemes
-    gnome.adwaita-icon-theme # for icons in nautilus
+    adwaita-icon-theme # for icons in nautilus
     morewaita-icon-theme
 
 
