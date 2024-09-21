@@ -111,10 +111,6 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    #plugins = [
-    #  # ... whatever
-    #  inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-    #];
     settings = {
       input = {
         kb_layout = "fr";

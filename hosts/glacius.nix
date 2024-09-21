@@ -15,6 +15,7 @@
       #../nixos/gaming.nix
       #../nixos/zen.nix
       ../nixos/ssh.nix
+      ../nixos/minecraft.nix
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
