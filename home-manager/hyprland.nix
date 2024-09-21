@@ -5,6 +5,9 @@ let
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
     swww img ${../assets/wallpaper/city.gif} &
+
+    brightnessctl set 500
+
     while true; do
         BG=`find ${
           ../assets/wallpaper} -name "*" | shuf -n1`
@@ -121,7 +124,7 @@ in
       };
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        monitor = "desc:Sharp Corporation 0x1479, 1920x1280@60, auto, 1.2"; # Settings for the monitor of Icicle
+        monitor = "desc:Sharp Corporation 0x1479, 1920x1280@60, auto, 1.25"; # Settings for the monitor of Icicle
         gaps_in = 5;
         gaps_out = [ 5 5 5 5 ];
         border_size = 2;
@@ -264,8 +267,8 @@ in
         ", XF86AudioRaiseVolume, exec, amixer set Master 5%+"
         ", XF86AudioLowerVolume, exec, amixer set Master 5%-"
         ", XF86AudioMute, exec, XF86AudioMute "
-        ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
-        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+        ", XF86MonBrightnessUp, exec, brightnessctl s +5% "
+        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-" # minimum brightness is 1
       ];
 
       bindl = [
