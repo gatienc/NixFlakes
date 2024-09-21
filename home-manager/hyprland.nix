@@ -32,7 +32,7 @@ in
     enable = true;
     settings = {
       background = {
-        monitor = "monitor = DP-1, 1920x1280@60, 0x0, 1";
+        monitor = "DP-1, 1920x1280@60, 0x0, 1";
         path = "${../assets/wallpaper/calm_cloud.png}";
         blur_passes = 1;
         contrast = 0.8916;
