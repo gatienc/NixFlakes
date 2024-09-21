@@ -2,12 +2,9 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     # idle
-
-    ${pkgs.swayidle} -w timeout 60 "hyprlock" before-sleep "hyprlock" & # lock screen after 10 min of idle
-    ${pkgs.swayidle} -w timeout 1200 "systemctl hibernate" &             # hibernate after 20 mins of idle
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
-    ${pkgs.swww}/bin/swww img ${../assets/wallpaper/cloud.png} &
+    ${pkgs.swww}/bin/swww img ${../assets/wallpaper/city.gif} &
   '';
 
 in
@@ -80,17 +77,18 @@ in
         lock_cmd = "${lib.getExe pkgs.hyprlock}";
         before_sleep_cmd = "${lib.getExe pkgs.hyprlock}";
       };
-
       listener = [
         {
-          timeout = 300;
-          on-timeout = "${lib.getExe pkgs.hyprlock}";
-        }
+          timeout = 120;
+          on-timeout = "loginctl lock-session";
+        } # lock screen after 2 minutes
         {
-          timeout = 305;
-          on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
-          on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-        }
+          timeout = 600;
+          on-timeout = "sleep 1 && hyprctl dispatch dpms off";
+          on-resume = " sleep 1 && hyprctl dispatch dpms on";
+        } # turn off screen after 10 minutes
+        { timeout = 1200; on-timeout = "systemctl hibernate"; }
+        # hibernate after 20 minutes
       ];
     };
   };
@@ -183,7 +181,7 @@ in
           "$mainMod, F, fullscreen "
           "$mainMod, escape, killactive"
           "$mainMod, V, togglefloating,"
-          "$mainMod, M, exit," #quit Hyprland
+          "$mainMod SHIFT, M, exit," #quit Hyprland
           '', Print, exec, grim -g "$(slurp -d)" - | wl-copy''
           "$mainMod, ampersand, workspace, 1"
           "$mainMod, eacute, workspace, 2"
@@ -207,7 +205,7 @@ in
           "SUPER_SHIFT, ccedilla, movetoworkspace, 9"
           "SUPER_SHIFT, agrave, movetoworkspace, 10"
 
-          "$mainMod SHIFT, space, overview:toggle, "
+          #"$mainMod SHIFT, space, overview:toggle, "
 
 
 
