@@ -4,7 +4,23 @@ let
     # idle
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
-    ${pkgs.swww}/bin/swww img ${../assets/wallpaper/city.gif} &
+    $swww img ${../assets/wallpaper/city.gif} &
+    while true; do
+        BG=`find ${
+          ../assets/wallpaper} -name "*" | shuf -n1`
+        if pgrep swww-daemon >/dev/null; then
+          swww img "$BG" \
+            --transition-fps 60 \
+            --transition-duration 2 \
+            --transition-type any \
+            --transition-pos top-right \
+            --transition-bezier .3,0,0,.99 \
+            --transition-angle 135 || true
+        else
+          (swww-daemon 1>/dev/null 2>/dev/null &) || true
+        fi
+        sleep 1800
+      done
   '';
 
 in
@@ -17,7 +33,7 @@ in
     settings = {
       background = {
         #monitor =;
-        path = "${../assets/wallpaper/cloud.png}";
+        path = "${../assets/wallpaper/calm_cloud.png}";
         blur_passes = 1;
         contrast = 0.8916;
         brightness = 0.8172;
