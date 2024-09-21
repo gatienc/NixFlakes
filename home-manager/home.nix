@@ -71,7 +71,10 @@
     bat # replacement for cat
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
+
     wl-clipboard
+    wf-recorder
+
     w3m # Display image in terminal
     ueberzug
     # archives
