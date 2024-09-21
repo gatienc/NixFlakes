@@ -110,7 +110,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.variables = [ "--all" ];
+    systemd.variables = [ "--all" ]; # Important for the exec in Hyprland to work correctly
     settings = {
       input = {
         kb_layout = "fr";
@@ -121,7 +121,7 @@ in
       };
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        monitor = "desc:Sharp Corporation 0x1479, 1920x1280@60, auto, 1";
+        monitor = "desc:Sharp Corporation 0x1479, 1920x1280@60, auto, 1"; # Settings for the monitor of Icicle
         gaps_in = 5;
         gaps_out = [ 5 5 5 5 ];
         border_size = 2;
