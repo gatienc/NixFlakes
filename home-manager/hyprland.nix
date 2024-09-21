@@ -4,7 +4,7 @@ let
     # idle
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
-    $swww img ${../assets/wallpaper/city.gif} &
+    swww img ${../assets/wallpaper/city.gif} &
     while true; do
         BG=`find ${
           ../assets/wallpaper} -name "*" | shuf -n1`
