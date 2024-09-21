@@ -19,6 +19,7 @@
         ".ssh"
 
         # Directories
+        "Documents"
         "Downloads"
         "Games"
         "NixFlakes"
