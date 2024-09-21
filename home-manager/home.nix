@@ -15,7 +15,6 @@
     bitwarden
     vscode
     discord
-    fastfetch
     age
     ssh-to-age
 
