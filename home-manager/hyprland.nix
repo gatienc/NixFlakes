@@ -32,7 +32,6 @@ in
     enable = true;
     settings = {
       background = {
-        monitor = "DP-1, 1920x1280@60, 0x0, 1";
         path = "${../assets/wallpaper/calm_cloud.png}";
         blur_passes = 1;
         contrast = 0.8916;
@@ -111,6 +110,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.variables = [ "--all" ];
     settings = {
       input = {
         kb_layout = "fr";
@@ -121,6 +121,7 @@ in
       };
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
+        monitor = "desc:Sharp Corporation 0x1479, 1920x1280@60, auto, 1";
         gaps_in = 5;
         gaps_out = [ 5 5 5 5 ];
         border_size = 2;
