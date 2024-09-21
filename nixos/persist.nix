@@ -15,14 +15,23 @@
     ];
     users.gatien = {
       directories = [
-        ".local/share"
-        ".mozilla"
+        # secrets configuration
         ".ssh"
-        ".vscode"
+
+        # Directories
         "Downloads"
         "Games"
         "NixFlakes"
+        "obsidian-vault"
+
+        # Browser configuration
+        ".mozilla"
+
+        # vscode configuration
+        ".vscode"
         ".config/Code" #TODO: Nixify Vscode settings
+
+        # Games
         ".steam"
         ".cache/lutris"
       ];
