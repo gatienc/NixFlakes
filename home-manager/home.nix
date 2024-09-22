@@ -4,6 +4,7 @@
     ./hyprland.nix
     ./waybar.nix
     ./fastfetch.nix
+    ./stylix.nix
   ];
 
   home = {

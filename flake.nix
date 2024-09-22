@@ -18,7 +18,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = inputs@{ nixpkgs, impermanence, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, impermanence, home-manager, stylix, ... }: {
     nixosConfigurations = {
       glacius = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -30,7 +30,7 @@
           impermanence.nixosModules.impermanence
           ./hosts/glacius.nix
           home-manager.nixosModules.home-manager
-          inputs.stylix.nixosModules.stylix
+          stylix.nixosModules.stylix
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -48,7 +48,7 @@
           impermanence.nixosModules.impermanence
           ./hosts/icicle.nix
           ./nixos/configuration.nix
-          inputs.stylix.nixosModules.stylix
+          stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
