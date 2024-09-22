@@ -13,7 +13,7 @@
       ../nixos/persist.nix
       ../nixos/hyprland.nix
       ../nixos/hardware.nix
-      #../nixos/stylix.nix
+      ../nixos/stylix.nix
       ../nixos/zen.nix
       ../nixos/laptop.nix
     ];
