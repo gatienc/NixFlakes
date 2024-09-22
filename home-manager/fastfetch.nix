@@ -1,13 +1,14 @@
 # From https://github.com/Frost-Phoenix/nixos-config/tree/main
 { pkgs, ... }:
 {
-  home.packages = (with pkgs; [ fastfetch ]);
+  home.packages = (with pkgs;
+    [ fastfetch ]);
 
   xdg.configFile."fastfetch/config.jsonc".text = ''
     {
       "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
       "logo": {
-        "source": "$(ls ${../assets/logo})| shuf -n 1",
+        "source": "${../assets/logo}/$(ls ${../assets/logo}| shuf -n 1)",
         "type": "kitty-direct",
         "width": 33,
         "padding": {

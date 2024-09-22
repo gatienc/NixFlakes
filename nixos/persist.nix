@@ -4,6 +4,7 @@
     hideMounts = true;
     directories = [
       "/var/log"
+      "/var/lib/nixos" # not sure why but cuts a warning
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
     ];

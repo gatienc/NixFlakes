@@ -41,6 +41,7 @@
 
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
+
     micro
     base16-schemes
     adwaita-icon-theme # for icons in nautilus

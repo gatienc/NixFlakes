@@ -3,7 +3,6 @@
 
   stylix = {
     enable = true;
-    targets.kitty.enable = true;
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
@@ -12,7 +11,7 @@
     image = ../assets/wallpaper/pixel_kanagawa.png;
     # https://tinted-theming.github.io/base16-gallery/
     # Dracula, Nord, cattpuccin-mocha
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     fonts = {
       monospace = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };

@@ -11,6 +11,10 @@
     homeDirectory = "/home/gatien";
   };
 
+  programs.kitty = {
+    enable = true;
+  };
+
   home.packages = with pkgs; [
     obsidian
     bitwarden
@@ -19,7 +23,7 @@
     age
     ssh-to-age
 
-    kitty
+
 
 
 
