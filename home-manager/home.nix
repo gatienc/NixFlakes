@@ -19,6 +19,8 @@
     age
     ssh-to-age
 
+    kitty
+
 
 
     nixpkgs-fmt # nix formatting tool

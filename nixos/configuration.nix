@@ -18,6 +18,7 @@
     experimental-features = "nix-command flakes";
     auto-optimise-store = true;
   };
+
   nixpkgs.config.allowUnfree = true;
   networking.networkmanager.enable = true;
 
@@ -42,11 +43,10 @@
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     micro
-    kitty
     base16-schemes
     adwaita-icon-theme # for icons in nautilus
     morewaita-icon-theme
-    #whatsapp-emoji-font
+    whatsapp-emoji-font
 
     #pyprland
     hyprpicker
@@ -85,7 +85,7 @@
   ];
   fonts.fontconfig = {
     defaultFonts = {
-      emoji = [ "apple-color-emoji" ];
+      emoji = [ "apple-color-emoji" "WhatsApp Emoji" "Noto Color Emoji" "Twemoji" "OpenMoji" ];
     };
   };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

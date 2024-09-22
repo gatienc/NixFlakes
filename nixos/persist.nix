@@ -23,7 +23,6 @@
         "Downloads"
         "Games"
         "NixFlakes"
-        "obsidian-vault"
 
         # Browser configuration
         ".mozilla"

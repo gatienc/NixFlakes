@@ -4,7 +4,7 @@ let
     # idle
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
-    swww img ${../assets/wallpaper/cascade.gif} &
+    swww img ${../assets/wallpaper/calm_cloud.png} &
 
     brightnessctl set 500
 
@@ -187,7 +187,7 @@ in
 
 
       "$mainMod" = "SUPER"; #windows key as modifier
-      "$terminal" = "alacritty";
+      "$terminal" = "kitty";
       "$browser" = "firefox";
 
       bind =
