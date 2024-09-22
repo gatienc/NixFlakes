@@ -31,6 +31,7 @@
         # vscode configuration
         ".vscode"
         ".config/Code" #TODO: Nixify Vscode settings
+        ".config/obsidian"
 
         # Games
         ".steam"

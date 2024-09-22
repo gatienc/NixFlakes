@@ -3,7 +3,6 @@
   stylix.image = ../assets/wallpaper/pixel_kanagawa.png; # break without this
   home-manager.users.gatien = {
     stylix = {
-      enable = true;
       cursor = {
         package = pkgs.bibata-cursors;
         name = "Bibata-Modern-Ice";
@@ -27,10 +26,10 @@
           package = pkgs.dejavu_fonts;
           name = "DejaVu Serif";
         };
-        emoji = {
-          package = pkgs.whatsapp-emoji-linux;
-          name = "WhatsApp Emoji";
-        };
+        #emoji = {
+        #  package = pkgs.whatsapp-emoji-font;
+        #  name = "WhatsApp Emoji";
+        #};
       };
 
       opacity = {

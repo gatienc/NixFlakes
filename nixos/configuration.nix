@@ -46,7 +46,7 @@
     base16-schemes
     adwaita-icon-theme # for icons in nautilus
     morewaita-icon-theme
-    whatsapp-emoji-linux
+    #whatsapp-emoji-font
 
     #pyprland
     hyprpicker
@@ -54,13 +54,7 @@
 
   ];
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      package = pkgs.morewaita-icon-theme;
-      name = "MoreWaita";
-    };
-  };
+
 
   environment.variables.EDITOR = "micro";
 

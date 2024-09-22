@@ -148,6 +148,14 @@
 
   };
 
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.morewaita-icon-theme;
+      name = "MoreWaita";
+    };
+  };
+
   # Nicely reload system units when changing configs
   #systemd.user.startServices = "sd-switch";
 
