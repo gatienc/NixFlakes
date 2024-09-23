@@ -1,5 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, stylix, ... }:
 {
+
   environment.systemPackages = with pkgs; [
     base16-schemes
     adwaita-icon-theme # for icons in nautilus

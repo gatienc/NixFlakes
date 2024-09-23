@@ -20,62 +20,60 @@
   };
 
   home.packages = with pkgs; [
+    # Terminal
+    tree # display directory tree
+    glow # markdown previewer in terminal
+    nnn # terminal file manager
+    ranger # terminal file manager
+    bat # replacement for cat
+    eza # A modern replacement for ‘ls’
+    fd # replacement for find
+    fzf # A command-line fuzzy finder
+    zellij # tmux alternative
+
     # GUI software
     obsidian
     bitwarden
     vscode
     discord
+    nautilus # GUI file manager
+    font-manager # GUI font manager
 
+    # Gaming software
     lutris
     heroic
     bottles
 
-    age
-    ssh-to-age
+
+    grim # screenshot tool
+    slurp # select region for screenshot
 
 
+    age # age encryption tool
+    ssh-to-age # ssh to age encryption tool
     nixpkgs-fmt # nix formatting tool
-
-
-
-
     direnv # environment variable manager
 
-    nautilus # Cli file manager
-    ranger # terminal file manager
-    fd # replacement for find
-
-    zellij # tmux alternative
-
-
-    font-manager
-
-    grim
-    slurp
-
-    swww
-    fuzzel
-    dunst
-    libnotify
+    swww # wallpaper manager
+    fuzzel # launcher
+    dunst # notification manager
+    libnotify # notification tool
 
     python3Full # python3 with all the packages
 
+    # System monitoring
     btop # replacement of htop/nmo
     iotop # io monitoring
     iftop # network monitoring
+
+
     ani-cli
     spicetify-cli
     spotify # spotify client
     spotifyd # spotify daemon
-    spotify-tui # spotify terminal client
 
-    # Terminal
-    tree # display directory tree
-    glow # markdown previewer in terminal
-    nnn # terminal file manager
-    bat # replacement for cat
-    eza # A modern replacement for ‘ls’
-    fzf # A command-line fuzzy finder
+
+
     ## Clipboard
     wl-clipboard
     wf-recorder
