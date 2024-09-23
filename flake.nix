@@ -1,5 +1,5 @@
 {
-  description = "Gatienc's config";
+  description = "One flake to rule them all";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -22,10 +22,8 @@
     nixosConfigurations = {
       glacius = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-
         # Pass inputs into the NixOS module system
         specialArgs = { inherit inputs; };
-
         modules = [
           impermanence.nixosModules.impermanence
           stylix.nixosModules.stylix
@@ -49,10 +47,8 @@
       };
       icicle = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-
         # Pass inputs into the NixOS module system
         specialArgs = { inherit inputs; };
-
         modules = [
           impermanence.nixosModules.impermanence
           stylix.nixosModules.stylix
@@ -64,7 +60,7 @@
           ./nixos/stylix.nix
           ./nixos/zen.nix
           ./nixos/laptop.nix
-          ./nixos/rustdesk.nix
+          #./nixos/rustdesk.nix
           ./nixos/fonts.nix
           home-manager.nixosModules.home-manager
           {
@@ -79,7 +75,6 @@
         system = "x86_64-linux";
         # Pass inputs into the NixOS module system
         specialArgs = { inherit inputs; };
-
         modules = [
           ./hosts/droplet.nix
           ./nixos/configuration.nix

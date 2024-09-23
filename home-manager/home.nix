@@ -21,15 +21,20 @@
 
   home.packages = with pkgs; [
     # Terminal
-    tree # display directory tree
-    glow # markdown previewer in terminal
-    nnn # terminal file manager
-    ranger # terminal file manager
     bat # replacement for cat
     eza # A modern replacement for ‘ls’
     fd # replacement for find
     fzf # A command-line fuzzy finder
     zellij # tmux alternative
+    glow # markdown previewer in terminal
+    nnn # terminal file manager
+    ranger # terminal file manager
+
+    # Desktop environment
+    swww # wallpaper manager
+    fuzzel # launcher
+    dunst # notification manager
+    libnotify # notification tool
 
     # GUI software
     obsidian
@@ -44,60 +49,43 @@
     heroic
     bottles
 
-
     grim # screenshot tool
     slurp # select region for screenshot
-
-
+    # Programming
+    python3Full # python3 with all the packages
     age # age encryption tool
     ssh-to-age # ssh to age encryption tool
     nixpkgs-fmt # nix formatting tool
     direnv # environment variable manager
 
-    swww # wallpaper manager
-    fuzzel # launcher
-    dunst # notification manager
-    libnotify # notification tool
-
-    python3Full # python3 with all the packages
-
     # System monitoring
     btop # replacement of htop/nmo
     iotop # io monitoring
     iftop # network monitoring
-
+    ## archives
+    zip
+    unzip
 
     ani-cli
     spicetify-cli
     spotify # spotify client
     spotifyd # spotify daemon
-
-
-
     ## Clipboard
     wl-clipboard
     wf-recorder
-    ## archives
-    zip
-    unzip
 
     # Display image TODO: select one
     gthumb
     w3m
     ueberzug
-
     # media playing 
     playerctl # control media players
     brightnessctl # control screen brightness
     pamixer # control audio volume
-
-
     # Other
     cowsay
     xclip
     ripgrep
-
-
   ];
 
   programs = {
@@ -117,7 +105,6 @@
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-
       shellAliases = {
         nixswitch = "sudo nixos-rebuild switch";
         nixconfig = "$EDITOR /etc/nixos/";
@@ -142,18 +129,6 @@
       enable = true;
       enableZshIntegration = true;
     };
-
-    helix = {
-      enable = true;
-      settings = { theme = lib.mkDefault "nord"; };
-      themes = {
-        nord = {
-          inherits = "nord";
-          "ui.background" = "none";
-        };
-      };
-    };
-
   };
 
   gtk = {

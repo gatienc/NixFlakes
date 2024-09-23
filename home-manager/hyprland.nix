@@ -4,7 +4,7 @@ let
     # idle
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
-    swww img ${../assets/wallpaper/calm_cloud.png} &
+    swww img $(find ${../assets/wallpaper} -name "*" | shuf -n1) &
 
     brightnessctl set 500
 

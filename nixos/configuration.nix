@@ -2,16 +2,12 @@
 
 
   services.gvfs.enable = true; # for Nautilus
-  security.polkit.enable = true; # Enable polkit for gparted
   programs.nix-ld.enable = true; # to run non-nix executables
   nixpkgs.config.allowUnfree = true;
-
-  # Enable Flakes
   nix.settings = {
-    experimental-features = "nix-command flakes";
+    experimental-features = "nix-command flakes"; # Enable Flakes
     auto-optimise-store = true;
   };
-
 
   networking.networkmanager.enable = true;
 
@@ -31,7 +27,6 @@
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     micro
-    gparted
   ];
   environment.variables.EDITOR = "micro";
 
