@@ -266,7 +266,7 @@ in
       binde = [
         ", XF86AudioRaiseVolume, exec, amixer set Master 5%+"
         ", XF86AudioLowerVolume, exec, amixer set Master 5%-"
-        ", XF86AudioMute, exec, XF86AudioMute "
+        ", XF86AudioMute, exec, amixer set Master toggle"
         ", XF86MonBrightnessUp, exec, brightnessctl s +5% "
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-" # minimum brightness is 1
       ];

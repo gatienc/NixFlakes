@@ -28,9 +28,18 @@
 
         modules = [
           impermanence.nixosModules.impermanence
-          ./hosts/glacius.nix
-          home-manager.nixosModules.home-manager
           stylix.nixosModules.stylix
+          ./hosts/glacius.nix
+          ./nixos/configuration.nix
+          ./nixos/persist.nix
+          ./nixos/hyprland.nix
+          ./nixos/hardware.nix
+          ./nixos/stylix.nix
+          ./nixos/zen.nix
+          ./nixos/laptop.nix
+          ./nixos/rustdesk.nix
+          ./nixos/fonts.nix
+          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -46,9 +55,17 @@
 
         modules = [
           impermanence.nixosModules.impermanence
+          stylix.nixosModules.stylix
           ./hosts/icicle.nix
           ./nixos/configuration.nix
-          stylix.nixosModules.stylix
+          ./nixos/persist.nix
+          ./nixos/hyprland.nix
+          ./nixos/hardware.nix
+          ./nixos/stylix.nix
+          ./nixos/zen.nix
+          ./nixos/laptop.nix
+          ./nixos/rustdesk.nix
+          ./nixos/fonts.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -56,6 +73,23 @@
             home-manager.users.gatien = import ./home-manager/home.nix;
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
+        ];
+      };
+      droplet = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        # Pass inputs into the NixOS module system
+        specialArgs = { inherit inputs; };
+
+        modules = [
+          ./hosts/droplet.nix
+          ./nixos/configuration.nix
+          #home-manager.nixosModules.home-manager
+          #{
+          #  home-manager.useGlobalPkgs = true;
+          #  home-manager.useUserPackages = true;
+          #  home-manager.users.gatien = import ./home-manager/home.nix;
+          #  home-manager.extraSpecialArgs = { inherit inputs; };
+          #}
         ];
       };
     };

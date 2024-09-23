@@ -13,25 +13,30 @@
 
   programs.kitty = {
     enable = true;
+    keybindings =
+      {
+        "ctrl+f" = "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i";
+      };
   };
 
   home.packages = with pkgs; [
+    # GUI software
     obsidian
     bitwarden
     vscode
     discord
-    age
-    ssh-to-age
-
-
-
-
-
-    nixpkgs-fmt # nix formatting tool
 
     lutris
     heroic
     bottles
+
+    age
+    ssh-to-age
+
+
+    nixpkgs-fmt # nix formatting tool
+
+
 
 
     direnv # environment variable manager
@@ -42,7 +47,6 @@
 
     zellij # tmux alternative
 
-    gthumb
 
     font-manager
 
@@ -56,39 +60,39 @@
 
     python3Full # python3 with all the packages
 
-    # media playing 
-    #playerctl
-
-    #brightnessctl
-    #pamixer
-
-    glow # markdown previewer in terminal
     btop # replacement of htop/nmo
     iotop # io monitoring
     iftop # network monitoring
-
     ani-cli
     spicetify-cli
-    spotify
+    spotify # spotify client
+    spotifyd # spotify daemon
+    spotify-tui # spotify terminal client
 
     # Terminal
-    tree
+    tree # display directory tree
+    glow # markdown previewer in terminal
     nnn # terminal file manager
     bat # replacement for cat
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
-
+    ## Clipboard
     wl-clipboard
     wf-recorder
-
-    w3m # Display image in terminal
-    ueberzug
-    # archives
+    ## archives
     zip
     unzip
 
+    # Display image TODO: select one
+    gthumb
+    w3m
+    ueberzug
 
+    # media playing 
+    playerctl # control media players
     brightnessctl # control screen brightness
+    pamixer # control audio volume
+
 
     # Other
     cowsay

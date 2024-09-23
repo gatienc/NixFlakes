@@ -1,5 +1,11 @@
 { pkgs, lib, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    base16-schemes
+    adwaita-icon-theme # for icons in nautilus
+    morewaita-icon-theme
+    whatsapp-emoji-font
+  ];
 
   stylix = {
     enable = true;
