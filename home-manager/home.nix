@@ -3,6 +3,7 @@
   imports = [
     ./hyprland.nix
     ./waybar.nix
+    ./fastfetch.nix
   ];
 
   home = {
@@ -10,86 +11,81 @@
     homeDirectory = "/home/gatien";
   };
 
+  programs.kitty = {
+    enable = true;
+    keybindings =
+      {
+        "ctrl+f" = "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i";
+      };
+  };
+
   home.packages = with pkgs; [
+    # Terminal
+    bat # replacement for cat
+    eza # A modern replacement for ‘ls’
+    fd # replacement for find
+    fzf # A command-line fuzzy finder
+    zellij # tmux alternative
+    glow # markdown previewer in terminal
+    nnn # terminal file manager
+    ranger # terminal file manager
+
+    # Desktop environment
+    swww # wallpaper manager
+    fuzzel # launcher
+    dunst # notification manager
+    libnotify # notification tool
+
+    # GUI software
     obsidian
     bitwarden
     vscode
     discord
-    fastfetch
-    age
-    ssh-to-age
+    nautilus # GUI file manager
+    font-manager # GUI font manager
 
-
-
-    nixpkgs-fmt # nix formatting tool
-
+    # Gaming software
     lutris
     heroic
     bottles
 
-
+    grim # screenshot tool
+    slurp # select region for screenshot
+    # Programming
+    python3Full # python3 with all the packages
+    age # age encryption tool
+    ssh-to-age # ssh to age encryption tool
+    nixpkgs-fmt # nix formatting tool
     direnv # environment variable manager
 
-    nautilus # Cli file manager
-    ranger # terminal file manager
-    fd # replacement for find
-
-    zellij # tmux alternative
-
-    gthumb
-
-    font-manager
-
-    grim
-    slurp
-
-    swww
-    fuzzel
-    dunst
-    libnotify
-
-    python3Full # python3 with all the packages
-
-    # media playing 
-    #playerctl
-
-    #brightnessctl
-    #pamixer
-
-    glow # markdown previewer in terminal
+    # System monitoring
     btop # replacement of htop/nmo
     iotop # io monitoring
     iftop # network monitoring
-
-    ani-cli
-    spicetify-cli
-    spotify
-
-    # Terminal
-    tree
-    nnn # terminal file manager
-    bat # replacement for cat
-    eza # A modern replacement for ‘ls’
-    fzf # A command-line fuzzy finder
-
-    wl-clipboard
-    wf-recorder
-
-    w3m # Display image in terminal
-    ueberzug
-    # archives
+    ## archives
     zip
     unzip
 
+    ani-cli
+    spicetify-cli
+    spotify # spotify client
+    spotifyd # spotify daemon
+    ## Clipboard
+    wl-clipboard
+    wf-recorder
 
+    # Display image TODO: select one
+    gthumb
+    w3m
+    ueberzug
+    # media playing 
+    playerctl # control media players
     brightnessctl # control screen brightness
-
+    pamixer # control audio volume
     # Other
     cowsay
     xclip
     ripgrep
-
-
   ];
 
   programs = {
@@ -109,7 +105,6 @@
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-
       shellAliases = {
         nixswitch = "sudo nixos-rebuild switch";
         nixconfig = "$EDITOR /etc/nixos/";
@@ -134,18 +129,14 @@
       enable = true;
       enableZshIntegration = true;
     };
+  };
 
-    helix = {
-      enable = true;
-      settings = { theme = lib.mkDefault "nord"; };
-      themes = {
-        nord = {
-          inherits = "nord";
-          "ui.background" = "none";
-        };
-      };
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.morewaita-icon-theme;
+      name = "MoreWaita";
     };
-
   };
 
   # Nicely reload system units when changing configs

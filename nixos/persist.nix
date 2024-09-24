@@ -4,6 +4,7 @@
     hideMounts = true;
     directories = [
       "/var/log"
+      "/var/lib/nixos" # not sure why but cuts a warning
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
     ];
@@ -15,14 +16,24 @@
     ];
     users.gatien = {
       directories = [
-        ".local/share"
-        ".mozilla"
+        # secrets configuration
         ".ssh"
-        ".vscode"
+
+        # Directories
+        "Documents"
         "Downloads"
         "Games"
         "NixFlakes"
+
+        # Browser configuration
+        ".mozilla"
+
+        # vscode configuration
+        ".vscode"
         ".config/Code" #TODO: Nixify Vscode settings
+        ".config/obsidian"
+
+        # Games
         ".steam"
         ".cache/lutris"
       ];

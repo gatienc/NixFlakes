@@ -4,7 +4,10 @@ let
     # idle
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
-    swww img ${../assets/wallpaper/city.gif} &
+    swww img $(find ${../assets/wallpaper} -name "*" | shuf -n1) &
+
+    brightnessctl set 500
+
     while true; do
         BG=`find ${
           ../assets/wallpaper} -name "*" | shuf -n1`
@@ -32,7 +35,6 @@ in
     enable = true;
     settings = {
       background = {
-        #monitor =;
         path = "${../assets/wallpaper/calm_cloud.png}";
         blur_passes = 1;
         contrast = 0.8916;
@@ -111,6 +113,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.variables = [ "--all" ]; # Important for the exec in Hyprland to work correctly
     settings = {
       input = {
         kb_layout = "fr";
@@ -121,6 +124,7 @@ in
       };
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
+        monitor = "desc:Sharp Corporation 0x1479, 1920x1280@60, auto, 1.25"; # Settings for the monitor of Icicle
         gaps_in = 5;
         gaps_out = [ 5 5 5 5 ];
         border_size = 2;
@@ -183,7 +187,7 @@ in
 
 
       "$mainMod" = "SUPER"; #windows key as modifier
-      "$terminal" = "alacritty";
+      "$terminal" = "kitty";
       "$browser" = "firefox";
 
       bind =
@@ -262,9 +266,9 @@ in
       binde = [
         ", XF86AudioRaiseVolume, exec, amixer set Master 5%+"
         ", XF86AudioLowerVolume, exec, amixer set Master 5%-"
-        ", XF86AudioMute, exec, XF86AudioMute "
-        ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
-        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+        ", XF86AudioMute, exec, amixer set Master toggle"
+        ", XF86MonBrightnessUp, exec, brightnessctl s +5% "
+        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-" # minimum brightness is 1
       ];
 
       bindl = [
