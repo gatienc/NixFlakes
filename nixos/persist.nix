@@ -27,6 +27,7 @@
 
         # Browser configuration
         ".mozilla"
+        ".cache/mozilla" # Mozilla cache
 
         # vscode configuration
         ".vscode"

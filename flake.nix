@@ -35,7 +35,9 @@
           ./nixos/stylix.nix
           ./nixos/zen.nix
           ./nixos/laptop.nix
-          ./nixos/rustdesk.nix
+          #./nixos/rustdesk.nix
+          #    # Enable Gnome remote desktop
+          #services.gnome.gnome-remote-desktop.enable = true;
           ./nixos/fonts.nix
           home-manager.nixosModules.home-manager
           {
@@ -60,7 +62,7 @@
           ./nixos/stylix.nix
           ./nixos/zen.nix
           ./nixos/laptop.nix
-          #./nixos/rustdesk.nix
+          ./nixos/remote-desktop.nix
           ./nixos/fonts.nix
           home-manager.nixosModules.home-manager
           {
