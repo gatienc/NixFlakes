@@ -7,6 +7,7 @@
       "/var/lib/nixos" # not sure why but cuts a warning
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
+      "/etc/ssh"
     ];
     files = [
       # machine-id is used by systemd for the journal, if you don't persist this
@@ -27,6 +28,7 @@
 
         # Browser configuration
         ".mozilla"
+        ".cache/mozilla" # Mozilla cache
 
         # vscode configuration
         ".vscode"

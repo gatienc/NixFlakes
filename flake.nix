@@ -35,7 +35,7 @@
           ./nixos/stylix.nix
           ./nixos/zen.nix
           ./nixos/laptop.nix
-          ./nixos/rustdesk.nix
+          ./nixos/remote-desktop.nix
           ./nixos/fonts.nix
           home-manager.nixosModules.home-manager
           {
@@ -60,7 +60,6 @@
           ./nixos/stylix.nix
           ./nixos/zen.nix
           ./nixos/laptop.nix
-          #./nixos/rustdesk.nix
           ./nixos/fonts.nix
           home-manager.nixosModules.home-manager
           {
