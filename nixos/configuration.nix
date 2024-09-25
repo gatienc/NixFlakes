@@ -27,6 +27,7 @@
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     micro
+    texlive.combined.scheme-full
   ];
   environment.variables.EDITOR = "micro";
 

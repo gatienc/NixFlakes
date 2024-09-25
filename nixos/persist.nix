@@ -36,6 +36,8 @@
         # Games
         ".steam"
         ".cache/lutris"
+
+        .local/share/PrismLauncher
       ];
       files = [
         ".bash_history"

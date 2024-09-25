@@ -43,11 +43,16 @@
     discord
     nautilus # GUI file manager
     font-manager # GUI font manager
+    remmina # remote desktop client
 
     # Gaming software
     lutris
     heroic
     bottles
+
+    ## Minecraft
+    prismlauncher
+
 
     grim # screenshot tool
     slurp # select region for screenshot
