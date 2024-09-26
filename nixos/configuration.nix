@@ -28,6 +28,7 @@
   environment.systemPackages = with pkgs; [
     micro
     texlive.combined.scheme-full
+    parsec-bin
   ];
   environment.variables.EDITOR = "micro";
 
