@@ -36,10 +36,12 @@
         ".config/obsidian"
 
         # Games
+        ## Platforms
         ".steam"
         ".cache/lutris"
 
-        .local/share/PrismLauncher
+        ## Minecraft
+        ".local/share/PrismLauncher"
       ];
       files = [
         ".bash_history"
