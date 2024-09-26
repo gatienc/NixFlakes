@@ -27,6 +27,7 @@
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     micro
+    parsec-bin
     texlive.combined.scheme-full
     parsec-bin
   ];
