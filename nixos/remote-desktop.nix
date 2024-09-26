@@ -1,14 +1,14 @@
 { pkgs, ... }:
 {
-  #services.xserver = {
-  #  enable = true;
-  #  displayManager.gdm.enable = true;
-  #  desktopManager.gnome.enable = true;
-  #};
-  #environment.systemPackages = gnome.gnome-session;
+  services.xserver = {
+    enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
+  environment.systemPackages = gnome.gnome-session;
 
   services.xrdp.enable = true;
-  #services.xrdp.defaultWindowManager = "gnome-session";
+  services.xrdp.defaultWindowManager = "gnome-session";
   services.xrdp.openFirewall = true;
 
 
