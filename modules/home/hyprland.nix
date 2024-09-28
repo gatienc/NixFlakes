@@ -156,6 +156,7 @@ in
         pseudotile = "yes";
         # you probably want this
         preserve_split = "yes";
+        smart_split = "yes";
       };
 
 
@@ -265,12 +266,6 @@ in
       exec-once = ''${startupScript}/bin/start'';
     };
   };
-
-  #programs.ags = {
-  #  enable = true;
-  #};
-
-
 }
 
 
