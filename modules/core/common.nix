@@ -1,7 +1,6 @@
-{ inputs, pkgs, lib, config, username, ... }: {
+{ inputs, pkgs, lib, config, username, host, ... }: {
 
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
-  home-manager = {
+  inputs.home-manager.nixosModules.home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs username host; };

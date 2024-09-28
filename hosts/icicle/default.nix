@@ -1,16 +1,20 @@
 { inputs, nixpkgs, self, username, host, config, lib, pkgs, modulesPath, ... }:
 
 {
+
   # Core configuration
   imports = [
+    inputs.impermanence.nixosModules.impermanence
+    inputs.stylix.nixosModules.stylix
     ../../modules/core/common.nix
     ../../modules/core/persist.nix
     ../../modules/core/hyprland.nix
-    ../../modules/core/hardware.nix
+    ../../modules/core/bluetooth.nix
     ../../modules/core/stylix.nix
     ../../modules/core/zen.nix
     ../../modules/core/laptop.nix
     ../../modules/core/fonts.nix
+    ../../modules/core/network.nix
 
     ./hardware-configuration.nix
   ];

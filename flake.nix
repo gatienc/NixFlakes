@@ -26,7 +26,7 @@
     let
       username = "gatien";
       system = "x86_64-linux";
-      lib = nixpkgs.lib;
+      # lib = nixpkgs.lib;
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -41,7 +41,11 @@
         };
         icicle = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/icicle ];
+          modules = [
+            ./hosts/icicle
+            impermanence.nixosModules.impermanence
+            stylix.nixosModules.stylix
+          ];
           specialArgs = { host = "icicle"; inherit self inputs username; };
         };
         droplet = nixpkgs.lib.nixosSystem {
