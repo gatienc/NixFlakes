@@ -1,5 +1,17 @@
-{ inputs, pkgs, lib, config, ... }: {
+{ inputs, pkgs, lib, config, username, ... }: {
 
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
+  home-manager = {
+    useUserPackages = true;
+    useGlobalPkgs = true;
+    extraSpecialArgs = { inherit inputs username host; };
+    users.${username} = {
+      home.username = "${username}";
+      home.homeDirectory = "/home/${username}";
+      home.stateVersion = "24.05";
+      programs.home-manager.enable = true;
+    };
+  };
 
   services.gvfs.enable = true; # for Nautilus
   programs.nix-ld.enable = true; # to run non-nix executables
@@ -24,11 +36,10 @@
       shell = pkgs.zsh;
     };
   };
+
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     micro
-    parsec-bin
-    texlive.combined.scheme-full
   ];
   environment.variables.EDITOR = "micro";
 

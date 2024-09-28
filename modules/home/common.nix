@@ -1,23 +1,6 @@
 { inputs, pkgs, lib, config, ... }:
 {
-  imports = [
-    ./hyprland.nix
-    ./waybar.nix
-    ./fastfetch.nix
-  ];
 
-  home = {
-    username = "gatien";
-    homeDirectory = "/home/gatien";
-  };
-
-  programs.kitty = {
-    enable = true;
-    keybindings =
-      {
-        "ctrl+f" = "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i";
-      };
-  };
 
   home.packages = with pkgs; [
     # Terminal
@@ -57,7 +40,16 @@
     grim # screenshot tool
     slurp # select region for screenshot
     # Programming
-    python3Full # python3 with all the packages
+    python3 # python3 with all the packages
+    poetry
+    zlib
+
+    nodejs
+
+    moonlight-qt
+    texlive.combined.scheme-full
+
+
     age # age encryption tool
     ssh-to-age # ssh to age encryption tool
     nixpkgs-fmt # nix formatting tool
@@ -93,6 +85,8 @@
     ripgrep
   ];
 
+
+
   programs = {
     home-manager.enable = true;
     git = {
@@ -101,9 +95,15 @@
       userEmail = "gatien+dev@chenu.me";
     };
     firefox.enable = true;
-    alacritty.enable = true;
     fzf.enable = true; # enables zsh integration by default
     starship.enable = true;
+    kitty = {
+      enable = true;
+      keybindings =
+        {
+          "ctrl+f" = "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i";
+        };
+    };
 
     zsh = {
       enable = true;
