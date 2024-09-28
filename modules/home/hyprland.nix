@@ -1,31 +1,9 @@
 { inputs, pkgs, lib, config, ... }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    # idle
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.swww}/bin/swww-daemon &
-    swww img $(find ${../../assets/wallpaper} -name "*" | shuf -n1) &
-
     brightnessctl set 500
-
-    while true; do
-        BG=`find ${
-          ../../assets/wallpaper} -name "*" | shuf -n1`
-        if pgrep swww-daemon >/dev/null; then
-          swww img "$BG" \
-            --transition-fps 60 \
-            --transition-duration 2 \
-            --transition-type any \
-            --transition-pos top-right \
-            --transition-bezier .3,0,0,.99 \
-            --transition-angle 135 || true
-        else
-          (swww-daemon 1>/dev/null 2>/dev/null &) || true
-        fi
-        sleep 1800
-      done
   '';
-
 in
 {
   #imports = [
@@ -114,6 +92,7 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.variables = [ "--all" ]; # Important for the exec in Hyprland to work correctly
+    systemd.enable = true;
     settings = {
       input = {
         kb_layout = "fr";
@@ -251,7 +230,7 @@ in
           "ALT,TAB,workspace,previous"
           "SUPER_SHIFT, Delete, exec, hyprlock"
           "$mainMod, space, exec, fuzzel"
-
+          "$mainMod, return, exec, swww-daemon & swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
           " , mouse:274, exec, ;" #disable middle click paste
         ];
 
@@ -284,7 +263,6 @@ in
       };
 
       exec-once = ''${startupScript}/bin/start'';
-
     };
   };
 
@@ -294,3 +272,8 @@ in
 
 
 }
+
+
+
+
+
