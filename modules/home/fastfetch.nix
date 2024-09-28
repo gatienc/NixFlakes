@@ -8,7 +8,7 @@
     {
       "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
       "logo": {
-        "source": "${../assets/logo}/$(ls ${../assets/logo}| shuf -n 1)",
+        "source": "${../../assets/logo}/$(ls ${../../assets/logo}| shuf -n 1)",
         "type": "kitty-direct",
         "width": 33,
         "padding": {

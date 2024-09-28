@@ -15,18 +15,20 @@
     };
     pyprland.url = "github:hyprland-community/pyprland";
     ags.url = "github:Aylur/ags";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence.url = "github:nix-community/impermanence";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = inputs@{ nixpkgs, impermanence, home-manager, stylix, self, ... }:
+  outputs = { nixpkgs, impermanence, stylix, self, ... } @ inputs:
     let
       username = "gatien";
       system = "x86_64-linux";
-      # lib = nixpkgs.lib;
+      lib = nixpkgs.lib;
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;

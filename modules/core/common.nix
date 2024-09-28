@@ -1,16 +1,5 @@
 { inputs, pkgs, lib, config, username, host, ... }: {
 
-  inputs.home-manager.nixosModules.home-manager = {
-    useUserPackages = true;
-    useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs username host; };
-    users.${username} = {
-      home.username = "${username}";
-      home.homeDirectory = "/home/${username}";
-      home.stateVersion = "24.05";
-      programs.home-manager.enable = true;
-    };
-  };
 
   services.gvfs.enable = true; # for Nautilus
   programs.nix-ld.enable = true; # to run non-nix executables

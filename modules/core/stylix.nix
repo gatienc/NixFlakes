@@ -15,7 +15,7 @@
       name = "Bibata-Modern-Ice";
       size = 16;
     };
-    image = ../assets/wallpaper/pixel_kanagawa.png;
+    image = ../../assets/wallpaper/pixel_kanagawa.png;
     # https://tinted-theming.github.io/base16-gallery/
     # Dracula, Nord, cattpuccin-mocha
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";

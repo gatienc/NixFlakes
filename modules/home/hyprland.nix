@@ -4,13 +4,13 @@ let
     # idle
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww-daemon &
-    swww img $(find ${../assets/wallpaper} -name "*" | shuf -n1) &
+    swww img $(find ${../../assets/wallpaper} -name "*" | shuf -n1) &
 
     brightnessctl set 500
 
     while true; do
         BG=`find ${
-          ../assets/wallpaper} -name "*" | shuf -n1`
+          ../../assets/wallpaper} -name "*" | shuf -n1`
         if pgrep swww-daemon >/dev/null; then
           swww img "$BG" \
             --transition-fps 60 \
@@ -35,7 +35,7 @@ in
     enable = true;
     settings = {
       background = {
-        path = "${../assets/wallpaper/calm_cloud.png}";
+        path = "${../../assets/wallpaper/calm_cloud.png}";
         blur_passes = 1;
         contrast = 0.8916;
         brightness = 0.8172;
