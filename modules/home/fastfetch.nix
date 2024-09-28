@@ -12,7 +12,7 @@
         "type": "kitty-direct",
         "width": 33,
         "padding": {
-          "top": 2,é
+          "top": 2,
           "left": 2
         }
       },

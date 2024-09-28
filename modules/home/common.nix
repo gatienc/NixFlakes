@@ -9,6 +9,7 @@
     fd # replacement for find
     fzf # A command-line fuzzy finder
     zellij # tmux alternative
+    lazygit # git terminal
     glow # markdown previewer in terminal
     nnn # terminal file manager
     ranger # terminal file manager
@@ -112,15 +113,20 @@
       syntaxHighlighting.enable = true;
       shellAliases = {
         nixswitch = "sudo nixos-rebuild switch";
-        nixconfig = "$EDITOR /etc/nixos/";
         cd = "z";
+        nano = "micro";
+        cat = "bat";
+        icat = "kitty +kitten icat";
+
         ls = "eza --icons --group-directories-first";
         ll = "eza --icons -l --group-directories-first";
         tree = "eza --tree --icons";
-        cat = "bat";
         clip = "wl-copy";
         whatismyip = "curl https://ipinfo.io/ip";
         logout = "hyprctl dispatch exit";
+        c = "clear";
+        g = "lazygit";
+
       };
 
       oh-my-zsh = {
