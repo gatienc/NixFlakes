@@ -14,6 +14,8 @@
     ../../modules/core/zen.nix
     ../../modules/core/laptop.nix
     ../../modules/core/fonts.nix
+    ../../modules/core/user.nix
+    ../../modules/core/latex.nix
     ../../modules/core/network.nix
 
     ./hardware-configuration.nix

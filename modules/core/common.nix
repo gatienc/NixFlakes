@@ -16,14 +16,6 @@
 
   # User settings
   users.mutableUsers = false;
-  users.users = {
-    gatien = {
-      initialPassword = "123";
-      extraGroups = [ "wheel" ];
-      isNormalUser = true;
-      shell = pkgs.zsh;
-    };
-  };
 
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
