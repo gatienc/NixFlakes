@@ -126,6 +126,7 @@
         logout = "hyprctl dispatch exit";
         c = "clear";
         g = "lazygit";
+        gc = "git commit -m \"$1\"";
 
       };
 
