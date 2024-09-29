@@ -75,9 +75,9 @@ in
       };
       listener = [
         {
-          timeout = 120;
+          timeout = 300;
           on-timeout = "loginctl lock-session";
-        } # lock screen after 2 minutes
+        } # lock screen after 5 minutes
         {
           timeout = 600;
           on-timeout = "sleep 1 && hyprctl dispatch dpms off";
