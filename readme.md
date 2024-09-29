@@ -87,6 +87,11 @@ Utils (EXPAND)
 - `tree` $\rightarrow$ `eza --icons --tree --group-directories-first`
 </details>
 
+## Todo
+
+- [ ] Add more wallpapers
+- [ ] Modularize the elements of the configuration (Desktop environment, Programs, etc)
+
 ## Credits
 
 Thanks to Will Bush, Vimjoyer and Frost-Phoenix which were the inspiration for this flake.

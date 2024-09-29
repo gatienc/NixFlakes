@@ -1,5 +1,11 @@
 { inputs, pkgs, lib, config, username, host, ... }: {
 
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+    ./user.nix
+    ./network.nix
+    ./secrets.nix
+  ];
 
   services.gvfs.enable = true; # for Nautilus
   programs.nix-ld.enable = true; # to run non-nix executables
