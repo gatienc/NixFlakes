@@ -1,20 +1,19 @@
-{ pkgs, inputs, config, lib, pkgs, modulesPath, username, ... }:
+{ inputs, pkgs, config, lib, modulesPath, username, ... }:
 
 {
   # Core configuration
   imports = [
-    # inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
 
     ../../modules/core/common.nix
-    ../../modules/core/persist.nix
+    # ../../modules/core/persist.nix
     ../../modules/core/hyprland.nix
     ../../modules/core/bluetooth.nix
     ../../modules/core/stylix.nix
     ../../modules/core/zen.nix
     ../../modules/core/ssh.nix
-    ../../modules/core/minecraft.nix
-    ../../modules/core/network.nix
     ../../modules/core/fonts.nix
+
 
     ./hardware-configuration.nix
   ];
@@ -33,8 +32,6 @@
         ../../modules/home/hyprland.nix
         ../../modules/home/waybar.nix
       ];
-      home.stateVersion = "24.05";
-      programs.home-manager.enable = true;
     };
   };
 

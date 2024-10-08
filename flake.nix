@@ -48,7 +48,10 @@
       nixosConfigurations = {
         glacius = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/glacius ];
+          modules = [
+            ./hosts/glacius
+            stylix.nixosModules.stylix
+          ];
           specialArgs = { host = "glacius"; inherit self inputs username; };
         };
         icicle = nixpkgs.lib.nixosSystem {
