@@ -8,124 +8,85 @@ in
   programs.waybar = {
     enable = true;
     style = ''
-      /* colors */
-      /* #5E81AC
-      #81A1C1
-      #88C0D0
-      #8FBCBB */
-
       * {
-        font-family: "JetBrains Mono Nerd Font";
-      	border-radius: 0;
-      	font-size: 12px;
+        border-radius: 0;
+        font-family: "JetBrains Mono Nerd Font", "Font Awesome 6 Free";
         font-weight: 900;
-      	min-height: 0;
+        font-size: 10pt;
+        min-height: 0;
       }
 
       window#waybar {
-      	background: #4c566a;
-      	color: #ECEFF4;
-      	border-radius: 25;
+        background: transparent;
+        color: #DADAE8;
       }
 
-      .modules-left {
-      	padding: 5 0 5 5;
-      	border-bottom-right-radius: 20px;
+      tooltip {
+        background: #BAC2DE;
+        border-radius: 15px;
+        border-width: 30px;
+        border-style: solid;
+        border-color: #BAC2DE;
       }
 
-      .modules-right {
-      	padding: 5 1 5 0;
-      	border-bottom-left-radius: 20px;
-      }
 
-      #workspaces {
-      	background-color: rgba(0, 0, 0, 0);
-        border: none;
-      }
 
       #workspaces button {
-        color :  #ECEFF4;
-        border-radius: 19px;
+        padding-left: 10px;
+        padding-right: 10px;
+        min-width: 0;
+        color: #f2cdcd;
       }
 
-      #workspaces button.active {
-        color: #8FBCBB;
-        background: #ECEFF4 ,
-      }
-
-      #workspaces button:hover {
-      	color:  #ECEFF4 ;
-        background:#8FBCBB,
-      }
-
-      #workspaces button.active:hover {
-        color:  #ECEFF4 ;
-        background:#8FBCBB,
-      }
-
-      #network {
-      	background: #8FBCBB;
+      #workspaces button.focused {
+        color: #96cdfb;
       }
 
       #workspaces button.urgent {
+        color: #89dceb;
       }
 
-      #mode {
-      	background: #64727d;
-      	border-bottom: 3px solid #ECEFF4;
+      #workspaces button:hover {
+        color: #96cdfb;
       }
 
-      #clock,
-      #battery,
-      #cpu,
-      #memory,
-      #temperature,
-      #backlight,
-      #network,
-      #wireplumber,
-      #pulseaudio,
-      #custom-media,
-      #tray,
-      #mode,
-      #idle_inhibitor {
-      	padding: 0 15px;
-      	margin-right: 5px;
-      	margin-left: 5px;
-      	border-radius: 2rem;
+      #tray, #custom-launcher, #network, #clock, #battery, #custom-wifi, #custom-mail, #custom-dbx,
+      #pulseaudio, #custom-mpd, #workspaces, #idle_inhibitor, #backlight {
+        padding: 5px 5px;
+        background: #24273A;
+        margin-top: 9px;
+        margin-bottom: 3px;
       }
 
+      #custom-launcher {
+        font-size: 12pt;
+        border-radius: 15px 0px 0px 15px;
+      }
+
+      #custom-wifi {
+        color: #F38BA8;
+      }
+
+      #pulseaudio { color: #abe9b3; }
+      #custom-mail { color: #94E2D5; }
+      #custom-dbx { color: #C6A0F6; }
+      #custom-mpd { color: #96cdfb; }
+      #idle_inhibitor { color:#7a887a; }
+      #backlight { color: #fcf885; }
+
+      #tray {}
       #battery {
-      	background: #88C0D0;
-      	color: #ECEFF4;
-      	padding-right: 25px;
+        color: #f8bd96;
       }
 
-      #battery.plugged {
-      	color: #ECEFF4;
-      	background: #A3BE8C;
+      #idle_inhibitor {
+        color: #70d6ff;
       }
 
-      #backlight {
-      	color: #ECEFF4;
-      	background: #5E81AC;
-      	padding-right: 20px;
-      }
-
-      #pulseaudio {
-      	padding-right: 20px;
-      	background: #81A1C1;
-      }
-
-      #pulseaudio.muted {
-      	padding-right: 16px;
-      	padding-left: 15px;
-      	padding-top: 2px;
-      	background: #BF616A;
-      }
-
-      #tray {
-      	border: solid 1px #8FBCBB;
-      	color: #ECEFF4;
+      #clock {
+        color: #96cdfb;
+        border-radius: 0px 15px 15px 0px;
+        padding-right: 9px;
       }
     '';
     settings = {
@@ -133,19 +94,34 @@ in
       mainBar = {
         layer = "top";
         position = "bottom";
-        modules-left = [ "custom/launcher" "clock" ];
-        modules-center = [ "hyprland/workspaces" ];
-        modules-right = [ "idle_inhibitor" "backlight" "pulseaudio" "network" "battery" "tray" ];
+        modules-center = [
+          "custom/launcher"
+          "hyprland/workspaces"
+          "custom/mpd"
+          "custom/mail"
+          "custom/dbx"
+          "idle_inhibitor"
+          "tray"
+          "network"
+          "backlight"
+          "pulseaudio"
+          "battery"
+          "clock"
+        ];
 
 
-        height = 10; # noting to be auto
         #output = [ "eDP-1" "HDMI-A-1" ];
-        margin = "5 10 0 10";
+        # margin = "5 10 0 10";
 
         battery = {
+          states = {
+            warning = 20;
+            critical = 10;
+          };
+          format-charging = " {capacity}%";
           format-plugged =
-            "{capacity}% <span rise='250' size='large'> {icon}</span> <span rise='250' size='large'>  </span>";
-          format = "{capacity}% <span rise='250' size='large'> {icon}</span>";
+            "⚡ {capacity}% ";
+          format = "{icon}  {capacity}% ";
           format-icons = [ "" "" "" "" "" ];
           max-length = 25;
           interval = 1;
@@ -153,13 +129,13 @@ in
 
         backlight = {
           # device = "intel_backlight",
-          format = "{percent}% <span rise='250' size='large'> {icon}</span>";
+          format = "{icon} {percent}%";
           format-icons = "";
         };
 
         pulseaudio = {
-          format-muted = "<span size='large'>󰸈</span>";
-          format = "{volume}% <span size='large'> {icon}</span>";
+          format-muted = "󰸈";
+          format = "{icon}  {volume}%";
           format-icons = {
             headphones = "";
             handsfree = "";
@@ -172,17 +148,21 @@ in
         };
 
         clock = {
-          timezone = "Europe/Paris";
-          format = "{:%H:%M}";
-          #locale = "fr";
-          "format-alt" = "{:%A %B %e | %H:%M }";
-          "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          "timezones" = [ "Europe/London" "Europe/Paris" ];
+          "timezone-alt" = "Europe/Paris";
+          "format" = "🇬🇧 {:%H:%M}";
+          "format-alt" = "🇫🇷 {:%H:%M}";
+          "on-click-right" = "gsimplecal";
+          "tooltip-format" = "{:%A, %B %d, %Y (%R)}";
+          "actions" = {
+            "on-click" = "tz_up";
+          };
         };
 
         tray = { spacing = 10; };
         "custom/launcher" = {
-          "format" = "";
-          "on-click" = "wofi --show run";
+          "format" = " ";
+          "on-click" = "fuzzel";
         };
 
 
@@ -192,6 +172,8 @@ in
           all-outputs = true;
           sort-by-number = true;
           format-icons = {
+            "default" = "";
+            "focused" = "";
             "0" = "0";
             "1" = "一";
             "2" = "二";
@@ -225,16 +207,17 @@ in
         idle_inhibitor = {
           format = "{icon}";
           "format-icons" = {
-            "activated" = "";
-            "deactivated" = "";
+            "activated" = "🔓";
+            "deactivated" = "🔒";
           };
           network = {
             format-wifi = "{icon}";
+            format = "{icon}";
             format-ethernet = "󰈀  Ethernet";
             tooltip = false;
             format-linked = "󰤭  {ifname}";
             format-disconnected = "󰤭   Disconnected";
-            format-alt = "{icon} {signalStrength}%	| {essid}";
+            format-alt = "{icon} {signalStrength}%";
             format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
             on-click-right = "kitty nmtui";
           };
@@ -244,3 +227,4 @@ in
   };
 }                                                      
   
+

@@ -209,9 +209,14 @@ in
           "$mainMod, mouse_down, workspace, e+1"
           "$mainMod, mouse_up, workspace, e-1"
 
+          # "$mainMod tab, left, workspace, e-1"
+          # "$mainMod, TAB, right, workspace, e+1"
+
           # 
           "$mainMod SHIFT, right, movetoworkspace, +1"
           "$mainMod SHIFT, left, movetoworkspace, -1"
+
+
 
           "$mainMod, Left, movefocus, l"
           "$mainMod, Right, movefocus, r"

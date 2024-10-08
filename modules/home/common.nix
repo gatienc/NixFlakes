@@ -16,6 +16,8 @@
     gh # github cli
     gh-dash # github dashboard
 
+    gsimplecal # calendar
+
     # Desktop environment
     swww # wallpaper manager
     fuzzel # launcher
