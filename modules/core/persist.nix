@@ -25,10 +25,11 @@
         "Downloads"
         "Games"
         "NixFlakes"
+        "Zotero"
 
         # Browser configuration
         ".mozilla"
-        ".cache/mozilla" # Mozilla cache
+        ".zen"
 
         # vscode configuration
         ".vscode"
@@ -40,10 +41,13 @@
         # Games
         ## Platforms
         ".steam"
-        ".cache/lutris"
 
         ## Minecraft
         ".local/share/PrismLauncher"
+
+
+        ".cache" # cache
+
       ];
       files = [
         ".bash_history"

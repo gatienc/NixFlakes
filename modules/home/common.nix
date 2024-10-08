@@ -13,6 +13,8 @@
     glow # markdown previewer in terminal
     nnn # terminal file manager
     ranger # terminal file manager
+    gh # github cli
+    gh-dash # github dashboard
 
     # Desktop environment
     swww # wallpaper manager
@@ -28,6 +30,7 @@
     nautilus # GUI file manager
     font-manager # GUI font manager
     remmina # remote desktop client
+    zotero # reference manager
 
     # Gaming software
     lutris
@@ -36,6 +39,10 @@
 
     ## Minecraft
     prismlauncher
+
+    # Office software
+    libreoffice-qt
+    hunspell
 
 
     grim # screenshot tool
@@ -53,8 +60,10 @@
 
     age # age encryption tool
     ssh-to-age # ssh to age encryption tool
+    sops # secrets management tool
     nixpkgs-fmt # nix formatting tool
     direnv # environment variable manager
+    copier # project templating tool
 
     # System monitoring
     btop # replacement of htop/nmo

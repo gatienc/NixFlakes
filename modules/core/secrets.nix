@@ -5,7 +5,9 @@
 
   sops.age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
 
-  sops.secrets.example-key = { };
+  sops.secrets.example_key = {
+    sopsFile = ../../secrets/secrets.yaml;
+  };
   systemd.services."sometestservice" = {
     script = ''
       echo "
