@@ -5,6 +5,9 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+  hardware.opentabletdriver.enable = true; # Trying to fix the click issue
+
+
   boot = {
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];

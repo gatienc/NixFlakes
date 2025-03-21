@@ -20,6 +20,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+
   # User settings
   users.mutableUsers = false;
 

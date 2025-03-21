@@ -15,9 +15,11 @@
     ../../modules/core/laptop.nix
     ../../modules/core/fonts.nix
     ../../modules/core/latex.nix
+    ../../modules/core/python.nix
 
     ./hardware-configuration.nix
   ];
+
   # Home Configuration
   home-manager = {
     useUserPackages = true;
