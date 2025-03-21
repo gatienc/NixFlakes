@@ -6,7 +6,6 @@
     inputs.home-manager.nixosModules.home-manager
 
     ../../modules/core/common.nix
-    # ../../modules/core/persist.nix
     ../../modules/core/hyprland.nix
     ../../modules/core/bluetooth.nix
     ../../modules/core/stylix.nix

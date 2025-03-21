@@ -168,7 +168,7 @@ in
 
       "$mainMod" = "SUPER"; #windows key as modifier
       "$terminal" = "kitty";
-      "$browser" = "firefox";
+      "$browser" = "zen";
 
       bind =
         [
