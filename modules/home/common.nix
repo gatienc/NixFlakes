@@ -51,6 +51,7 @@
     slurp # select region for screenshot
     # Programming
     python3 # python3 with all the packages
+    uv # package manager and installer
     poetry
     zlib
 
