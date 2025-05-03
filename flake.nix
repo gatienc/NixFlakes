@@ -68,6 +68,14 @@
           modules = [ ./hosts/droplet ];
           specialArgs = { host = "droplet"; inherit self inputs username; };
         };
+	frostion = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/frostion
+            stylix.nixosModules.stylix
+           ];
+          specialArgs = { host = "frostion"; inherit self inputs username; };
+        };
       };
     };
 }
