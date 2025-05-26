@@ -103,8 +103,11 @@ in
       };
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        monitor = "desc:Sharp Corporation 0x1479, 1920x1280@60, auto, 1.25"; # Settings for the monitor of Icicle
-        gaps_in = 5;
+        monitor = [
+          "desc:Sharp Corporation 0x1479, 1920x1280@60, auto, 1.25"
+          "desc:Iiyama North America PL2470H 0x00000117, 1920x1080@60, 0x0, 1"
+          "desc:AU Optronics 0xB69B, 1920x1080@165, 1920x0, 1"
+        ]; # Settings for the monitor of Icicle        gaps_in = 5;
         gaps_out = [ 5 5 5 5 ];
         border_size = 2;
         "col.active_border" = lib.mkDefault "rgb(5E81AC)";

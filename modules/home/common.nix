@@ -15,6 +15,7 @@
     ranger # terminal file manager
     gh # github cli
     gh-dash # github dashboard
+    wget # download files from the web
 
     gsimplecal # calendar
 
@@ -29,10 +30,14 @@
     bitwarden
     vscode
     discord
+    vesktop
     nautilus # GUI file manager
     font-manager # GUI font manager
     remmina # remote desktop client
     zotero # reference manager
+
+    filezilla # ftp client
+    vlc # video player
 
     # Gaming software
     lutris
@@ -75,6 +80,10 @@
     ## archives
     zip
     unzip
+    unrar
+
+    qgis # GIS software
+    smile # emoji picker
 
     ani-cli
     spicetify-cli
@@ -84,7 +93,14 @@
     wl-clipboard
     wf-recorder
 
+    jdk # java development kit
+
+    teams-for-linux # teams client
+
+    h-m-m # mind mapping software
+
     # Display image TODO: select one
+    timg
     gthumb
     w3m
     ueberzug
@@ -98,16 +114,19 @@
     ripgrep
   ];
 
-
-
   programs = {
     home-manager.enable = true;
     git = {
       enable = true;
-      userName = "Gatien Chenu";
-      userEmail = "gatien+dev@chenu.me";
+      lfs.enable = true;
+      userName = "
+    Gatien
+    Chenu ";
+      userEmail = "
+    gatien + dev@chenu.me";
     };
     firefox.enable = true;
+
     fzf.enable = true; # enables zsh integration by default
     starship.enable = true;
     kitty = {
@@ -117,7 +136,6 @@
           "ctrl+f" = "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i";
         };
     };
-
     zsh = {
       enable = true;
       enableCompletion = true;

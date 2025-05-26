@@ -32,6 +32,11 @@
     impermanence.url = "github:nix-community/impermanence";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     stylix.url = "github:danth/stylix";
+    h-m-m = {
+      url = "github:nadrad/h-m-m";
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, impermanence, stylix, self, ... } @ inputs:
@@ -68,12 +73,13 @@
           modules = [ ./hosts/droplet ];
           specialArgs = { host = "droplet"; inherit self inputs username; };
         };
-	frostion = nixpkgs.lib.nixosSystem {
+        frostion = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/frostion
             stylix.nixosModules.stylix
-           ];
+            nixpkgs.overlays = [ h-m-m.overlays.default ];
+          ];
           specialArgs = { host = "frostion"; inherit self inputs username; };
         };
       };

@@ -7,6 +7,7 @@
     ./secrets.nix
   ];
 
+  environment.localBinInPath = true; # add local bin to path
   services.gvfs.enable = true; # for Nautilus
   programs.nix-ld.enable = true; # to run non-nix executables
   nixpkgs.config.allowUnfree = true;

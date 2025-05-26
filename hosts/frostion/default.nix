@@ -14,6 +14,8 @@
     ../../modules/core/fonts.nix
     ../../modules/core/gnome.nix
     ../../modules/core/gaming.nix
+    ../../modules/core/virt-manager.nix
+
 
     ./hardware-configuration.nix
   ];
