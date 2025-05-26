@@ -10,6 +10,13 @@
     fzf # A command-line fuzzy finder
     zellij # tmux alternative
     lazygit # git terminal
+    lazydocker # docker terminal
+    diskonaut # disk space navigator
+    bluetuith # bluetooth manager
+    # tlock # 2fa tui
+    clipse # clipboard manager
+    # calcure # calendar tui
+
     glow # markdown previewer in terminal
     nnn # terminal file manager
     ranger # terminal file manager
@@ -85,7 +92,8 @@
     qgis # GIS software
     smile # emoji picker
 
-    ani-cli
+    ani-cli # anime command line interface
+    manga-tui # manga command line interface
     spicetify-cli
     spotify # spotify client
     spotifyd # spotify daemon
@@ -103,13 +111,14 @@
     timg
     gthumb
     w3m
-    ueberzug
     # media playing 
     playerctl # control media players
     brightnessctl # control screen brightness
     pamixer # control audio volume
     # Other
     cowsay
+    cbonsai # bonsai tree generator
+
     xclip
     ripgrep
   ];

@@ -39,7 +39,7 @@
     };
   };
 
-  outputs = { nixpkgs, impermanence, stylix, self, ... } @ inputs:
+  outputs = { nixpkgs, impermanence, stylix, h-m-m, self, ... } @ inputs:
     let
       username = "gatien";
       system = "x86_64-linux";
@@ -78,7 +78,9 @@
           modules = [
             ./hosts/frostion
             stylix.nixosModules.stylix
-            nixpkgs.overlays = [ h-m-m.overlays.default ];
+            {
+              nixpkgs.overlays = [ h-m-m.overlays.default ];
+            }
           ];
           specialArgs = { host = "frostion"; inherit self inputs username; };
         };
