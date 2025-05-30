@@ -1,10 +1,10 @@
 { inputs, pkgs, lib, config, username, host, ... }: {
 
   imports = [
-    inputs.sops-nix.nixosModules.sops
+    # inputs.sops-nix.nixosModules.sops
+    # ./secrets.nix
     ./user.nix
     ./network.nix
-    ./secrets.nix
   ];
 
   environment.localBinInPath = true; # add local bin to path

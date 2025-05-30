@@ -16,10 +16,8 @@
     ../../modules/core/gaming.nix
     ../../modules/core/virt-manager.nix
 
-
     ./hardware-configuration.nix
   ];
-
 
   home-manager = {
     useUserPackages = true;
@@ -33,6 +31,7 @@
         ../../modules/home/fastfetch.nix
         ../../modules/home/hyprland.nix
         ../../modules/home/waybar.nix
+        ../../modules/home/syncthing.nix
       ];
     };
   };

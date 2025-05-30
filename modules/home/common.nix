@@ -1,6 +1,4 @@
-{ inputs, pkgs, lib, config, username, ... }:
-{
-
+{ inputs, pkgs, lib, config, username, ... }: {
 
   home.packages = with pkgs; [
     # Terminal
@@ -11,7 +9,7 @@
     zellij # tmux alternative
     lazygit # git terminal
     lazydocker # docker terminal
-    diskonaut # disk space navigator
+    ncdu # disk space navigator
     bluetuith # bluetooth manager
     # tlock # 2fa tui
     clipse # clipboard manager
@@ -58,7 +56,6 @@
     libreoffice-qt
     hunspell
 
-
     grim # screenshot tool
     slurp # select region for screenshot
     # Programming
@@ -72,11 +69,10 @@
     moonlight-qt
     texlive.combined.scheme-full
 
-
     age # age encryption tool
     ssh-to-age # ssh to age encryption tool
     sops # secrets management tool
-    nixpkgs-fmt # nix formatting tool
+    nixfmt # nix formatting tool
     direnv # environment variable manager
     copier # project templating tool
 
@@ -94,9 +90,6 @@
 
     ani-cli # anime command line interface
     manga-tui # manga command line interface
-    spicetify-cli
-    spotify # spotify client
-    spotifyd # spotify daemon
     ## Clipboard
     wl-clipboard
     wf-recorder
@@ -116,6 +109,7 @@
     brightnessctl # control screen brightness
     pamixer # control audio volume
     # Other
+    tealdeer
     cowsay
     cbonsai # bonsai tree generator
 
@@ -128,11 +122,8 @@
     git = {
       enable = true;
       lfs.enable = true;
-      userName = "
-    Gatien
-    Chenu ";
-      userEmail = "
-    gatien + dev@chenu.me";
+      userName = "\n    Gatien\n    Chenu ";
+      userEmail = "\n    gatien + dev@chenu.me";
     };
     firefox.enable = true;
 
@@ -140,10 +131,10 @@
     starship.enable = true;
     kitty = {
       enable = true;
-      keybindings =
-        {
-          "ctrl+f" = "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i";
-        };
+      keybindings = {
+        "ctrl+f" =
+          "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i";
+      };
     };
     zsh = {
       enable = true;
@@ -165,7 +156,7 @@
         logout = "hyprctl dispatch exit";
         c = "clear";
         g = "lazygit";
-        gc = "git commit -m \"$1\"";
+        gc = ''git commit -m "$1"'';
 
       };
 

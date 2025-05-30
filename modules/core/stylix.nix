@@ -21,7 +21,7 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     fonts = {
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrains Mono Nerd Font Mono";
       };
       sansSerif = {
