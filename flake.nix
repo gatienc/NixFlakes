@@ -4,13 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    spicetify-nix = {
-      url = "github:gerg-l/spicetify-nix";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pyprland.url = "github:hyprland-community/pyprland";
@@ -19,11 +13,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix =
-      {
-        url = "github:Mic92/sops-nix";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
@@ -39,7 +32,7 @@
     };
   };
 
-  outputs = { nixpkgs, impermanence, stylix, h-m-m, self, ... } @ inputs:
+  outputs = { nixpkgs, impermanence, stylix, h-m-m, self, ... }@inputs:
     let
       username = "gatien";
       system = "x86_64-linux";
@@ -48,16 +41,15 @@
         inherit system;
         config.allowUnfree = true;
       };
-    in
-    {
+    in {
       nixosConfigurations = {
         glacius = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [
-            ./hosts/glacius
-            stylix.nixosModules.stylix
-          ];
-          specialArgs = { host = "glacius"; inherit self inputs username; };
+          modules = [ ./hosts/glacius stylix.nixosModules.stylix ];
+          specialArgs = {
+            host = "glacius";
+            inherit self inputs username;
+          };
         };
         icicle = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -66,23 +58,30 @@
             impermanence.nixosModules.impermanence
             stylix.nixosModules.stylix
           ];
-          specialArgs = { host = "icicle"; inherit self inputs username; };
+          specialArgs = {
+            host = "icicle";
+            inherit self inputs username;
+          };
         };
         droplet = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ ./hosts/droplet ];
-          specialArgs = { host = "droplet"; inherit self inputs username; };
+          specialArgs = {
+            host = "droplet";
+            inherit self inputs username;
+          };
         };
         frostion = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/frostion
             stylix.nixosModules.stylix
-            {
-              nixpkgs.overlays = [ h-m-m.overlays.default ];
-            }
+            { nixpkgs.overlays = [ h-m-m.overlays.default ]; }
           ];
-          specialArgs = { host = "frostion"; inherit self inputs username; };
+          specialArgs = {
+            host = "frostion";
+            inherit self inputs username;
+          };
         };
       };
     };

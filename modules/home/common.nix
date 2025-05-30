@@ -72,7 +72,7 @@
     age # age encryption tool
     ssh-to-age # ssh to age encryption tool
     sops # secrets management tool
-    nixfmt # nix formatting tool
+    nixfmt-rfc-style # nix formatting tool
     direnv # environment variable manager
     copier # project templating tool
 

@@ -4,11 +4,11 @@ let
     ${pkgs.waybar}/bin/waybar &
     brightnessctl set 500
   '';
-in
-{
+in {
   #imports = [
   #  inpsuts.ags.homeManagerModules.default
   #];
+
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -36,22 +36,24 @@ in
         font_color = lib.mkForce "rgb(200, 200, 200)";
         fade_on_empty = false;
         font_family = "JetBrains Mono Nerd Font Mono";
-        placeholder_text = "<i><span foreground='##cdd6f4'>Input Password...</span></i>";
+        placeholder_text =
+          "<i><span foreground='##cdd6f4'>Input Password...</span></i>";
         hide_input = false;
         position = "0, -120";
         halign = "center";
         valign = "center";
       };
-      label = [{
-        text = "$TIME";
-        #color = $foreground
-        color = "rgba(255, 255, 255, 0.6)";
-        font_size = "120";
-        font_family = "JetBrains Mono Nerd Font Mono ExtraBold";
-        position = "0, -300";
-        halign = "center";
-        valign = "top";
-      }
+      label = [
+        {
+          text = "$TIME";
+          #color = $foreground
+          color = "rgba(255, 255, 255, 0.6)";
+          font_size = "120";
+          font_family = "JetBrains Mono Nerd Font Mono ExtraBold";
+          position = "0, -300";
+          halign = "center";
+          valign = "top";
+        }
         {
           text = " Hi there, $USER";
           #"color = "$foreground"";
@@ -61,7 +63,8 @@ in
           position = "0, -40";
           halign = "center";
           valign = "center";
-        }];
+        }
+      ];
 
     };
   };
@@ -83,7 +86,10 @@ in
           on-timeout = "sleep 1 && hyprctl dispatch dpms off";
           on-resume = " sleep 1 && hyprctl dispatch dpms on";
         } # turn off screen after 10 minutes
-        { timeout = 1200; on-timeout = "systemctl hibernate"; }
+        {
+          timeout = 1200;
+          on-timeout = "systemctl hibernate";
+        }
         # hibernate after 20 minutes
       ];
     };
@@ -91,15 +97,14 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.variables = [ "--all" ]; # Important for the exec in Hyprland to work correctly
+    systemd.variables =
+      [ "--all" ]; # Important for the exec in Hyprland to work correctly
     systemd.enable = true;
     settings = {
       input = {
         kb_layout = "fr";
         follow_mouse = 1;
-        touchpad = {
-          natural_scroll = true;
-        };
+        touchpad = { natural_scroll = true; };
       };
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
@@ -162,93 +167,87 @@ in
         smart_split = "yes";
       };
 
-
       gestures = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         workspace_swipe = true;
       };
 
-
-      "$mainMod" = "SUPER"; #windows key as modifier
+      "$mainMod" = "SUPER"; # windows key as modifier
       "$terminal" = "kitty";
       "$browser" = "zen";
 
-      bind =
-        [
-          "$mainMod, T, exec, $terminal"
-          "$mainMod, B, exec, $browser"
-          "$mainMod, F, fullscreen "
-          "$mainMod, escape, killactive"
-          "$mainMod, V, togglefloating,"
-          "$mainMod SHIFT, M, exit," #quit Hyprland
-          '', Print, exec, grim -g "$(slurp -d)" - | wl-copy''
-          "$mainMod, ampersand, workspace, 1"
-          "$mainMod, eacute, workspace, 2"
-          "$mainMod, quotedbl, workspace, 3"
-          "$mainMod, apostrophe, workspace, 4"
-          "$mainMod, parenleft, workspace, 5"
-          "$mainMod, minus, workspace, 6"
-          "$mainMod, egrave, workspace, 7"
-          "$mainMod, underscore, workspace, 8"
-          "$mainMod, ccedilla, workspace, 9"
-          "$mainMod, agrave, workspace, 10"
+      bind = [
+        "$mainMod, T, exec, $terminal"
+        "$mainMod, B, exec, $browser"
+        "$mainMod, F, fullscreen "
+        "$mainMod, escape, killactive"
+        "$mainMod, V, togglefloating,"
+        "$mainMod SHIFT, M, exit," # quit Hyprland
+        '', Print, exec, grim -g "$(slurp -d)" - | wl-copy''
+        "$mainMod, ampersand, workspace, 1"
+        "$mainMod, eacute, workspace, 2"
+        "$mainMod, quotedbl, workspace, 3"
+        "$mainMod, apostrophe, workspace, 4"
+        "$mainMod, parenleft, workspace, 5"
+        "$mainMod, minus, workspace, 6"
+        "$mainMod, egrave, workspace, 7"
+        "$mainMod, underscore, workspace, 8"
+        "$mainMod, ccedilla, workspace, 9"
+        "$mainMod, agrave, workspace, 10"
 
-          "SUPER_SHIFT, ampersand, movetoworkspace, 1"
-          "SUPER_SHIFT, eacute, movetoworkspace, 2"
-          "SUPER_SHIFT, quotedbl, movetoworkspace, 3"
-          "SUPER_SHIFT, apostrophe, movetoworkspace, 4"
-          "SUPER_SHIFT, parenleft, movetoworkspace, 5"
-          "SUPER_SHIFT, minus, movetoworkspace, 6"
-          "SUPER_SHIFT, egrave, movetoworkspace, 7"
-          "SUPER_SHIFT, underscore, movetoworkspace, 8"
-          "SUPER_SHIFT, ccedilla, movetoworkspace, 9"
-          "SUPER_SHIFT, agrave, movetoworkspace, 10"
+        "SUPER_SHIFT, ampersand, movetoworkspace, 1"
+        "SUPER_SHIFT, eacute, movetoworkspace, 2"
+        "SUPER_SHIFT, quotedbl, movetoworkspace, 3"
+        "SUPER_SHIFT, apostrophe, movetoworkspace, 4"
+        "SUPER_SHIFT, parenleft, movetoworkspace, 5"
+        "SUPER_SHIFT, minus, movetoworkspace, 6"
+        "SUPER_SHIFT, egrave, movetoworkspace, 7"
+        "SUPER_SHIFT, underscore, movetoworkspace, 8"
+        "SUPER_SHIFT, ccedilla, movetoworkspace, 9"
+        "SUPER_SHIFT, agrave, movetoworkspace, 10"
 
-          #"$mainMod SHIFT, space, overview:toggle, "
+        #"$mainMod SHIFT, space, overview:toggle, "
 
+        # Scroll through existing workspaces with mainMod + scroll
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
 
+        # "$mainMod tab, left, workspace, e-1"
+        # "$mainMod, TAB, right, workspace, e+1"
 
-          # Scroll through existing workspaces with mainMod + scroll
-          "$mainMod, mouse_down, workspace, e+1"
-          "$mainMod, mouse_up, workspace, e-1"
+        # 
+        "$mainMod SHIFT, right, movetoworkspace, +1"
+        "$mainMod SHIFT, left, movetoworkspace, -1"
 
-          # "$mainMod tab, left, workspace, e-1"
-          # "$mainMod, TAB, right, workspace, e+1"
+        "$mainMod, Left, movefocus, l"
+        "$mainMod, Right, movefocus, r"
+        "$mainMod, Up, movefocus, u"
+        "$mainMod, Down, movefocus, d"
 
-          # 
-          "$mainMod SHIFT, right, movetoworkspace, +1"
-          "$mainMod SHIFT, left, movetoworkspace, -1"
+        "$mainMod SHIFT, Left, movewindow, l"
+        "$mainMod SHIFT, Right, movewindow, r"
+        "$mainMod SHIFT, Up, movewindow, u"
+        "$mainMod SHIFT, Down, movewindow, d"
 
+        "$mainMod CTRL, Left, resizeactive, 50 0"
+        "$mainMod CTRL, Right, resizeactive, -50 0"
+        "$mainMod CTRL, Up, resizeactive, 0 -50"
+        "$mainMod CTRL, Down, resizeactive, 0 50"
 
-
-          "$mainMod, Left, movefocus, l"
-          "$mainMod, Right, movefocus, r"
-          "$mainMod, Up, movefocus, u"
-          "$mainMod, Down, movefocus, d"
-
-          "$mainMod SHIFT, Left, movewindow, l"
-          "$mainMod SHIFT, Right, movewindow, r"
-          "$mainMod SHIFT, Up, movewindow, u"
-          "$mainMod SHIFT, Down, movewindow, d"
-
-          "$mainMod CTRL, Left, resizeactive, 50 0"
-          "$mainMod CTRL, Right, resizeactive, -50 0"
-          "$mainMod CTRL, Up, resizeactive, 0 -50"
-          "$mainMod CTRL, Down, resizeactive, 0 50"
-
-          "ALT,TAB,workspace,previous"
-          "SUPER_SHIFT, Delete, exec, hyprlock"
-          "$mainMod, space, exec, fuzzel"
-          "$mainMod, return, exec, swww-daemon & swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
-          " , mouse:274, exec, ;" #disable middle click paste
-        ];
+        "ALT,TAB,workspace,previous"
+        "SUPER_SHIFT, Delete, exec, hyprlock"
+        "$mainMod, space, exec, fuzzel"
+        "$mainMod, return, exec, swww-daemon & swww img $(find ${
+          ../../assets/wallpaper
+        } | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
+        " , mouse:274, exec, ;" # disable middle click paste
+      ];
 
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
-
 
       # Todo change the func
       binde = [
@@ -271,12 +270,8 @@ in
         enable_swallow = true;
       };
 
-      exec-once = ''${startupScript}/bin/start'';
+      exec-once = "${startupScript}/bin/start";
     };
   };
 }
-
-
-
-
 
