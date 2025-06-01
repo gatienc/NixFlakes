@@ -20,6 +20,9 @@
     lazydocker # docker terminal
     bluetuith # bluetooth manager
     clipse # clipboard manager
+    nmap # network exploration tool and security/port scanner
+    arp-scan # network discovery tool
+
     # tlock # 2fa tui
     # calcure # calendar tui
     gsimplecal # calendar
@@ -40,6 +43,8 @@
     poetry
     zlib
 
+    gcc # C compiler
+    gnumake # GNU make
     cargo # rust package manager
     nodejs # nodejs runtime
     jdk # java development kit
@@ -157,14 +162,6 @@
     zoxide = {
       enable = true;
       enableZshIntegration = true;
-    };
-  };
-
-  gtk = {
-    enable = true;
-    iconTheme = {
-      package = pkgs.morewaita-icon-theme;
-      name = "MoreWaita";
     };
   };
 
