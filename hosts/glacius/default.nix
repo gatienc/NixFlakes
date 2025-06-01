@@ -26,6 +26,14 @@
 
     ./hardware-configuration.nix
   ];
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      80
+      443
+      8384
+    ];
+  };
 
   home-manager = {
     useUserPackages = true;
