@@ -1,120 +1,103 @@
-{ inputs, pkgs, lib, config, username, ... }: {
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  username,
+  ...
+}:
+{
 
   home.packages = with pkgs; [
     # Terminal
     bat # replacement for cat
     eza # A modern replacement for ‘ls’
     fd # replacement for find
+    ripgrep # replacement for grep
     fzf # A command-line fuzzy finder
     zellij # tmux alternative
     lazygit # git terminal
     lazydocker # docker terminal
-    ncdu # disk space navigator
     bluetuith # bluetooth manager
-    # tlock # 2fa tui
     clipse # clipboard manager
+    # tlock # 2fa tui
     # calcure # calendar tui
-
-    glow # markdown previewer in terminal
-    nnn # terminal file manager
-    ranger # terminal file manager
-    gh # github cli
-    gh-dash # github dashboard
-    wget # download files from the web
-
     gsimplecal # calendar
+    tealdeer # tldr client
+    wget # download files from the web
+    ranger # terminal file manager
+    glow # markdown previewer in terminal
+    h-m-m # mind mapping software
 
-    # Desktop environment
-    swww # wallpaper manager
-    fuzzel # launcher
-    dunst # notification manager
-    libnotify # notification tool
+    # archives
+    zip
+    unzip
+    unrar
 
-    # GUI software
-    obsidian
-    bitwarden
-    vscode
-    discord
-    vesktop
-    nautilus # GUI file manager
-    font-manager # GUI font manager
-    remmina # remote desktop client
-    zotero # reference manager
-
-    filezilla # ftp client
-    vlc # video player
-
-    # Gaming software
-    lutris
-    heroic
-    bottles
-
-    ## Minecraft
-    prismlauncher
-
-    # Office software
-    libreoffice-qt
-    hunspell
-
-    grim # screenshot tool
-    slurp # select region for screenshot
     # Programming
     python3 # python3 with all the packages
     uv # package manager and installer
     poetry
     zlib
 
-    nodejs
+    cargo # rust package manager
+    nodejs # nodejs runtime
+    jdk # java development kit
 
-    moonlight-qt
-    texlive.combined.scheme-full
+    gh # github cli
+    gh-dash # github dashboard
+    copier # project templating tool
 
+    # Desktop environment
+    swww # wallpaper manager
+    fuzzel # launcher
+    rofi-wayland # application launcher
+    dunst # notification manager
+    libnotify # notification tool
+
+    # Office software
+    libreoffice-qt # office suite
+    hunspell # spell checker
+    texlive.combined.scheme-full # LaTeX distribution
+
+    # Nix
+    nixfmt-rfc-style # nix formatting tool
+    direnv # environment variable manager
+    # secrets
     age # age encryption tool
     ssh-to-age # ssh to age encryption tool
     sops # secrets management tool
-    nixfmt-rfc-style # nix formatting tool
-    direnv # environment variable manager
-    copier # project templating tool
+
+    # System information
+    lshw # hardware information tool
+    ncdu # disk space navigator
 
     # System monitoring
     btop # replacement of htop/nmo
+    dysk # disk usage analyzer
     iotop # io monitoring
     iftop # network monitoring
-    ## archives
-    zip
-    unzip
-    unrar
-
-    qgis # GIS software
-    smile # emoji picker
-
-    ani-cli # anime command line interface
-    manga-tui # manga command line interface
-    ## Clipboard
-    wl-clipboard
-    wf-recorder
-
-    jdk # java development kit
-
-    teams-for-linux # teams client
-
-    h-m-m # mind mapping software
 
     # Display image TODO: select one
     timg
     gthumb
     w3m
-    # media playing 
+
+    # media playing
     playerctl # control media players
     brightnessctl # control screen brightness
+    pavucontrol # control audio devices
+    pulsemixer # control audio devices
     pamixer # control audio volume
-    # Other
-    tealdeer
+
+    # fun
     cowsay
     cbonsai # bonsai tree generator
+    fortune # random quotes
+    figlet # text art generator
+    cmatrix # terminal screensaver
+    asciiquarium # aquarium in terminal
 
-    xclip
-    ripgrep
   ];
 
   programs = {
@@ -162,7 +145,11 @@
 
       oh-my-zsh = {
         enable = true;
-        plugins = [ "git" "node" "npm" ];
+        plugins = [
+          "git"
+          "node"
+          "npm"
+        ];
         theme = "af-magic";
       };
     };

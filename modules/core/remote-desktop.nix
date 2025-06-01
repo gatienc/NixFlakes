@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   services.sunshine = {
     enable = true;
     autoStart = true;
@@ -7,9 +6,4 @@
     openFirewall = true;
   };
 
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-  };
 }

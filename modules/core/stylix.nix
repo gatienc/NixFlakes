@@ -1,4 +1,9 @@
-{ pkgs, lib, stylix, ... }:
+{
+  pkgs,
+  lib,
+  stylix,
+  ...
+}:
 {
 
   environment.systemPackages = with pkgs; [
@@ -21,12 +26,12 @@
     base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrains Mono Nerd Font Mono";
+        package = pkgs.fira;
+        name = "Fira Mono";
       };
       sansSerif = {
         package = pkgs.fira;
-        name = "Fira Sans";
+        name = "Fira Code";
       };
       serif = {
         package = pkgs.fira;
@@ -48,4 +53,3 @@
     polarity = "dark"; # "light" or "either"
   };
 }
-

@@ -1,4 +1,12 @@
-{ inputs, pkgs, config, lib, modulesPath, username, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  modulesPath,
+  username,
+  ...
+}:
 
 {
   # Core configuration
@@ -13,10 +21,8 @@
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
 
-
     ./hardware-configuration.nix
   ];
-
 
   home-manager = {
     useUserPackages = true;
@@ -27,9 +33,12 @@
       home.homeDirectory = "/home/${username}";
       imports = [
         ../../modules/home/common.nix
+        ../../modules/home/desktop.nix
+        ../../modules/home/gaming.nix
         ../../modules/home/fastfetch.nix
         ../../modules/home/hyprland.nix
         ../../modules/home/waybar.nix
+        ../../modules/home/syncthing.nix
       ];
     };
   };

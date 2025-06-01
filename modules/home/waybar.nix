@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
-
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
@@ -10,7 +14,7 @@ in
     style = ''
       * {
         border-radius: 0;
-        font-family: "JetBrains Mono Nerd Font", "Font Awesome 6 Free";
+        font-family: "Fira Mono", "Font Awesome 6 Free";
         font-weight: 900;
         font-size: 10pt;
         min-height: 0;
@@ -109,7 +113,6 @@ in
           "clock"
         ];
 
-
         #output = [ "eDP-1" "HDMI-A-1" ];
         # margin = "5 10 0 10";
 
@@ -119,10 +122,15 @@ in
             critical = 10;
           };
           format-charging = " {capacity}%";
-          format-plugged =
-            "⚡ {capacity}% ";
+          format-plugged = "⚡ {capacity}% ";
           format = "{icon}  {capacity}% ";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
           max-length = 25;
           interval = 1;
         };
@@ -145,10 +153,15 @@ in
             car = "";
             default = [ "" ];
           };
+          "on-click" = "pavucontrol";
+
         };
 
         clock = {
-          "timezones" = [ "Europe/London" "Europe/Paris" ];
+          "timezones" = [
+            "Europe/London"
+            "Europe/Paris"
+          ];
           "timezone-alt" = "Europe/Paris";
           "format" = "🇬🇧 {:%H:%M}";
           "format-alt" = "🇫🇷 {:%H:%M}";
@@ -159,12 +172,13 @@ in
           };
         };
 
-        tray = { spacing = 10; };
+        tray = {
+          spacing = 10;
+        };
         "custom/launcher" = {
           "format" = " ";
           "on-click" = "fuzzel";
         };
-
 
         "hyprland/workspaces" = {
           format = "{icon}";
@@ -218,13 +232,17 @@ in
             format-linked = "󰤭  {ifname}";
             format-disconnected = "󰤭   Disconnected";
             format-alt = "{icon} {signalStrength}%";
-            format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+            format-icons = [
+              "󰤯"
+              "󰤟"
+              "󰤢"
+              "󰤥"
+              "󰤨"
+            ];
             on-click-right = "kitty nmtui";
           };
         };
       };
     };
   };
-}                                                      
-  
-
+}

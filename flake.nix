@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland = {
+    #   url = "github:hyprwm/Hyprland";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     pyprland.url = "github:hyprland-community/pyprland";
     ags.url = "github:Aylur/ags";
     home-manager = {
@@ -32,7 +32,15 @@
     };
   };
 
-  outputs = { nixpkgs, impermanence, stylix, h-m-m, self, ... }@inputs:
+  outputs =
+    {
+      nixpkgs,
+      impermanence,
+      stylix,
+      h-m-m,
+      self,
+      ...
+    }@inputs:
     let
       username = "gatien";
       system = "x86_64-linux";
@@ -41,11 +49,15 @@
         inherit system;
         config.allowUnfree = true;
       };
-    in {
+    in
+    {
       nixosConfigurations = {
         glacius = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/glacius stylix.nixosModules.stylix ];
+          modules = [
+            ./hosts/glacius
+            stylix.nixosModules.stylix
+          ];
           specialArgs = {
             host = "glacius";
             inherit self inputs username;

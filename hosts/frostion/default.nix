@@ -1,4 +1,12 @@
-{ inputs, pkgs, config, lib, modulesPath, username, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  modulesPath,
+  username,
+  ...
+}:
 
 {
   # Core configuration
@@ -9,12 +17,13 @@
     ../../modules/core/hyprland.nix
     ../../modules/core/bluetooth.nix
     ../../modules/core/stylix.nix
-    ../../modules/core/zen.nix
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
     ../../modules/core/gnome.nix
     ../../modules/core/gaming.nix
-    ../../modules/core/virt-manager.nix
+    ../../modules/core/rustdesk.nix
+    # ../../modules/core/virt-manager.nix
+    # ../../modules/core/zen.nix
 
     ./hardware-configuration.nix
   ];
@@ -28,6 +37,8 @@
       home.homeDirectory = "/home/${username}";
       imports = [
         ../../modules/home/common.nix
+        ../../modules/home/desktop.nix
+        ../../modules/home/gaming.nix
         ../../modules/home/fastfetch.nix
         ../../modules/home/hyprland.nix
         ../../modules/home/waybar.nix

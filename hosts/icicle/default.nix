@@ -1,4 +1,15 @@
-{ inputs, nixpkgs, self, username, host, config, lib, pkgs, modulesPath, ... }:
+{
+  inputs,
+  nixpkgs,
+  self,
+  username,
+  host,
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 
 {
 
@@ -30,12 +41,14 @@
       home.homeDirectory = "/home/${username}";
       imports = [
         ../../modules/home/common.nix
+        ../../modules/home/desktop.nix
+        ../../modules/home/gaming.nix
         ../../modules/home/fastfetch.nix
         ../../modules/home/hyprland.nix
         ../../modules/home/waybar.nix
+        ../../modules/home/syncthing.nix
       ];
     };
   };
-
 
 }

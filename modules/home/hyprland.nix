@@ -1,13 +1,46 @@
-{ inputs, pkgs, lib, config, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
+    ${pkgs.pyprland}/bin/pypr &
     brightnessctl set 500
   '';
-in {
+in
+{
   #imports = [
   #  inpsuts.ags.homeManagerModules.default
   #];
+
+  home.file = {
+    ".config/hypr/pyprland.toml" = {
+      text = ''
+        [pyprland]
+        plugins = ["scratchpads", "fetch_client_menu","monitors"]
+
+        [workspaces_follow_focus]
+
+        [scratchpads.term]
+        animation = "fromTop"
+        command = "kitty --class kitty-dropterm"
+        class = "kitty-dropterm"
+        size = "75% 60%"
+        max_size = "1920px 100%"
+        margin = 50
+
+        [scratchpads.volume]
+        command = "pavucontrol"
+        animation = "fromRight"
+        lazy = true
+        size = "15% 25%" '';
+      executable = false;
+    };
+  };
 
   programs.hyprlock = {
     enable = true;
@@ -35,9 +68,8 @@ in {
         inner_color = lib.mkForce "rgba(0, 0, 0, 0.5)";
         font_color = lib.mkForce "rgb(200, 200, 200)";
         fade_on_empty = false;
-        font_family = "JetBrains Mono Nerd Font Mono";
-        placeholder_text =
-          "<i><span foreground='##cdd6f4'>Input Password...</span></i>";
+        font_family = "Fira Mono";
+        placeholder_text = "<i><span foreground='##cdd6f4'>Input Password...</span></i>";
         hide_input = false;
         position = "0, -120";
         halign = "center";
@@ -49,7 +81,7 @@ in {
           #color = $foreground
           color = "rgba(255, 255, 255, 0.6)";
           font_size = "120";
-          font_family = "JetBrains Mono Nerd Font Mono ExtraBold";
+          font_family = "Fira Mono Bold";
           position = "0, -300";
           halign = "center";
           valign = "top";
@@ -59,7 +91,7 @@ in {
           #"color = "$foreground"";
           color = "rgba(255, 255, 255, 0.6)";
           font_size = 25;
-          font_family = "JetBrains Mono Nerd Font Mono";
+          font_family = "Fira Mono";
           position = "0, -40";
           halign = "center";
           valign = "center";
@@ -97,15 +129,17 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.variables =
-      [ "--all" ]; # Important for the exec in Hyprland to work correctly
+    systemd.variables = [ "--all" ]; # Important for the exec in Hyprland to work correctly
     systemd.enable = true;
     settings = {
       input = {
         kb_layout = "fr";
         follow_mouse = 1;
-        touchpad = { natural_scroll = true; };
+        touchpad = {
+          natural_scroll = true;
+        };
       };
+
       general = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         monitor = [
@@ -113,7 +147,12 @@ in {
           "desc:Iiyama North America PL2470H 0x00000117, 1920x1080@60, 0x0, 1"
           "desc:AU Optronics 0xB69B, 1920x1080@165, 1920x0, 1"
         ]; # Settings for the monitor of Icicle        gaps_in = 5;
-        gaps_out = [ 5 5 5 5 ];
+        gaps_out = [
+          5
+          5
+          5
+          5
+        ];
         border_size = 2;
         "col.active_border" = lib.mkDefault "rgb(5E81AC)";
         "col.inactive_border" = lib.mkDefault "rgba(595959aa)";
@@ -134,11 +173,11 @@ in {
           size = 3;
           passes = 1;
         };
-
-        drop_shadow = "yes";
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = lib.mkDefault "rgba(1a1a1aee)";
+        # does'nt seems to work with Pyprland
+        # drop_shadow = "yes";
+        # shadow_range = 4;
+        # shadow_render_power = 3;
+        # "col.shadow" = lib.mkDefault "rgba(1a1a1aee)";
       };
 
       animations = {
@@ -174,16 +213,20 @@ in {
 
       "$mainMod" = "SUPER"; # windows key as modifier
       "$terminal" = "kitty";
-      "$browser" = "zen";
+      "$browser" = "firefox";
 
       bind = [
         "$mainMod, T, exec, $terminal"
         "$mainMod, B, exec, $browser"
         "$mainMod, F, fullscreen "
         "$mainMod, escape, killactive"
-        "$mainMod, V, togglefloating,"
+        "$mainMod, V, togglefloating"
+        "$mainMod CTRL, V,exec, pypr toggle volume" # toggle volume with Pyprland
+        "$mainMod,A,exec,pypr toggle term" # toggle terminal with Pyprland
+        "$mainMod,Y,exec,pypr attach"
         "$mainMod SHIFT, M, exit," # quit Hyprland
         '', Print, exec, grim -g "$(slurp -d)" - | wl-copy''
+        "$mainMod, F12, exec, grim -g \"$(slurp -d)\" - | wl-copy" # Take a screenshot of a selected area and copy it to the clipboard
         "$mainMod, ampersand, workspace, 1"
         "$mainMod, eacute, workspace, 2"
         "$mainMod, quotedbl, workspace, 3"
@@ -211,11 +254,12 @@ in {
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-
+        # "$mainMod, mouse_down, pypr change_workspace +1"
+        # "$mainMod, mouse_up, pypr change_workspace -1"
         # "$mainMod tab, left, workspace, e-1"
         # "$mainMod, TAB, right, workspace, e+1"
 
-        # 
+        #
         "$mainMod SHIFT, right, movetoworkspace, +1"
         "$mainMod SHIFT, left, movetoworkspace, -1"
 
@@ -234,13 +278,14 @@ in {
         "$mainMod CTRL, Up, resizeactive, 0 -50"
         "$mainMod CTRL, Down, resizeactive, 0 50"
 
-        "ALT,TAB,workspace,previous"
         "SUPER_SHIFT, Delete, exec, hyprlock"
         "$mainMod, space, exec, fuzzel"
-        "$mainMod, return, exec, swww-daemon & swww img $(find ${
-          ../../assets/wallpaper
-        } | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
+        "$mainMod, return, exec, swww-daemon & swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
         " , mouse:274, exec, ;" # disable middle click paste
+
+        # Pyprland keybinds
+        "ALT, TAB, exec, pypr fetch_client_menu"
+
       ];
 
       bindm = [
@@ -274,4 +319,3 @@ in {
     };
   };
 }
-

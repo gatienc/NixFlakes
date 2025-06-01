@@ -1,4 +1,13 @@
-{ inputs, pkgs, lib, config, username, host, ... }: {
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  username,
+  host,
+  ...
+}:
+{
 
   imports = [
     # inputs.sops-nix.nixosModules.sops
@@ -20,7 +29,6 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
 
   # User settings
   users.mutableUsers = false;

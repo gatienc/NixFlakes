@@ -1,4 +1,11 @@
-{ inputs, pkgs, lib, config, ... }: {
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
 
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = [ "gatien" ];
