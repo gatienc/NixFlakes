@@ -1,9 +1,9 @@
 { pkgs, ... }: {
-  services.sunshine = {
+
+  services.xrdp = {
     enable = true;
-    autoStart = true;
-    capSysAdmin = true;
+    package = pkgs.xrdp;
+    defaultWindowManager = "${pkgs.mate.gnome-session}/bin/gnome-session";
     openFirewall = true;
   };
-
 }

@@ -25,21 +25,14 @@
     impermanence.url = "github:nix-community/impermanence";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     stylix.url = "github:danth/stylix";
-    h-m-m = {
-      url = "github:nadrad/h-m-m";
-      # Optional but recommended to limit the size of your system closure.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
-    {
-      nixpkgs,
-      impermanence,
-      stylix,
-      h-m-m,
-      self,
-      ...
+    { nixpkgs
+    , impermanence
+    , stylix
+    , self
+    , ...
     }@inputs:
     let
       username = "gatien";
@@ -88,7 +81,6 @@
           modules = [
             ./hosts/frostion
             stylix.nixosModules.stylix
-            { nixpkgs.overlays = [ h-m-m.overlays.default ]; }
           ];
           specialArgs = {
             host = "frostion";

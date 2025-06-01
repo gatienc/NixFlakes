@@ -1,10 +1,9 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  config,
-  username,
-  ...
+{ inputs
+, pkgs
+, lib
+, config
+, username
+, ...
 }:
 {
 
@@ -30,7 +29,6 @@
     wget # download files from the web
     ranger # terminal file manager
     glow # markdown previewer in terminal
-    h-m-m # mind mapping software
 
     # archives
     zip

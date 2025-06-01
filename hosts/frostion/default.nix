@@ -21,7 +21,6 @@
     ../../modules/core/gnome.nix
     ../../modules/core/gaming.nix
     ../../modules/core/rustdesk.nix
-    ../../modules/core/python.nix
     # ../../modules/core/virt-manager.nix
     # ../../modules/core/zen.nix
 

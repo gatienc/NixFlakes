@@ -24,7 +24,7 @@
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
     ../../modules/core/latex.nix
-    ../../modules/core/python.nix
+    # ../../modules/core/python.nix
 
     ../../modules/core/laptop.nix
 
