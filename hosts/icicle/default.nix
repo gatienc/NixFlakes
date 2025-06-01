@@ -1,14 +1,13 @@
-{
-  inputs,
-  nixpkgs,
-  self,
-  username,
-  host,
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
+{ inputs
+, nixpkgs
+, self
+, username
+, host
+, config
+, lib
+, pkgs
+, modulesPath
+, ...
 }:
 
 {
@@ -22,11 +21,12 @@
     ../../modules/core/hyprland.nix
     ../../modules/core/bluetooth.nix
     ../../modules/core/stylix.nix
-    ../../modules/core/zen.nix
-    ../../modules/core/laptop.nix
+    ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
     ../../modules/core/latex.nix
     ../../modules/core/python.nix
+
+    ../../modules/core/laptop.nix
 
     ./hardware-configuration.nix
   ];
