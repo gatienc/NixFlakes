@@ -1,10 +1,11 @@
-{ inputs
-, pkgs
-, config
-, lib
-, modulesPath
-, username
-, ...
+{
+  inputs,
+  pkgs,
+  config,
+  lib,
+  modulesPath,
+  username,
+  ...
 }:
 
 {
@@ -42,6 +43,9 @@
         ../../modules/home/hyprland.nix
         ../../modules/home/waybar.nix
         ../../modules/home/syncthing.nix
+        ../../modules/home/freecad.nix
+        ../../modules/home/latex.nix
+        ../../modules/home/qgis.nix
       ];
     };
   };

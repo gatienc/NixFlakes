@@ -9,7 +9,7 @@
   services.xrdp = {
     enable = true;
     package = pkgs.xrdp;
-    defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+    defaultWindowManager = "${pkgs.gnome-remote-desktop}/bin/gnome-remote-desktop";
     openFirewall = true;
   };
 }

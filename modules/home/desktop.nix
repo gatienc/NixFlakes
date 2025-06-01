@@ -47,9 +47,6 @@
     # Office software
     libreoffice-qt # office suite
     hunspell # spell checker
-    texlive.combined.scheme-full # LaTeX distribution
-
-    qgis # GIS software
 
   ];
 

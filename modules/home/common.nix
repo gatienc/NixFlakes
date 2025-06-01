@@ -1,9 +1,10 @@
-{ inputs
-, pkgs
-, lib
-, config
-, username
-, ...
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  username,
+  ...
 }:
 {
 
@@ -61,7 +62,6 @@
     # Office software
     libreoffice-qt # office suite
     hunspell # spell checker
-    texlive.combined.scheme-full # LaTeX distribution
 
     # Nix
     nixfmt-rfc-style # nix formatting tool
