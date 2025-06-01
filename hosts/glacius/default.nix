@@ -17,9 +17,12 @@
     ../../modules/core/hyprland.nix
     ../../modules/core/bluetooth.nix
     ../../modules/core/stylix.nix
-    ../../modules/core/zen.nix
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
+    ../../modules/core/gnome.nix
+    ../../modules/core/gaming.nix
+    ../../modules/core/remote-desktop.nix
+    ../../modules/core/rustdesk.nix
 
     ./hardware-configuration.nix
   ];
