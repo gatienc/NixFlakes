@@ -4,6 +4,8 @@
   services.xserver = {
     enable = true;
     displayManager.defaultSession = "gnome";
+    displayManager.auto.enable = true;
+    displayManager.auto.user = "gatien";
     desktopManager.gnome.enable = true;
   };
   services.xrdp = {
@@ -13,8 +15,6 @@
     openFirewall = true;
   };
 
-  displayManager.auto.enable = true;
-  displayManager.auto.user = "gatien";
   # Disable the GNOME3/GDM auto-suspend feature that cannot be disabled in GUI!
   # If no user is logged in, the machine will power down after 20 minutes.
   systemd.targets.sleep.enable = false;
