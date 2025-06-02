@@ -4,8 +4,8 @@
   services.xserver = {
     enable = true;
     displayManager.defaultSession = "gnome";
-    displayManager.auto.enable = true;
-    displayManager.auto.user = "gatien";
+    displayManager.autoLogin.enable = true;
+    displayManager.autoLogin.user = "gatien";
     desktopManager.gnome.enable = true;
   };
   services.xrdp = {
