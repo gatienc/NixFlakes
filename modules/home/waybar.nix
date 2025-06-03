@@ -14,7 +14,7 @@ in
     style = ''
       * {
         border-radius: 0;
-        font-family: "Fira Mono", "Font Awesome 6 Free";
+        font-family: "AtkynsonMono Nerd Font", "Atkinson Hyperlegible", "Font Awesome 6 Free";
         font-weight: 900;
         font-size: 10pt;
         min-height: 0;
