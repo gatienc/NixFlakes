@@ -9,5 +9,7 @@
 {
   home.packages = with pkgs; [
     freecad
+    blender
   ];
+
 }

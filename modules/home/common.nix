@@ -86,6 +86,7 @@
     gthumb
     w3m
 
+    ffmpeg
     # media playing
     playerctl # control media players
     brightnessctl # control screen brightness
