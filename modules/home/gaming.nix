@@ -14,7 +14,12 @@
     heroic
     bottles
     ## Minecraft
-    prismlauncher
-
+    (prismlauncher.override {
+      jdks = [
+        pkgs.jdk8
+        pkgs.jdk17
+      ];
+    })
+    # for modded mc
   ];
 }
