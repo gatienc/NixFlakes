@@ -43,7 +43,7 @@
         ../../modules/home/hyprland.nix
         ../../modules/home/waybar.nix
         ../../modules/home/syncthing.nix
-        ../../modules/home/freecad.nix
+        ../../modules/home/3d_modeling.nix
         ../../modules/home/latex.nix
         ../../modules/home/qgis.nix
       ];

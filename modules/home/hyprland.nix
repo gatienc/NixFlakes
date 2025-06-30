@@ -68,7 +68,7 @@ in
         inner_color = lib.mkForce "rgba(0, 0, 0, 0.5)";
         font_color = lib.mkForce "rgb(200, 200, 200)";
         fade_on_empty = false;
-        font_family = "Fira Mono";
+        font_family = "Atkinson Hyperlegible";
         placeholder_text = "<i><span foreground='##cdd6f4'>Input Password...</span></i>";
         hide_input = false;
         position = "0, -120";
@@ -81,7 +81,7 @@ in
           #color = $foreground
           color = "rgba(255, 255, 255, 0.6)";
           font_size = "120";
-          font_family = "Fira Mono Bold";
+          font_family = "Atkinson Hyperlegible";
           position = "0, -300";
           halign = "center";
           valign = "top";
@@ -91,7 +91,7 @@ in
           #"color = "$foreground"";
           color = "rgba(255, 255, 255, 0.6)";
           font_size = 25;
-          font_family = "Fira Mono";
+          font_family = "Atkinson Hyperlegible";
           position = "0, -40";
           halign = "center";
           valign = "center";
@@ -281,7 +281,7 @@ in
         "SUPER_SHIFT, Delete, exec, hyprlock"
         "$mainMod, space, exec, fuzzel"
         "$mainMod, return, exec, swww-daemon & swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
-        " , mouse:274, exec, ;" # disable middle click paste
+        # " , mouse:274, exec, ;" # disable middle click paste
 
         # Pyprland keybinds
         "ALT, TAB, exec, pypr fetch_client_menu"
@@ -305,7 +305,6 @@ in
 
       bindl = [
         # Lock screen when closing laptop lid
-
         ",switch:Lid Switch, exec, hyprlock"
       ];
 
