@@ -144,6 +144,7 @@
         c = "clear";
         g = "lazygit";
         gc = ''git commit -m "$1"'';
+        gemini = "npx https://github.com/google-gemini/gemini-cli";
 
       };
 
