@@ -135,6 +135,7 @@ in
       input = {
         kb_layout = "fr";
         follow_mouse = 1;
+        numlock_by_default = true;
         touchpad = {
           natural_scroll = true;
         };
@@ -280,8 +281,7 @@ in
 
         "SUPER_SHIFT, Delete, exec, hyprlock"
         "$mainMod, space, exec, fuzzel"
-        "$mainMod, return, exec, swww-daemon & swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
-        # " , mouse:274, exec, ;" # disable middle click paste
+        "$mainMod, return, exec, swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
 
         # Pyprland keybinds
         "ALT, TAB, exec, pypr fetch_client_menu"
