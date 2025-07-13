@@ -121,7 +121,7 @@
     kitty = {
       enable = true;
       keybindings = {
-        "ctrl+f" =
+        "ctrl+alt+f" =
           "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i";
       };
     };
