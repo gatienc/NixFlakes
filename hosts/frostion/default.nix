@@ -50,4 +50,11 @@
     };
   };
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      6112
+    ]; # trying to allow warcraft 3 to work
+  };
+
 }
