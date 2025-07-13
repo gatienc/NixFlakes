@@ -7,9 +7,12 @@
 }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    swww-daemon
+    sleep 1
+    swww img $(find ${../../assets/wallpaper} -type f | shuf -n1)
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.pyprland}/bin/pypr &
-    brightnessctl set 500
+    brightnessctl set 127
   '';
 in
 {
@@ -279,9 +282,9 @@ in
         "$mainMod CTRL, Up, resizeactive, 0 -50"
         "$mainMod CTRL, Down, resizeactive, 0 50"
 
-        "SUPER_SHIFT, Delete, exec, hyprlock"
+        "SUPER_SHIFT, l, exec, hyprlock"
         "$mainMod, space, exec, fuzzel"
-        "$mainMod, return, exec, swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
+        "$mainMod, return, exec, swww-daemon & swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
 
         # Pyprland keybinds
         "ALT, TAB, exec, pypr fetch_client_menu"
@@ -301,6 +304,9 @@ in
         ", XF86AudioMute, exec, amixer set Master toggle"
         ", XF86MonBrightnessUp, exec, brightnessctl s +5% "
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-" # minimum brightness is 1
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"-eeeee
       ];
 
       bindl = [
