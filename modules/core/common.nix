@@ -25,6 +25,11 @@
     auto-optimise-store = true;
   };
 
+  #QOL: enabling numlock on boot
+  boot.initrd.preLVMCommands = ''
+    ${pkgs.kbd}/bin/setleds +num
+  '';
+
   networking.networkmanager.enable = true;
 
   boot.loader.systemd-boot.enable = true;
