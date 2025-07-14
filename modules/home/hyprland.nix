@@ -7,9 +7,9 @@
 }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    swww-daemon
-    sleep 1
-    swww img $(find ${../../assets/wallpaper} -type f | shuf -n1)
+    swww-daemon &
+    sleep 1 &
+    swww img $(find ${../../assets/wallpaper} -type f | shuf -n1) &
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.pyprland}/bin/pypr &
     brightnessctl set 127
@@ -256,8 +256,8 @@ in
         #"$mainMod SHIFT, space, overview:toggle, "
 
         # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+        "$mainMod, mouse_up, workspace, e+1"
+        "$mainMod, mouse_down, workspace, e-1"
         # "$mainMod, mouse_down, pypr change_workspace +1"
         # "$mainMod, mouse_up, pypr change_workspace -1"
         # "$mainMod tab, left, workspace, e-1"
@@ -306,7 +306,7 @@ in
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-" # minimum brightness is 1
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPrev, exec, playerctl previous"-eeeee
+        ", XF86AudioPrev, exec, playerctl previous"
       ];
 
       bindl = [
