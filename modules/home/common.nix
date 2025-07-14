@@ -59,6 +59,9 @@
     dunst # notification manager
     libnotify # notification tool
 
+    cava # audio visualizer
+    iniparser # for cava
+
     alsa-utils # ALSA sound utilities
 
     # Office software
@@ -82,6 +85,7 @@
     dysk # disk usage analyzer
     iotop # io monitoring
     iftop # network monitoring
+    radeontop # GPU monitoring
 
     # Display image TODO: select one
     timg
