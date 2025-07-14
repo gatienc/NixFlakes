@@ -11,6 +11,8 @@
   home.packages = with pkgs; [
     # Terminal
     bat # replacement for cat
+    bat-extras.batdiff # extra features for bat
+    bat-extras.batman # extra features for bat
     eza # A modern replacement for ‘ls’
     fd # replacement for find
     ripgrep # replacement for grep
@@ -140,7 +142,9 @@
         nano = "micro";
         cat = "bat";
         icat = "kitty +kitten icat";
-
+        grep = "rg";
+        diff = "batdiff";
+        man = "batman";
         ls = "eza --icons --group-directories-first";
         ll = "eza --icons -l --group-directories-first";
         tree = "eza --tree --icons";
