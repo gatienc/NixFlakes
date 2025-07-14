@@ -25,9 +25,10 @@ in
       * {
         border-radius: 0;
         font-family: "${monospace.name}", "${sansSerif.name}", "${emoji.name}";
-        font-weight: 600;
-        font-size: 9pt;
+        font-weight: 800;
+        font-size: 11px;
         transition: ${betterTransition};
+        min-height: 0;
       }
       #clock {
         color: #${config.lib.stylix.colors.base05};
@@ -36,9 +37,8 @@ in
       window#waybar {
         background: transparent;
         color: #${config.lib.stylix.colors.base05};
-        margin-top: 0px;
-        margin-bottom: 0px;
-        height: 30px;
+        padding: 0;
+        margin: 0;
       }
 
       tooltip {
@@ -261,8 +261,8 @@ in
         };
 
         disk = {
-          format = "{icon} {specific_free} GB";
-          format-icons = "";
+          format = "󰋊 {specific_free:.0f} GB";
+          format-icons = "󰋊";
           interval = 60;
           unit = "GB";
         };
@@ -300,7 +300,7 @@ in
         };
 
         network = {
-          format-wifi = " {icon} ";
+          format-wifi = "{icon}";
           format-ethernet = "";
           format-linked = " {ifname} (No IP)";
           format-disconnected = "";
