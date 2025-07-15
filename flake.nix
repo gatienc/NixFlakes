@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # hyprland = {
     #   url = "github:hyprwm/Hyprland";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -28,11 +32,12 @@
   };
 
   outputs =
-    { nixpkgs
-    , impermanence
-    , stylix
-    , self
-    , ...
+    {
+      nixpkgs,
+      impermanence,
+      stylix,
+      self,
+      ...
     }@inputs:
     let
       username = "gatien";
@@ -86,6 +91,13 @@
             host = "frostion";
             inherit self inputs username;
           };
+        };
+      };
+      darwinConfigurations = {
+        "mac" = inputs.nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = { inherit inputs username; };
+          modules = [ ./hosts/mac ];
         };
       };
     };
