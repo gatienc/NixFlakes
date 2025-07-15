@@ -36,6 +36,7 @@
       nixpkgs,
       impermanence,
       stylix,
+      home-manager,
       self,
       ...
     }@inputs:
