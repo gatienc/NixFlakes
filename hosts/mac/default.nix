@@ -2,21 +2,26 @@
   inputs,
   pkgs,
   username,
-  home-manager,
   ...
 }:
 {
-  imports = [ ./darwin-configuration.nix ];
+  imports = [
+    ./darwin-configuration.nix
+    inputs.home-manager.nixDarwinModules.home-manager
+  ];
 
-  # Home-manager configuration for mac
-  home-manager.users.${username} = {
-    imports = [ inputs.home-manager.darwinModules.home-manager ];
-    home.packages = with pkgs; [
-      git
-      wget
-      curl
-      unzip
-    ];
-    home.stateVersion = "24.05";
+  # Home-manager configuration
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.${username} = {
+      home.packages = with pkgs; [
+        git
+        wget
+        curl
+        unzip
+      ];
+      home.stateVersion = "24.05";
+    };
   };
 }
