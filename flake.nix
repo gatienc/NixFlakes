@@ -101,6 +101,11 @@
           modules = [
             inputs.home-manager.darwinModules.home-manager
             ./hosts/mac
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.noghartt = import ./home/home.nix;
+            }
           ];
         };
       };

@@ -1,14 +1,13 @@
 {
   inputs,
   pkgs,
+  username,
   ...
 }:
-let
-  username = "gatien";
-in
 {
   imports = [
     ./darwin-configuration.nix
+    ../../modules/home/common.nix
   ];
 
   # Home-manager configuration
