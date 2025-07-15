@@ -1,7 +1,6 @@
 { pkgs, username, ... }:
 
 {
-  services.nix-daemon.enable = true;
   users.users.${username} = {
     home = "/Users/${username}";
   };
@@ -14,7 +13,7 @@
     enable = true;
 
     casks = [
-      "discord"
+      "slack"
       "visual-studio-code"
     ];
   };
