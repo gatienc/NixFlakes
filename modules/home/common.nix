@@ -35,7 +35,6 @@ let
     # Programming
     python3 # python3 with all the packages
     uv # package manager and installer
-    poetry
     zlib
 
     gcc # C compiler
@@ -61,17 +60,13 @@ let
 
     # System monitoring
     btop # replacement of htop/nmo
-    dysk # disk usage analyzer
-    iotop # io monitoring
     iftop # network monitoring
 
     # Display image
     timg
-    gthumb
     w3m
 
     ffmpeg
-    playerctl # control media players
 
     # fun
     cowsay
@@ -85,6 +80,14 @@ let
   # Linux-only packages
   linuxPackages = with pkgs; [
     unrar # unrar tool
+    dysk 
+    gthumb
+    playerctl # control media players
+
+    poetry
+
+    iotop # io monitoring
+
     lshw # hardware information tool
     bluetuith # bluetooth manager
     clipse # clipboard manager
