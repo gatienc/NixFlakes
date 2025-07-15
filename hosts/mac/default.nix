@@ -7,7 +7,7 @@
 {
   imports = [
     ./darwin-configuration.nix
-    inputs.home-manager.nixDarwinModules.home-manager
+    inputs.home-manager.nix-darwin-modules.home-manager
   ];
 
   # Home-manager configuration
