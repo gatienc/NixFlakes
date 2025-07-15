@@ -7,7 +7,7 @@
 {
   imports = [
     ./darwin-configuration.nix
-    ../../modules/home/common.nix
+    inputs.home-manager.darwinModules.home-manager
   ];
 
   # Home-manager configuration
@@ -15,7 +15,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     users.${username} = {
-      home.stateVersion = "24.05";
+      imports = [ ../../modules/home/common.nix ];
     };
   };
 }
