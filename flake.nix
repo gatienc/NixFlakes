@@ -95,10 +95,13 @@
         };
       };
       darwinConfigurations = {
-        "mac" = inputs.nix-darwin.lib.darwinSystem {
+        "MacBook-Pro-de-Gatien" = inputs.nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
-          specialArgs = { inherit inputs username home-manager; };
-          modules = [ ./hosts/mac ];
+          specialArgs = { inherit inputs; };
+          modules = [
+            inputs.home-manager.darwinModules.home-manager
+            ./hosts/mac
+          ];
         };
       };
     };
