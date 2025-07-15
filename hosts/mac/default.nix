@@ -1,13 +1,14 @@
 {
   inputs,
   pkgs,
-  username,
   ...
 }:
+let
+  username = "gatien";
+in
 {
   imports = [
     ./darwin-configuration.nix
-    inputs.home-manager.nix-darwin-modules.home-manager
   ];
 
   # Home-manager configuration
