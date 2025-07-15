@@ -97,7 +97,7 @@
       darwinConfigurations = {
         "MacBook-Pro-de-Gatien" = inputs.nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs username; };
           modules = [
             inputs.home-manager.darwinModules.home-manager
             ./hosts/mac
