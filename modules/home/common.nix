@@ -57,7 +57,6 @@ let
     sops # secrets management tool
 
     # System information
-    lshw # hardware information tool
     ncdu # disk space navigator
 
     # System monitoring
@@ -86,6 +85,7 @@ let
   # Linux-only packages
   linuxPackages = with pkgs; [
     unrar # unrar tool
+    lshw # hardware information tool
     bluetuith # bluetooth manager
     clipse # clipboard manager
     gsimplecal # calendar
