@@ -1,4 +1,3 @@
-
 {
   inputs,
   pkgs,
@@ -32,7 +31,6 @@ let
     # archives
     zip
     unzip
-    unrar
 
     # Programming
     python3 # python3 with all the packages
@@ -87,6 +85,7 @@ let
 
   # Linux-only packages
   linuxPackages = with pkgs; [
+    unrar # unrar tool
     bluetuith # bluetooth manager
     clipse # clipboard manager
     gsimplecal # calendar
@@ -216,4 +215,3 @@ lib.mkMerge [
     };
   })
 ]
-
