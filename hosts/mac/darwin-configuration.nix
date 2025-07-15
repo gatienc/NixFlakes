@@ -1,7 +1,7 @@
 { pkgs, username, ... }:
 
 {
-  service.nix-daemon.enable = true;
+  services.nix-daemon.enable = true;
   users.users.${username} = {
     home = "/Users/${username}";
   };
