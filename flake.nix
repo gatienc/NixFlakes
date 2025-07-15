@@ -88,5 +88,12 @@
           };
         };
       };
+      homeConfigurations = {
+        "mac" = inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+          extraSpecialArgs = { inherit inputs username; };
+          modules = [ ./hosts/mac ];
+        };
+      };
     };
 }
