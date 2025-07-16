@@ -211,9 +211,11 @@ lib.mkMerge [
     # Add any macOS-specific packages here
     # home.packages = [ pkgs.mac-app-utils ];
 
+    
+
     programs.zsh.shellAliases = {
       # Example of a macOS-specific alias
-      # nixswitch = "darwin-rebuild switch --flake ~/NixFlakes";
+      nixswitch = "sudo nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake ~/NixFlakes#MacBook-Pro-de-Gatien";
       clip = "pbcopy";
     };
   })
