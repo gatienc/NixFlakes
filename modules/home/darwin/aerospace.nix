@@ -40,6 +40,7 @@
       ctrl-shift-left = 'move left'
 
 
+      ctrl-t = 'exec-and-forget open -na kitty'
       ctrl-f = 'fullscreen'
       ctrl-d = 'layout h_accordion tiles' # 'layout tabbed' in i3
       ctrl-v = 'layout floating tiling'
@@ -68,8 +69,6 @@
 
       ctrl-shift-c = 'reload-config'
 
-      ctrl-t = 'exec-and-forget open -a kitty'
-
       ctrl-esc = 'close'
 
 
@@ -79,39 +78,6 @@
       3 = 'main'
       4 = 'main'
       5 = ['built-in', 'secondary', 'main']
-
-      [[on-window-detected]]
-      if.app-name-regex-substring = 'obsidian'
-      run = 'move-node-to-workspace 1'
-
-      # code
-      [[on-window-detected]]
-      if.app-name-regex-substring = 'kitty'
-      run = 'move-node-to-workspace 2'
-
-      [[on-window-detected]]
-      if.app-name-regex-substring = 'firefox'
-      run = 'move-node-to-workspace 2'
-
-      [[on-window-detected]]
-      if.app-name-regex-substring = 'code'
-      run = 'move-node-to-workspace 2'
-
-      # chat
-      [[on-window-detected]]
-      if.app-name-regex-substring = 'slack'
-      run = 'move-node-to-workspace 3'
-
-      # utils
-      [[on-window-detected]]
-      if.app-name-regex-substring = 'spotify'
-      run = 'move-node-to-workspace 4'
-
-      [[on-window-detected]]
-      if.app-name-regex-substring = 'bitwarden'
-      run = 'move-node-to-workspace 4'
-
-      # business
 
       [[on-window-detected]]
       if.app-name-regex-substring = 'slack'
