@@ -80,7 +80,7 @@ let
   # Linux-only packages
   linuxPackages = with pkgs; [
     unrar # unrar tool
-    dysk 
+    dysk
     gthumb
     playerctl # control media players
 
@@ -141,7 +141,7 @@ lib.mkMerge [
         enable = true;
         keybindings = {
           "ctrl+alt+f" =
-            "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i";
+            "launch --type=overlay --stdin-source=@screen_scrollback ${pkgs.fzf}/bin/fzf --no-sort --no-mouse --exact -i"; # not working on macOS
         };
       };
       zsh = {
@@ -210,8 +210,6 @@ lib.mkMerge [
   (lib.mkIf pkgs.stdenv.isDarwin {
     # Add any macOS-specific packages here
     # home.packages = [ pkgs.mac-app-utils ];
-
-    
 
     programs.zsh.shellAliases = {
       # Example of a macOS-specific alias
