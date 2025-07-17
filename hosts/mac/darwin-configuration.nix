@@ -13,11 +13,6 @@
   system.primaryUser = username;
   security.pam.services.sudo_local.touchIdAuth = true;
   system = {
-    # keyboard = {
-    #   enableKeyMapping = true;
-    #   remapCapsLockToControl = true;
-    # };
-
     defaults = {
       ".GlobalPreferences"."com.apple.mouse.scaling" = 4.0;
       spaces.spans-displays = false;
@@ -69,10 +64,26 @@
       };
     };
   };
+  environment.systemPackages = with pkgs; [
+    micro
+    supabase-cli
+  ];
+  environment.variables = {
+    EDITOR = "micro";
+    VISUAL = "micro";
+    GIT_EDITOR = "micro";
+  };
+
   homebrew = {
     enable = true;
     taps = [
       "nikitabobko/tap" # aerospace
+      "FelixKratz/formulae" # sketchybar
+    ];
+    brews = [
+      "sketchybar"
+      "borders"
+      "supabase"
     ];
     casks = [
       "slack"
