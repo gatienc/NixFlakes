@@ -8,6 +8,9 @@
   imports = [
     ./darwin-configuration.nix
     inputs.home-manager.darwinModules.home-manager
+
+    ../../modules/home/darwin/stylix.nix
+
   ];
 
   # Home-manager configuration
@@ -18,6 +21,8 @@
       imports = [
         ../../modules/home/common.nix
         ../../modules/home/darwin/aerospace.nix
+        ../../modules/home/darwin/kitty.nix
+        ../../modules/home/fvm.nix
       ];
     };
   };

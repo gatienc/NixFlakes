@@ -100,6 +100,7 @@
           specialArgs = { inherit inputs username; };
           modules = [
             inputs.home-manager.darwinModules.home-manager
+            stylix.darwinModules.stylix
             ./hosts/mac
             {
               home-manager.useGlobalPkgs = true;
