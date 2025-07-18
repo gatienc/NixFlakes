@@ -17,7 +17,6 @@ let
     fd # replacement for find
     ripgrep # replacement for grep
     fzf # A command-line fuzzy finder
-    zellij # tmux alternative
     lazygit # git terminal
     lazydocker # docker terminal
     nmap # network exploration tool and security/port scanner
@@ -134,7 +133,22 @@ lib.mkMerge [
         userEmail = "gatien+dev@chenu.me";
       };
       firefox.enable = true;
-
+      zellij = {
+        enable = true;
+        settings.theme = "dracula";
+        layouts = {
+          gemini = ''
+            layout {
+                pane split_direction="vertical" {
+                    pane
+                    pane {
+                        command "gemini"
+                    }
+                }
+            }
+          '';
+        };
+      };
       fzf.enable = true; # enables zsh integration by default
       starship.enable = true;
       kitty = {
