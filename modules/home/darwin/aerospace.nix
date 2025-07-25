@@ -47,6 +47,7 @@
 
 
       ctrl-t = 'exec-and-forget open -na kitty'
+      ctrl-enter = 'exec-and-forget open -na kitty --args /Users/gatien/Documents/transcribe-cli/.venv/bin/python3.13 -m transcribe_cli.cli record --to-clipboard'
       ctrl-f = 'fullscreen'
       ctrl-d = 'layout h_accordion tiles' # 'layout tabbed' in i3
       ctrl-v = 'layout floating tiling'
@@ -93,25 +94,6 @@
       ctrl-alt-shift-cmd-j = ['join-with down', 'mode main']
       ctrl-alt-shift-cmd-k = ['join-with up', 'mode main']
       ctrl-alt-shift-cmd-l = ['join-with right', 'mode main']
-
-
-      [workspace-to-monitor-force-assignment]
-      1 = 'main'
-      2 = 'main'
-      3 = 'main'
-      4 = 'main'
-      5 = ['built-in', 'secondary', 'main']
-      6 = ['built-in', 'secondary', 'main']
-
-
-      [[on-window-detected]]
-      if.app-name-regex-substring = 'slack'
-      run = 'move-node-to-workspace 5'
-
-      [[on-window-detected]]
-      if.app-name-regex-substring = 'obsidian'
-      run = 'move-node-to-workspace 6'
-
 
     '';
   };

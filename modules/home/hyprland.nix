@@ -284,11 +284,11 @@ in
 
         "SUPER_SHIFT, l, exec, hyprlock"
         "$mainMod, space, exec, fuzzel"
-        "$mainMod, return, exec, swww-daemon & swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
+        "$mainMod SHIFT, return, exec, swww-daemon & swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
 
         # Pyprland keybinds
         "ALT, TAB, exec, pypr fetch_client_menu"
-
+        "$mainMod, return, exec, open -na kitty --args /Users/gatien/Documents/transcribe-cli/.venv/bin/python3.13 -m transcribe_cli.cli record --to-clipboard"
       ];
 
       bindm = [

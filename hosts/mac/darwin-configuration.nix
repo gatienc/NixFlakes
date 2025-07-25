@@ -86,7 +86,6 @@
       "supabase"
     ];
     casks = [
-      "slack"
       "obsidian"
       "qgis"
       "syncthing"
@@ -94,7 +93,7 @@
       "visual-studio-code"
       "cursor"
       "android-studio"
-      "docker"
+      "docker-desktop"
       "google-chrome" # used for debugging
       #"borders" # FIXME don't work for the moment
       "nikitabobko/tap/aerospace" # tiling window manager
