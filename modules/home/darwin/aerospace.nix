@@ -19,6 +19,9 @@
       # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
       automatically-unhide-macos-hidden-apps = false
 
+
+      accordion-padding = 100
+
       [gaps]
       inner.horizontal = 1
       inner.vertical   = 1
@@ -63,6 +66,9 @@
       ctrl-9 = 'workspace 9'
       ctrl-0 = 'workspace 10'
 
+      # See: https://nikitabobko.github.io/AeroSpace/commands#mode
+      ctrl-alt-shift-semicolon = 'mode service'
+
       ctrl-shift-1= 'move-node-to-workspace 1'
       ctrl-shift-2 = 'move-node-to-workspace 2'
       ctrl-shift-3 = 'move-node-to-workspace 3'
@@ -78,8 +84,16 @@
 
       ctrl-esc = 'close'
 
-      # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-      ctrl-alt-shift-semicolon = 'mode service'
+      [workspace-to-monitor-force-assignment]
+      1 = 'main'
+      2 = 'main'
+      3 = 'main'
+      4 = ['built-in', 'secondary', 'main']
+      5 = ['built-in', 'secondary', 'main']
+      6 = ['built-in', 'secondary', 'main']
+      7 = 'main'
+      8 = 'main'
+      9 = 'main'
 
       # 'service' binding mode declaration.
       # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
