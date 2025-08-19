@@ -23,6 +23,7 @@
     ../../modules/core/gaming.nix
     ../../modules/core/remote-desktop.nix
     ../../modules/core/rustdesk.nix
+    ../../modules/core/n8n.nix
 
     ./hardware-configuration.nix
   ];
