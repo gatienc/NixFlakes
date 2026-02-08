@@ -21,7 +21,10 @@
     ../../modules/core/fonts.nix
     ../../modules/core/gnome.nix
     ../../modules/core/gaming.nix
-    ../../modules/core/rustdesk.nix
+    ../../modules/core/minecraft.nix
+    # ../../modules/core/rustdesk.nix
+    ../../modules/core/lact.nix
+
     # ../../modules/core/virt-manager.nix
     # ../../modules/core/zen.nix
 
@@ -45,7 +48,6 @@
         ../../modules/home/syncthing.nix
         ../../modules/home/3d_modeling.nix
         ../../modules/home/latex.nix
-        ../../modules/home/qgis.nix
       ];
     };
   };
@@ -54,7 +56,21 @@
     enable = true;
     allowedTCPPorts = [
       6112
+      25565 # Minecraft server
     ]; # trying to allow warcraft 3 to work
+  };
+
+  services.pulseaudio.enable = false; # Disable PulseAudio
+  security.rtkit.enable = true; # For better real-time audio performance
+  services.pipewire = {
+    enable = true;
+    # This section ensures all necessary parts are enabled
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+    # Also make sure Bluetooth is enabled in your system:
+    # services.blueman.enable = true; # Or use your preferred bluetooth manager
   };
 
 }

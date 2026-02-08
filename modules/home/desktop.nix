@@ -21,14 +21,15 @@
     # Desktop environment
     swww # wallpaper manager
     fuzzel # launcher
-    rofi-wayland # application launcher
+    rofi # application launcher
     dunst # notification manager
     libnotify # notification tool
 
     # GUI software
     obsidian
-    bitwarden
+    bitwarden-desktop
     vscode
+    code-cursor
     nautilus # GUI file manager
     font-manager # GUI font manager
     remmina # remote desktop client

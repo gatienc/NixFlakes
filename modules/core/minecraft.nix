@@ -8,7 +8,7 @@ in
     allowedTCPPorts = [ 25565 ];
   };
   services.minecraft-server = {
-    enable = true;
+    enable = false;
     eula = true;
     declarative = true;
 
@@ -20,6 +20,7 @@ in
       difficulty = "hard";
       simulation-distance = 10;
       level-seed = "4";
+      online-mode = false;
     };
 
     whitelist = {
@@ -28,7 +29,4 @@ in
 
     jvmOpts = "-Xms4092M -Xmx4092M -XX:+UseG1GC";
   };
-
-  environment.persistence."/nix/persist".directories =
-    [ data_dir ];
 }

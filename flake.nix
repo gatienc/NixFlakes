@@ -7,11 +7,6 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    pyprland.url = "github:hyprland-community/pyprland";
     ags.url = "github:Aylur/ags";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -105,7 +100,6 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              # home-manager.users.noghartt = import ./home/home.nix;
             }
           ];
         };
