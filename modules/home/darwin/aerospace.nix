@@ -31,30 +31,54 @@
       outer.right      = 1
 
       [mode.main.binding]
-      ctrl-alt-shift-left = 'focus left'
-      ctrl-alt-shift-down = 'focus down'
-      ctrl-alt-shift-up = 'focus up'
-      ctrl-alt-shift-right = 'focus right'
 
-      # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-      ctrl-shift-minus = 'resize smart -50'
-      ctrl-shift-equal = 'resize smart +50'
+      # All possible keys:
+      # - Letters.        a, b, c, ..., z
+      # - Numbers.        0, 1, 2, ..., 9
+      # - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
+      # - F-keys.         f1, f2, ..., f20
+      # - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon,
+      #                   backtick, leftSquareBracket, rightSquareBracket, space, enter, esc,
+      #                   backspace, tab, pageUp, pageDown, home, end, forwardDelete,
+      #                   sectionSign (ISO keyboards only, european keyboards only)
+      # - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+      #                   keypadMinus, keypadMultiply, keypadPlus
+      # - Arrows.         left, down, up, right
 
-      # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-      ctrl-alt-shift-tab = 'workspace-back-and-forth'
+      # All possible modifiers: cmd, alt, ctrl, shift
 
-      ctrl-shift-down = 'move down'
-      ctrl-shift-up = 'move up'
-      ctrl-shift-right = 'move right'
-      ctrl-shift-left = 'move left'
+      # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
+
+      # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
+      # You can uncomment the following lines to open up terminal with alt + enter shortcut
+      # (like in i3)
+      # alt-enter = '''exec-and-forget osascript -e '
+      # tell application "Terminal"
+      #     do script
+      #     activate
+      # end tell'
+      # '''
+
+      # See: https://nikitabobko.github.io/AeroSpace/commands#layout
+      ctrl-shift-d = 'layout tiles horizontal vertical'
+      ctrl-alt-d = 'layout accordion horizontal vertical'
+
+      # See: https://nikitabobko.github.io/AeroSpace/commands#focus
+      alt-h = 'focus left'
+      alt-j = 'focus down'
+      alt-k = 'focus up'
+      alt-l = 'focus right'
+
+      # See: https://nikitabobko.github.io/AeroSpace/commands#move
+      alt-shift-h = 'move left'
+      alt-shift-j = 'move down'
+      alt-shift-k = 'move up'
+      alt-shift-l = 'move right'
 
 
-      ctrl-t = 'exec-and-forget open -na kitty'
-      ctrl-enter = 'exec-and-forget open -na kitty --args /Users/gatien/Documents/transcribe-cli/.venv/bin/python3.13 -m transcribe_cli.cli record --to-clipboard'
-      ctrl-f = 'fullscreen'
-      ctrl-d = 'layout h_accordion tiles' # 'layout tabbed' in i3
-      ctrl-v = 'layout floating tiling'
 
+
+      # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
       ctrl-1 = 'workspace 1'
       ctrl-2 = 'workspace 2'
       ctrl-3 = 'workspace 3'
@@ -64,12 +88,9 @@
       ctrl-7 = 'workspace 7'
       ctrl-8 = 'workspace 8'
       ctrl-9 = 'workspace 9'
-      ctrl-0 = 'workspace 10'
 
-      # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-      ctrl-alt-shift-semicolon = 'mode service'
-
-      ctrl-shift-1= 'move-node-to-workspace 1'
+      # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+      ctrl-shift-1 = 'move-node-to-workspace 1'
       ctrl-shift-2 = 'move-node-to-workspace 2'
       ctrl-shift-3 = 'move-node-to-workspace 3'
       ctrl-shift-4 = 'move-node-to-workspace 4'
@@ -78,37 +99,49 @@
       ctrl-shift-7 = 'move-node-to-workspace 7'
       ctrl-shift-8 = 'move-node-to-workspace 8'
       ctrl-shift-9 = 'move-node-to-workspace 9'
-      ctrl-shift-0 = 'move-node-to-workspace 10'  
 
-      ctrl-shift-c = 'reload-config'
+      # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+      alt-tab = 'workspace-back-and-forth'
+      # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+      alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-      ctrl-esc = 'close'
-
-      [workspace-to-monitor-force-assignment]
-      1 = 'main'
-      2 = 'main'
-      3 = 'main'
-      4 = ['built-in', 'secondary', 'main']
-      5 = ['built-in', 'secondary', 'main']
-      6 = ['built-in', 'secondary', 'main']
-      7 = 'main'
-      8 = 'main'
-      9 = 'main'
-
+      # See: https://nikitabobko.github.io/AeroSpace/commands#mode
+      ctrl-f1 = 'mode service'
+      
       # 'service' binding mode declaration.
       # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
       [mode.service.binding]
       esc = ['reload-config', 'mode main']
       r = ['flatten-workspace-tree', 'mode main'] # reset layout
-      #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
       f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
       backspace = ['close-all-windows-but-current', 'mode main']
 
-      ctrl-alt-shift-cmd-h = ['join-with left', 'mode main']
-      ctrl-alt-shift-cmd-j = ['join-with down', 'mode main']
-      ctrl-alt-shift-cmd-k = ['join-with up', 'mode main']
-      ctrl-alt-shift-cmd-l = ['join-with right', 'mode main']
+      # See: https://nikitabobko.github.io/AeroSpace/commands#resize
+      keypadMinus = 'resize smart -50'
+      keypadPlus = 'resize smart +50'
 
+      # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+      #s = ['layout sticky tiling', 'mode main']
+
+      alt-shift-h = ['join-with left', 'mode main']
+      alt-shift-j = ['join-with down', 'mode main']
+      alt-shift-k = ['join-with up', 'mode main']
+      alt-shift-l = ['join-with right', 'mode main']
+
+      down = 'volume down'
+      up = 'volume up'
+      shift-down = ['volume set 0', 'mode main']
+
+      [workspace-to-monitor-force-assignment]
+      1 = 'main'
+      2 = 'main'
+      3 = 'main'
+      4 = 'main'
+      5 = 'main'
+      6 = ['built-in', 'secondary', 'main']
+      7 = ['built-in', 'secondary', 'main']
+      8 = ['built-in', 'secondary', 'main']
+      9 = ['built-in', 'secondary', 'main']
     '';
   };
 }
