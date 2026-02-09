@@ -41,7 +41,7 @@ let
     cargo # rust package manager
     nodejs # nodejs runtime
     jdk # java development kit
-
+    
     gh # github cli
     gh-dash # github dashboard
     copier # project templating tool
@@ -132,7 +132,7 @@ lib.mkMerge [
         userName = "Gatien Chenu";
         userEmail = "gatien+dev@chenu.me";
       };
-      firefox.enable = true;
+      #firefox.enable = true;
       zellij = {
         enable = true;
         settings.theme = "dracula";
@@ -179,6 +179,13 @@ lib.mkMerge [
           g = "lazygit";
           gc = ''git commit -m "$1"'';
         };
+
+        initContent = ''
+          # Source user-managed aliases if present
+          if [ -f ~/.zsh_aliases ]; then
+            source ~/.zsh_aliases
+          fi
+        '';
 
         oh-my-zsh = {
           enable = true;
@@ -227,7 +234,7 @@ lib.mkMerge [
 
     programs.zsh.shellAliases = {
       # Example of a macOS-specific alias
-      nixswitch = "sudo nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake ~/NixFlakes#MacBook-Pro-de-Gatien";
+      nixswitch = "sudo nix run nix-darwin --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake ~/NixFlakes#MacBook-Pro-de-Gatien --fallback --max-jobs auto";
       clip = "pbcopy";
     };
   })
