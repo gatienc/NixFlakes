@@ -66,7 +66,6 @@
   };
   environment.systemPackages = with pkgs; [
     micro
-    supabase-cli
   ];
   environment.variables = {
     EDITOR = "micro";
@@ -83,7 +82,6 @@
     brews = [
       "sketchybar"
       "borders"
-      "supabase"
     ];
     casks = [
       "obsidian"
