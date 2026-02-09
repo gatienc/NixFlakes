@@ -20,6 +20,8 @@
         pkgs.jdk17
       ];
     })
+    atlauncher
+    tlauncher
     # for modded mc
   ];
 }

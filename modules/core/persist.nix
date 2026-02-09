@@ -33,7 +33,7 @@
 
         # vscode configuration
         ".vscode"
-        ".config/Code" #TODO: Nixify Vscode settings
+        ".config/Code" # TODO: Nixify Vscode settings
 
         ".config/obsidian"
         ".config/sops"
@@ -44,7 +44,8 @@
 
         ## Minecraft
         ".local/share/PrismLauncher"
-
+        ".local/share/ATLauncher"
+        ".local/share/TLauncher"
 
         ".cache" # cache
 

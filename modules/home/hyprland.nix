@@ -210,10 +210,6 @@ in
         smart_split = "yes";
       };
 
-      gestures = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        workspace_swipe = true;
-      };
 
       "$mainMod" = "SUPER"; # windows key as modifier
       "$terminal" = "kitty";

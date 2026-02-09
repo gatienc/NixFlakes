@@ -83,8 +83,6 @@ let
     gthumb
     playerctl # control media players
 
-    poetry
-
     iotop # io monitoring
 
     lshw # hardware information tool
@@ -94,9 +92,10 @@ let
     # Desktop environment
     swww # wallpaper manager
     fuzzel # launcher
-    rofi-wayland # application launcher
+    rofi # application launcher
     dunst # notification manager
     libnotify # notification tool
+    yazi # file explorer
 
     cava # audio visualizer
     iniparser # for cava
@@ -129,8 +128,8 @@ lib.mkMerge [
       git = {
         enable = true;
         lfs.enable = true;
-        userName = "Gatien Chenu";
-        userEmail = "gatien+dev@chenu.me";
+        settings.user.name = "Gatien Chenu";
+        settings.user.email = "gatien+dev@chenu.me";
       };
       #firefox.enable = true;
       zellij = {
