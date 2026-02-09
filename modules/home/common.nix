@@ -47,7 +47,7 @@ let
     copier # project templating tool
 
     # Nix
-    nixfmt-rfc-style # nix formatting tool
+    nixfmt # nix formatting tool
     direnv # environment variable manager
     # secrets
     age # age encryption tool
@@ -83,6 +83,8 @@ let
     gthumb
     playerctl # control media players
 
+    poetry
+
     iotop # io monitoring
 
     lshw # hardware information tool
@@ -92,10 +94,9 @@ let
     # Desktop environment
     swww # wallpaper manager
     fuzzel # launcher
-    rofi # application launcher
+    rofi-wayland # application launcher
     dunst # notification manager
     libnotify # notification tool
-    yazi # file explorer
 
     cava # audio visualizer
     iniparser # for cava

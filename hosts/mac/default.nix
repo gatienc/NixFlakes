@@ -24,6 +24,9 @@
         ../../modules/home/darwin/kitty.nix
         ../../modules/home/fvm.nix
       ];
+      home.sessionPath = [
+        "$HOME/.local/bin"
+      ];
     };
   };
 }

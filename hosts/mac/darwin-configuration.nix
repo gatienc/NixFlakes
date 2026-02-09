@@ -9,6 +9,7 @@
     auto-optimise-store = true
     experimental-features = nix-command flakes
     extra-platforms = x86_64-darwin aarch64-darwin
+    download-buffer-size = 1048576
   '';
   system.primaryUser = username;
   security.pam.services.sudo_local.touchIdAuth = true;
