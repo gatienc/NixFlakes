@@ -15,11 +15,7 @@ let
     brightnessctl set 127
   '';
   sessionStart = pkgs.pkgs.writeShellScriptBin "hyprland-session-start" ''
-    if [ -n "''${AMBXST_SESSION:-}" ]; then
-      ambxst &
-    else
-      exec ${startupScript}/bin/start
-    fi
+    exec ${startupScript}/bin/start
   '';
   readingModeToggle = pkgs.pkgs.writeShellScriptBin "reading-mode-toggle" ''
     current_shader=$(hyprshade current)

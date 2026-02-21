@@ -408,9 +408,7 @@ lib.mkMerge [
             zle -N zle-line-init
             zle -N zle-line-finish
           fi
-        '';
 
-        initContent = ''
           # Source user-managed aliases if present
           if [ -f ~/.zsh_aliases ]; then
             source ~/.zsh_aliases

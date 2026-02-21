@@ -20,7 +20,6 @@
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
     ../../modules/core/gnome.nix
-    # ../../modules/core/ambxst.nix
     ../../modules/core/gaming.nix
     ../../modules/core/minecraft.nix
     ../../modules/core/lact.nix
@@ -50,7 +49,6 @@
         ../../modules/home/3d_modeling.nix
         ../../modules/home/latex.nix
         ../../modules/home/rofi.nix
-        # ../../modules/home/ambxst.nix
       ];
     };
   };
