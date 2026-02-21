@@ -39,6 +39,24 @@ let
       echo "🧐"
     fi
   '';
+  blueLightFilterToggle = pkgs.pkgs.writeShellScriptBin "blue-light-filter-toggle" ''
+    current_shader=$(hyprshade current)
+    if [[ "$current_shader" == *"blue-light-filter"* ]]; then
+      hyprshade off
+      notify-send 'Blue Light Filter' 'Off' 2>/dev/null || true
+    else
+      hyprshade on blue-light-filter
+      notify-send 'Blue Light Filter' 'On' 2>/dev/null || true
+    fi
+  '';
+  blueLightFilterStatus = pkgs.pkgs.writeShellScriptBin "blue-light-filter-status" ''
+    current_shader=$(hyprshade current)
+    if [[ "$current_shader" == *"blue-light-filter"* ]]; then
+      echo "🌙"
+    else
+      echo "☀️"
+    fi
+  '';
   layoutStatus = pkgs.pkgs.writeShellScriptBin "layout-status" ''
     layout=$(hyprctl getoption general:layout | awk '{print $2}' | tr -d '"')
     if [[ "$layout" == "dwindle" ]]; then
@@ -103,7 +121,7 @@ in
       }
 
       #tray, #custom-launcher, #network, #clock, #battery, #network, #custom-mail, #custom-dbx,
-      #pulseaudio, #custom-mpd, #workspaces, #idle_inhibitor, #backlight, #disk, #cava, #custom-poweroff, #custom-gpu, #cpu, #custom-wallpaper, #custom-layout, #custom-reading-mode {
+      #pulseaudio, #custom-mpd, #workspaces, #idle_inhibitor, #backlight, #disk, #cava, #custom-poweroff, #custom-gpu, #cpu, #custom-wallpaper, #custom-layout, #custom-reading-mode, #custom-blue-light {
         padding: 5px 5px;
         background: #${config.lib.stylix.colors.base00};
       }
@@ -127,6 +145,7 @@ in
       #custom-layout { color: #${config.lib.stylix.colors.base0E}; }
       #custom-wallpaper { color: #${config.lib.stylix.colors.base0B}; }
       #custom-reading-mode { color: #${config.lib.stylix.colors.base0E}; }
+      #custom-blue-light { color: #${config.lib.stylix.colors.base0B}; }
       #idle_inhibitor { color:#${config.lib.stylix.colors.base05}; }
       #backlight { color: #${config.lib.stylix.colors.base05}; }
 
@@ -159,6 +178,7 @@ in
           "clock"
           "custom/wallpaper"
           "custom/reading-mode"
+          "custom/blue-light"
           "cava"
 
         ];
@@ -300,7 +320,8 @@ in
           format-icons = "󰋊";
           interval = 60;
           unit = "GB";
-        } // lib.optionalAttrs ((args.host or "") == "icicle") {
+        }
+        // lib.optionalAttrs ((args.host or "") == "icicle") {
           path = "/nix";
         };
         cpu = {
@@ -371,6 +392,13 @@ in
           format = "{}";
           tooltip = "Reading Mode (Toggle)";
           on-click = "${readingModeToggle}/bin/reading-mode-toggle";
+          interval = 2;
+        };
+        "custom/blue-light" = {
+          exec = "${blueLightFilterStatus}/bin/blue-light-filter-status";
+          format = "{}";
+          tooltip = "Blue Light Filter (Toggle)";
+          on-click = "${blueLightFilterToggle}/bin/blue-light-filter-toggle";
           interval = 2;
         };
         "custom/poweroff" = {

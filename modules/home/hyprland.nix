@@ -92,6 +92,16 @@ in
       source = "${../../assets/shaders/reading_mode.glsl}";
       executable = false;
     };
+
+    ".config/hypr/hyprshade.toml" = {
+      text = ''
+        [[shades]]
+        name = "blue-light-filter"
+        start_time = 19:00:00
+        end_time = 06:00:00
+      '';
+      executable = false;
+    };
   };
 
   programs.hyprlock = {
@@ -375,7 +385,13 @@ in
         enable_swallow = true;
       };
 
-      exec-once = "${sessionStart}/bin/hyprland-session-start";
+      exec-once = [
+        "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE"
+        "hyprshade install"
+        "systemctl --user enable --now hyprshade.timer"
+        "${sessionStart}/bin/hyprland-session-start"
+        "hyprshade auto"
+      ];
     };
   };
 }
