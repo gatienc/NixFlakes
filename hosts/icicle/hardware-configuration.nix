@@ -7,6 +7,11 @@
 
   hardware.opentabletdriver.enable = true; # Trying to fix the click issue
 
+  # Wacom tablet/stylus + libinput for pen support (Latitude 5290)
+  services.xserver.enable = true;
+  services.xserver.wacom.enable = true;
+  services.xserver.libinput.enable = true;
+
 
   boot = {
     initrd = {
