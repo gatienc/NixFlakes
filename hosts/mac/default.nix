@@ -25,6 +25,9 @@
         ../../modules/home/darwin/wallpaper.nix
         ../../modules/home/fvm.nix
       ];
+      home.sessionPath = [
+        "$HOME/.local/bin"
+      ];
     };
   };
 }

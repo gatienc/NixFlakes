@@ -58,9 +58,9 @@
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
-      6112
+      6112 # warcraft 3
       25565 # Minecraft server
-    ]; # trying to allow warcraft 3 to work
+    ];
   };
 
   services.pulseaudio.enable = false; # Disable PulseAudio
