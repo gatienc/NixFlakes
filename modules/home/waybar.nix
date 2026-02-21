@@ -3,7 +3,7 @@
   lib,
   config,
   ...
-}:
+}@args:
 
 let
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
@@ -265,6 +265,8 @@ in
           format-icons = "󰋊";
           interval = 60;
           unit = "GB";
+        } // lib.optionalAttrs ((args.host or "") == "icicle") {
+          path = "/nix";
         };
         cpu = {
           format = "{icon} {usage}%";
