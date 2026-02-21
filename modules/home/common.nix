@@ -41,7 +41,7 @@ let
     cargo # rust package manager
     nodejs # nodejs runtime
     jdk # java development kit
-    
+
     gh # github cli
     gh-dash # github dashboard
     copier # project templating tool
@@ -94,7 +94,7 @@ let
     # Desktop environment
     swww # wallpaper manager
     fuzzel # launcher
-    rofi-wayland # application launcher
+    rofi # application launcher
     dunst # notification manager
     libnotify # notification tool
 
