@@ -18,13 +18,11 @@ let
   '';
   readingModeToggle = pkgs.writeShellScriptBin "reading-mode-toggle" ''
     current_shader=$(hyprshade current)
-    shader_path="$HOME/.config/hypr/shaders/reading_mode.glsl"
-
     if [[ "$current_shader" == *"reading_mode"* ]]; then
       hyprshade off
       notify-send 'Reading Mode' 'Off' 2>/dev/null || true
     else
-      hyprshade on "$shader_path"
+      reading-mode-apply
       notify-send 'Reading Mode' 'On' 2>/dev/null || true
     fi
   '';

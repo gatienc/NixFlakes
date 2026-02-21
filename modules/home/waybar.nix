@@ -19,15 +19,11 @@ let
   '';
   readingModeToggle = pkgs.pkgs.writeShellScriptBin "reading-mode-toggle" ''
     current_shader=$(hyprshade current)
-    shader_path="$HOME/.config/hypr/shaders/reading_mode.glsl"
-
     if [[ "$current_shader" == *"reading_mode"* ]]; then
-      # Deactivate reading mode
       hyprshade off
       notify-send 'Reading Mode' 'Off' 2>/dev/null || true
     else
-      # Activate reading mode
-      hyprshade on "$shader_path"
+      reading-mode-apply
       notify-send 'Reading Mode' 'On' 2>/dev/null || true
     fi
   '';
@@ -396,8 +392,9 @@ in
         "custom/reading-mode" = {
           exec = "${readingModeStatus}/bin/reading-mode-status";
           format = "{}";
-          tooltip = "Reading Mode (Toggle)";
+          tooltip = "Reading Mode (Toggle). Right-click for Paper blue.";
           on-click = "${readingModeToggle}/bin/reading-mode-toggle";
+          on-click-right = "reading-mode-adjust";
           interval = 2;
         };
         "custom/blue-light" = {

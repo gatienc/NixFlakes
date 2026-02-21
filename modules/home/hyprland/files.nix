@@ -28,11 +28,6 @@
         executable = false;
       };
 
-      ".config/hypr/shaders/reading_mode.glsl" = {
-        source = "${../../../assets/shaders/reading_mode.glsl}";
-        executable = false;
-      };
-
       ".config/hypr/hyprshade.toml" = {
         text = ''
           [[shades]]

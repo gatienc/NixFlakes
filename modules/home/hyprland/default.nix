@@ -9,6 +9,7 @@
   imports = [
     ./scripts.nix
     ./blue-light.nix
+    ./reading-mode.nix
     ./files.nix
     ./hyprlock.nix
     ./hypridle.nix
