@@ -392,7 +392,7 @@ in
         "custom/reading-mode" = {
           exec = "${readingModeStatus}/bin/reading-mode-status";
           format = "{}";
-          tooltip = "Reading Mode (Toggle). Right-click for Paper blue.";
+          tooltip = "Reading Mode (Toggle). Right-click for Paper blue & invert.";
           on-click = "${readingModeToggle}/bin/reading-mode-toggle";
           on-click-right = "reading-mode-adjust";
           interval = 2;

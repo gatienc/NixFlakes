@@ -152,6 +152,16 @@ in
 
       bindl = [ ",switch:Lid Switch, exec, hyprlock" ];
 
+      # Start as floating: popups, dialogs, and windows that request it
+      windowrule = [
+        "match:float 1, float on"
+        "match:class pavucontrol, float on"
+        "match:class blueman-manager, float on"
+        "match:class yad, float on"
+        "match:class bitwarden, float on"
+        "match:initial_title .*[Bb]itwarden.*, float on"
+      ];
+
       misc = {
         disable_hyprland_logo = true;
         enable_swallow = true;

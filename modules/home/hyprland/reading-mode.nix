@@ -6,6 +6,7 @@
 }:
 let
   readingModePaperBlueFile = "$HOME/.config/hypr/reading-mode-paper-blue";
+  readingModeInvertFile = "$HOME/.config/hypr/reading-mode-invert";
   readingModeShaderPath = "$HOME/.config/hypr/shaders/reading_mode.glsl";
   readingModeTemplate =
     pkgs.writeText "reading_mode.glsl.template" ''
@@ -91,46 +92,60 @@ let
           vec3 inkColor = vec3(0.10, 0.10, 0.12);
           float colorVariation = hash(screenPos * 0.08) * 0.02;
           paperColor += vec3(colorVariation, colorVariation * 0.5, -colorVariation * 0.2);
-          vec3 finalColor = mix(inkColor, paperColor, gray);
+          float invert = __INVERT__;
+          vec3 finalColor = (invert > 0.5) ? mix(paperColor, inkColor, gray) : mix(inkColor, paperColor, gray);
           fragColor = vec4(finalColor, pixColor.a);
       }
     ''
     + "\n";
   readingModeApply = pkgs.writeShellScriptBin "reading-mode-apply" ''
     paper_blue_file="${readingModePaperBlueFile}"
+    invert_file="${readingModeInvertFile}"
     shader_path="${readingModeShaderPath}"
     template="$(printf '%s' "${readingModeTemplate}" | tr -d '\n\r' | ${pkgs.gnused}/bin/sed 's/[[:space:]]*$//')"
     mkdir -p "$(dirname "$shader_path")"
     [ ! -f "$paper_blue_file" ] && echo "0.86" > "$paper_blue_file"
+    [ ! -f "$invert_file" ] && echo "0" > "$invert_file"
     paper_blue=$(cat "$paper_blue_file" | sed 's/,/./' | ${pkgs.gawk}/bin/awk '{ v=$1; if(v<0)v=0; if(v>1)v=1; printf "%.2f", v }')
+    invert=$(cat "$invert_file" | ${pkgs.gawk}/bin/awk '{ v=($1+0); printf "%.1f", (v!=0)?1.0:0.0 }')
     echo "$paper_blue" > "$paper_blue_file"
+    echo "$( [ "$invert" = "1.0" ] && echo 1 || echo 0 )" > "$invert_file"
     tmp_shader="''${shader_path}.tmp.$$"
-    ${pkgs.gnused}/bin/sed -e "s/__PAPER_BLUE__/$paper_blue/" "$template" > "$tmp_shader"
+    ${pkgs.gnused}/bin/sed -e "s/__PAPER_BLUE__/$paper_blue/" -e "s/__INVERT__/$invert/" "$template" > "$tmp_shader"
     mv -f "$tmp_shader" "$shader_path"
     hyprshade on "$shader_path"
   '';
   readingModeAdjust = pkgs.writeShellScriptBin "reading-mode-adjust" ''
     paper_blue_file="${readingModePaperBlueFile}"
+    invert_file="${readingModeInvertFile}"
     shader_path="${readingModeShaderPath}"
     template="$(printf '%s' "${readingModeTemplate}" | tr -d '\n\r' | ${pkgs.gnused}/bin/sed 's/[[:space:]]*$//')"
     [ ! -f "$paper_blue_file" ] && echo "0.86" > "$paper_blue_file"
-    current=$(cat "$paper_blue_file" | sed 's/,/./' | ${pkgs.gawk}/bin/awk '{ v=$1; if(v<0)v=0; if(v>1)v=1; printf "%.2f", v }')
+    [ ! -f "$invert_file" ] && echo "0" > "$invert_file"
+    current_blue=$(cat "$paper_blue_file" | sed 's/,/./' | ${pkgs.gawk}/bin/awk '{ v=$1; if(v<0)v=0; if(v>1)v=1; printf "%.2f", v }')
+    current_invert=$(cat "$invert_file" | ${pkgs.gawk}/bin/awk '{ v=($1+0); print (v!=0)?"TRUE":"FALSE" }')
     result=$(${pkgs.yad}/bin/yad --title="Reading Mode" --window-icon=preferences-color \
       --form --separator="|" \
-      --field="Paper blue (0.0–1.0):NUM" "''${current}!0..1!0.01!2" \
+      --field="Paper blue (0.0–1.0):NUM" "''${current_blue}!0..1!0.01!2" \
+      --field="Invert (dark background):CHK" "$current_invert" \
       2>/dev/null) || exit 0
     [ -z "$result" ] && exit 0
     paper_blue=$(echo "$result" | ${pkgs.gawk}/bin/awk -F'|' '{ v=$1; if(v<0)v=0; if(v>1)v=1; printf "%.2f", v }')
+    invert_chk=$(echo "$result" | ${pkgs.gawk}/bin/awk -F'|' '{ print $2 }')
+    invert=$( [ "$invert_chk" = "TRUE" ] && echo "1.0" || echo "0.0" )
+    invert_raw=$( [ "$invert_chk" = "TRUE" ] && echo "1" || echo "0" )
     echo "$paper_blue" > "$paper_blue_file"
+    echo "$invert_raw" > "$invert_file"
     current_shader=$(hyprshade current)
     if [[ "$current_shader" == *"reading_mode"* ]]; then
       mkdir -p "$(dirname "$shader_path")"
       tmp_shader="''${shader_path}.tmp.$$"
-      ${pkgs.gnused}/bin/sed -e "s/__PAPER_BLUE__/$paper_blue/" "$template" > "$tmp_shader"
+      ${pkgs.gnused}/bin/sed -e "s/__PAPER_BLUE__/$paper_blue/" -e "s/__INVERT__/$invert/" "$template" > "$tmp_shader"
       mv -f "$tmp_shader" "$shader_path"
       hyprshade on "$shader_path"
     fi
-    notify-send 'Reading Mode' "Paper blue: $paper_blue" 2>/dev/null || true
+    invert_msg=$( [ "$invert_chk" = "TRUE" ] && echo "inverted" || echo "normal" )
+    notify-send 'Reading Mode' "Paper blue: $paper_blue | $invert_msg" 2>/dev/null || true
   '';
 in
 {
