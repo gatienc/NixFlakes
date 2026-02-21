@@ -134,7 +134,7 @@ lib.mkMerge [
         settings.user.name = "Gatien Chenu";
         settings.user.email = "gatien+dev@chenu.me";
       };
-      #firefox.enable = true;
+      firefox.enable = true;
       zellij = {
         enable = true;
         settings.theme = "dracula";

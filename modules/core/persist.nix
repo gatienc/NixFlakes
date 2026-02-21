@@ -34,9 +34,10 @@
         # vscode configuration
         ".vscode"
         ".config/Code" # TODO: Nixify Vscode settings
-
+        ".cursor"
         ".config/obsidian"
         ".config/sops"
+        ".config/Cursor"
 
         # Games
         ## Platforms
