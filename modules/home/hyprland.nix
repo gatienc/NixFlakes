@@ -14,11 +14,59 @@ let
     ${pkgs.pyprland}/bin/pypr &
     brightnessctl set 127
   '';
+  sessionStart = pkgs.pkgs.writeShellScriptBin "hyprland-session-start" ''
+    if [ -n "''${AMBXST_SESSION:-}" ]; then
+      ambxst &
+    else
+      exec ${startupScript}/bin/start
+    fi
+  '';
+  readingModeToggle = pkgs.pkgs.writeShellScriptBin "reading-mode-toggle" ''
+    current_shader=$(hyprshade current)
+    shader_path="$HOME/.config/hypr/shaders/reading_mode.glsl"
+
+    if [[ "$current_shader" == *"reading_mode"* ]]; then
+      # Deactivate reading mode
+      hyprshade off
+      notify-send 'Reading Mode' 'Off' 2>/dev/null || true
+    else
+      # Activate reading mode
+      hyprshade on "$shader_path"
+      notify-send 'Reading Mode' 'On' 2>/dev/null || true
+    fi
+  '';
+  exchangeMonitors = pkgs.pkgs.writeShellScriptBin "exchange-monitors" ''
+    # Get current workspace IDs for each monitor
+    mon0_workspace=$(hyprctl monitors -j | ${pkgs.jq}/bin/jq -r '.[0].activeWorkspace.id')
+    mon1_workspace=$(hyprctl monitors -j | ${pkgs.jq}/bin/jq -r '.[1].activeWorkspace.id')
+
+    # Get windows on current workspace of monitor 0, store in arrays
+    mon0_windows=($(hyprctl clients -j | ${pkgs.jq}/bin/jq -r ".[] | select(.monitor == 0 and .workspace.id == $mon0_workspace) | .address"))
+    mon1_windows=($(hyprctl clients -j | ${pkgs.jq}/bin/jq -r ".[] | select(.monitor == 1 and .workspace.id == $mon1_workspace) | .address"))
+
+    # Move windows from monitor 0's current workspace to monitor 1
+    for addr in "''${mon0_windows[@]}"; do
+      if [ -n "$addr" ]; then
+        hyprctl dispatch focuswindow address:"$addr"
+        hyprctl dispatch movewindow mon:1
+      fi
+    done
+
+    # Move windows from monitor 1's current workspace to monitor 0
+    for addr in "''${mon1_windows[@]}"; do
+      if [ -n "$addr" ]; then
+        hyprctl dispatch focuswindow address:"$addr"
+        hyprctl dispatch movewindow mon:0
+      fi
+    done
+  '';
 in
 {
   #imports = [
   #  inpsuts.ags.homeManagerModules.default
   #];
+
+  home.packages = [ exchangeMonitors ];
 
   home.file = {
     ".config/hypr/pyprland.toml" = {
@@ -41,6 +89,11 @@ in
         animation = "fromRight"
         lazy = true
         size = "15% 25%" '';
+      executable = false;
+    };
+
+    ".config/hypr/shaders/reading_mode.glsl" = {
+      source = "${../../assets/shaders/reading_mode.glsl}";
       executable = false;
     };
   };
@@ -210,7 +263,6 @@ in
         smart_split = "yes";
       };
 
-
       "$mainMod" = "SUPER"; # windows key as modifier
       "$terminal" = "kitty";
       "$browser" = "firefox";
@@ -221,6 +273,7 @@ in
         "$mainMod, F, fullscreen "
         "$mainMod, escape, killactive"
         "$mainMod, V, togglefloating"
+        "$mainMod, P, pin"
         "$mainMod CTRL, V,exec, pypr toggle volume" # toggle volume with Pyprland
         "$mainMod,A,exec,pypr toggle term" # toggle terminal with Pyprland
         "$mainMod,Y,exec,pypr attach"
@@ -279,12 +332,22 @@ in
         "$mainMod CTRL, Down, resizeactive, 0 50"
 
         "SUPER_SHIFT, l, exec, hyprlock"
-        "$mainMod, space, exec, fuzzel"
+        "$mainMod, space, exec, rofi -show drun"
         "$mainMod SHIFT, return, exec, swww-daemon & swww img $(find ${../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
+
+        # Reading mode toggle
+        "$mainMod, R, exec, ${readingModeToggle}/bin/reading-mode-toggle"
+
+        # Tiling algorithm shortcuts
+        "$mainMod, D, exec, hyprctl keyword general:layout dwindle"
+        "$mainMod SHIFT, D, exec, hyprctl keyword general:layout master"
 
         # Pyprland keybinds
         "ALT, TAB, exec, pypr fetch_client_menu"
         "$mainMod, return, exec, open -na kitty --args /Users/gatien/Documents/transcribe-cli/.venv/bin/python3.13 -m transcribe_cli.cli record --to-clipboard"
+
+        # Exchange all windows between monitor 1 and monitor 2
+        "$mainMod, TAB, exec, ${exchangeMonitors}/bin/exchange-monitors"
       ];
 
       bindm = [
@@ -316,7 +379,7 @@ in
         enable_swallow = true;
       };
 
-      exec-once = "${startupScript}/bin/start";
+      exec-once = "${sessionStart}/bin/hyprland-session-start";
     };
   };
 }

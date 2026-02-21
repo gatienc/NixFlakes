@@ -10,6 +10,7 @@
     hyprpicker
     hyprcursor
     pyprland
+    hyprshade
   ];
 
   programs.hyprland.enable = true;

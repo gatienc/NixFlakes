@@ -24,6 +24,7 @@
     impermanence.url = "github:nix-community/impermanence";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     stylix.url = "github:danth/stylix";
+    ambxst.url = "github:Axenide/Ambxst";
   };
 
   outputs =

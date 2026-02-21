@@ -14,16 +14,14 @@
     inputs.home-manager.nixosModules.home-manager
 
     ../../modules/core/common.nix
-    # ../../modules/core/hyprland.nix
     ../../modules/core/bluetooth.nix
     ../../modules/core/stylix.nix
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
-    # ../../modules/core/gnome.nix
     ../../modules/core/gaming.nix
     ../../modules/core/remote-desktop.nix
-    ../../modules/core/rustdesk.nix
-    ../../modules/core/n8n.nix
+    # ../../modules/core/hyprland.nix
+    # ../../modules/core/gnome.nix
 
     ./hardware-configuration.nix
   ];
@@ -49,6 +47,7 @@
         ../../modules/home/desktop.nix
         ../../modules/home/gaming.nix
         ../../modules/home/fastfetch.nix
+        ../../modules/home/rofi.nix
         # ../../modules/home/hyprland.nix
         # ../../modules/home/waybar.nix
         ../../modules/home/syncthing.nix

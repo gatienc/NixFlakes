@@ -1,5 +1,39 @@
-{ ... }:
+{ pkgs, ... }:
+let
+  exchangeMonitors = pkgs.writeShellScriptBin "exchange-monitors" ''
+    # Exchange only windows from the current workspace on each monitor
+    # Get the first two monitors
+    monitors=$(aerospace list-monitors 2>/dev/null | head -2)
+    if [ -z "$monitors" ]; then
+      # Fallback: use common monitor names
+      mon1="main"
+      mon2="secondary"
+    else
+      mon1=$(echo "$monitors" | head -1)
+      mon2=$(echo "$monitors" | tail -1)
+    fi
+
+    # Get the current/focused workspace on each monitor (first workspace is typically focused)
+    ws1=$(aerospace list-workspaces --monitor "$mon1" 2>/dev/null | head -1 | grep -v "^$" || true)
+    ws2=$(aerospace list-workspaces --monitor "$mon2" 2>/dev/null | head -1 | grep -v "^$" || true)
+
+    # Get all windows from the current workspace on each monitor
+    mon1_windows=$(aerospace list-windows --workspace "$ws1" --monitor "$mon1" 2>/dev/null | grep -v "^$" || true)
+    mon2_windows=$(aerospace list-windows --workspace "$ws2" --monitor "$mon2" 2>/dev/null | grep -v "^$" || true)
+
+    # Move windows from monitor 1's current workspace to monitor 2
+    echo "$mon1_windows" | while read -r window_id; do
+      [ -n "$window_id" ] && aerospace move-node-to-monitor "$window_id" "$mon2" 2>/dev/null || true
+    done
+
+    # Move windows from monitor 2's current workspace to monitor 1
+    echo "$mon2_windows" | while read -r window_id; do
+      [ -n "$window_id" ] && aerospace move-node-to-monitor "$window_id" "$mon1" 2>/dev/null || true
+    done
+  '';
+in
 {
+  home.packages = [ exchangeMonitors ];
   home.file.aerospace = {
     target = ".aerospace.toml";
     text = ''
@@ -104,10 +138,15 @@
       alt-tab = 'workspace-back-and-forth'
       # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
       alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+      # Exchange all windows between monitor 1 and monitor 2
+      cmd-tab = 'exec-and-forget exchange-monitors'
+
+      # Change wallpaper
+      alt-shift-enter = 'exec-and-forget change-wallpaper'
 
       # See: https://nikitabobko.github.io/AeroSpace/commands#mode
       ctrl-f1 = 'mode service'
-      
+
       # 'service' binding mode declaration.
       # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
       [mode.service.binding]

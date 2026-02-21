@@ -20,9 +20,9 @@
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
     ../../modules/core/gnome.nix
+    # ../../modules/core/ambxst.nix
     ../../modules/core/gaming.nix
     ../../modules/core/minecraft.nix
-    # ../../modules/core/rustdesk.nix
     ../../modules/core/lact.nix
 
     # ../../modules/core/virt-manager.nix
@@ -34,7 +34,7 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    # # extraSpecialArgs = { inherit inputs username host; };
+    extraSpecialArgs = { inherit inputs username; };
     users.${username} = {
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
@@ -45,9 +45,12 @@
         ../../modules/home/fastfetch.nix
         ../../modules/home/hyprland.nix
         ../../modules/home/waybar.nix
+        ../../modules/home/wallpaper.nix
         ../../modules/home/syncthing.nix
         ../../modules/home/3d_modeling.nix
         ../../modules/home/latex.nix
+        ../../modules/home/rofi.nix
+        # ../../modules/home/ambxst.nix
       ];
     };
   };
