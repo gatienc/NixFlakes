@@ -41,7 +41,7 @@
         ../../modules/home/desktop.nix
         ../../modules/home/bottles.nix
         ../../modules/home/fastfetch.nix
-        ../../modules/home/hyprland.nix
+        ../../modules/home/hyprland
         ../../modules/home/waybar.nix
         ../../modules/home/wallpaper.nix
         ../../modules/home/syncthing.nix

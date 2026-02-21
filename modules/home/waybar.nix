@@ -45,14 +45,20 @@ let
       hyprshade off
       notify-send 'Blue Light Filter' 'Off' 2>/dev/null || true
     else
-      hyprshade on blue-light-filter
-      notify-send 'Blue Light Filter' 'On' 2>/dev/null || true
+      blue-light-filter-apply
+      notify-send 'Blue Light Filter' 'On (scroll on icon to adjust strength)' 2>/dev/null || true
     fi
   '';
   blueLightFilterStatus = pkgs.pkgs.writeShellScriptBin "blue-light-filter-status" ''
     current_shader=$(hyprshade current)
+    strength_file="$HOME/.config/hypr/blue-light-strength"
     if [[ "$current_shader" == *"blue-light-filter"* ]]; then
-      echo "🌙"
+      if [ -f "$strength_file" ]; then
+        pct=$(awk '{ printf "%.0f", $1*100 }' "$strength_file")
+        echo "🌙 $pct%"
+      else
+        echo "🌙"
+      fi
     else
       echo "☀️"
     fi
@@ -210,12 +216,12 @@ in
         };
         clock = {
           "timezones" = [
-            "Europe/London"
             "Europe/Paris"
+            "Europe/London"
           ];
-          "timezone-alt" = "Europe/Paris";
-          "format" = "{:%I:%M %p} 🇬🇧";
-          "format-alt" = "{:%H:%M} 🇫🇷";
+          "timezone-alt" = "Europe/London";
+          "format" = "{:%H:%M} 🇫🇷";
+          "format-alt" = "{:%I:%M %p} 🇬🇧";
           "on-click-right" = "gsimplecal";
           "tooltip-format" = "{:%D %A, %B %d, %Y (%R)}";
           "actions" = {
@@ -397,8 +403,9 @@ in
         "custom/blue-light" = {
           exec = "${blueLightFilterStatus}/bin/blue-light-filter-status";
           format = "{}";
-          tooltip = "Blue Light Filter (Toggle)";
+          tooltip = "Blue Light Filter (Toggle). Right-click for Temperature, Strength, Luminance.";
           on-click = "${blueLightFilterToggle}/bin/blue-light-filter-toggle";
+          on-click-right = "blue-light-filter-slider";
           interval = 2;
         };
         "custom/poweroff" = {
