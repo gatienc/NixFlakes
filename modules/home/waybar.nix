@@ -30,9 +30,9 @@ let
   readingModeStatus = pkgs.pkgs.writeShellScriptBin "reading-mode-status" ''
     current_shader=$(hyprshade current)
     if [[ "$current_shader" == *"reading_mode"* ]]; then
-      echo "💥"
+      echo "󰃳"
     else
-      echo "🧐"
+      echo "󰌵"
     fi
   '';
   blueLightFilterToggle = pkgs.pkgs.writeShellScriptBin "blue-light-filter-toggle" ''
@@ -51,21 +51,56 @@ let
     if [[ "$current_shader" == *"blue-light-filter"* ]]; then
       if [ -f "$strength_file" ]; then
         pct=$(awk '{ printf "%.0f", $1*100 }' "$strength_file")
-        echo "🌙 $pct%"
+        printf "\xef\x86\x86 %s%%\n" "$pct"
       else
-        echo "🌙"
+        printf "\xef\x86\x86\n"
       fi
     else
-      echo "☀️"
+      printf "\xef\x86\x85\n"
     fi
   '';
   layoutStatus = pkgs.pkgs.writeShellScriptBin "layout-status" ''
     layout=$(hyprctl getoption general:layout | awk '{print $2}' | tr -d '"')
     if [[ "$layout" == "dwindle" ]]; then
-      echo "🔺"
+      echo "󰖲"
     else
-      echo "⬛"
+      echo "󰘖"
     fi
+  '';
+  # Toggle portrait (90°) via full monitor rule; see https://wiki.hyprland.org/Configuring/Monitors/#rotating
+  portraitToggle = pkgs.pkgs.writeShellScriptBin "portrait-toggle" ''
+    json=$(hyprctl monitors -j)
+    mon=$(echo "$json" | ${pkgs.jq}/bin/jq -r ".[0].name")
+    width=$(echo "$json" | ${pkgs.jq}/bin/jq -r ".[0].width")
+    height=$(echo "$json" | ${pkgs.jq}/bin/jq -r ".[0].height")
+    refresh=$(echo "$json" | ${pkgs.jq}/bin/jq -r ".[0].refreshRate")
+    x=$(echo "$json" | ${pkgs.jq}/bin/jq -r ".[0].x")
+    y=$(echo "$json" | ${pkgs.jq}/bin/jq -r ".[0].y")
+    scale=$(echo "$json" | ${pkgs.jq}/bin/jq -r ".[0].scale")
+    transform=$(echo "$json" | ${pkgs.jq}/bin/jq -r ".[0].transform")
+    # refreshRate can be in Hz or mHz (e.g. 60000)
+    if [[ "$refresh" -gt 1000 ]]; then
+      refresh=$(( refresh / 1000 ))
+    fi
+    if [[ "$transform" == "0" || "$transform" == "2" ]]; then
+      # Switch to portrait: 90° (transform 1)
+      rule="$mon, ''${width}x''${height}@''${refresh}, ''${x}x''${y}, ''${scale}, transform, 1"
+      hyprctl keyword monitor "$rule"
+      # Match pen/touch coordinates to rotated display (see wiki.hyprland.org Configuring/Monitors#rotating)
+      hyprctl keyword input:touchdevice:transform 1 2>/dev/null || true
+      hyprctl keyword input:tablet:transform 1 2>/dev/null || true
+      notify-send 'Screen' 'Portrait (90°)' 2>/dev/null || true
+    else
+      # Switch to landscape: 0°
+      rule="$mon, ''${width}x''${height}@''${refresh}, ''${x}x''${y}, ''${scale}, transform, 0"
+      hyprctl keyword monitor "$rule"
+      hyprctl keyword input:touchdevice:transform 0 2>/dev/null || true
+      hyprctl keyword input:tablet:transform 0 2>/dev/null || true
+      notify-send 'Screen' 'Landscape' 2>/dev/null || true
+    fi
+  '';
+  portraitStatus = pkgs.pkgs.writeShellScriptBin "portrait-status" ''
+    printf "\xef\x80\xa1\n"
   '';
 in
 {
@@ -79,9 +114,18 @@ in
         font-size: 11px;
         transition: ${betterTransition};
         min-height: 0;
+        color: #${config.lib.stylix.colors.base05};
       }
       #clock {
         color: #${config.lib.stylix.colors.base05};
+      }
+      #custom-launcher {
+        font-size: 16px;
+      }
+      #custom-mail, #custom-dbx, #custom-layout, #custom-reading-mode, #custom-blue-light,
+      #custom-wallpaper, #custom-portrait, #custom-poweroff, #custom-mpd,
+      #network, #idle_inhibitor, #backlight, #pulseaudio, #battery, #disk, #cpu {
+        font-size: 11px;
       }
 
       window#waybar {
@@ -107,7 +151,8 @@ in
         padding-left: 10px;
         padding-right: 10px;
         min-width: 0;
-        color: #${config.lib.stylix.colors.base0D};
+        color: #${config.lib.stylix.colors.base05};
+        font-size: 18px;
       }
 
       #workspaces button.focused {
@@ -115,16 +160,16 @@ in
       }
 
       #workspaces button.urgent {
-        color: #${config.lib.stylix.colors.base0A};
+        color: #${config.lib.stylix.colors.base05};
       }
 
       #workspaces button:hover {
-        color: #${config.lib.stylix.colors.base08};
+        color: #${config.lib.stylix.colors.base05};
       }
 
       #tray, #custom-launcher, #network, #clock, #battery, #network, #custom-mail, #custom-dbx,
-      #pulseaudio, #custom-mpd, #workspaces, #idle_inhibitor, #backlight, #disk, #cava, #custom-poweroff, #custom-gpu, #cpu, #custom-wallpaper, #custom-layout, #custom-reading-mode, #custom-blue-light {
-        padding: 5px 5px;
+      #pulseaudio, #custom-mpd, #workspaces, #idle_inhibitor, #backlight, #disk, #cava, #custom-poweroff, #custom-gpu, #cpu, #custom-wallpaper, #custom-layout, #custom-reading-mode, #custom-blue-light, #custom-portrait, #custom-keyboard {
+        padding: 6px 8px;
         background: #${config.lib.stylix.colors.base00};
       }
 
@@ -132,38 +177,25 @@ in
       border-radius: 0px 0px 15px 0px;
       }
 
-      #custom-launcher {
-        font-size: 12pt;
+      #network,
+      #pulseaudio, #custom-mail, #custom-dbx, #custom-mpd, #custom-layout,
+      #custom-wallpaper, #custom-reading-mode, #custom-blue-light, #custom-portrait, #custom-keyboard,
+      #idle_inhibitor, #backlight {
+        color: #${config.lib.stylix.colors.base05};
       }
-
-      #network {
-        color: #${config.lib.stylix.colors.base07};
-      }
-
-      #pulseaudio { color: #${config.lib.stylix.colors.base06}; }
-      #custom-mail { color: #${config.lib.stylix.colors.base0A}; }
-      #custom-dbx { color: #${config.lib.stylix.colors.base0D}; }
-      #custom-mpd { color: #${config.lib.stylix.colors.base04}; }
-      #custom-layout { color: #${config.lib.stylix.colors.base0E}; }
-      #custom-wallpaper { color: #${config.lib.stylix.colors.base0B}; }
-      #custom-reading-mode { color: #${config.lib.stylix.colors.base0E}; }
-      #custom-blue-light { color: #${config.lib.stylix.colors.base0B}; }
-      #idle_inhibitor { color:#${config.lib.stylix.colors.base05}; }
-      #backlight { color: #${config.lib.stylix.colors.base05}; }
 
       #tray {}
       #battery {
-        color: #${config.lib.stylix.colors.base07};
+        color: #${config.lib.stylix.colors.base05};
       }
 
       #idle_inhibitor {
-        color: #${config.lib.stylix.colors.base0C};
         border-radius: 0px 0px 0px 15px;
         margin-left: 10px;
       }
 
       #poweroff {
-        color: #${config.lib.stylix.colors.base0A};
+        color: #${config.lib.stylix.colors.base05};
         margin-right: 30px;
        }
     '';
@@ -174,15 +206,15 @@ in
         position = "top";
         modules-left = [
           "custom/launcher"
+          "clock"
           "custom/mail"
           "custom/dbx"
           "custom/layout"
-          "clock"
-          "custom/wallpaper"
           "custom/reading-mode"
           "custom/blue-light"
+          "custom/wallpaper"
+        ] ++ lib.optionals ((args.host or "") == "icicle") [ "custom/portrait" "custom/keyboard" ] ++ [
           "cava"
-
         ];
         cava = {
           framerate = 30;
@@ -216,8 +248,8 @@ in
             "Europe/London"
           ];
           "timezone-alt" = "Europe/London";
-          "format" = "{:%H:%M} 🇫🇷";
-          "format-alt" = "{:%I:%M %p} 🇬🇧";
+          "format" = "{:%H:%M} 󰥔";
+          "format-alt" = "{:%I:%M %p} 󰥔";
           "on-click-right" = "gsimplecal";
           "tooltip-format" = "{:%D %A, %B %d, %Y (%R)}";
           "actions" = {
@@ -384,7 +416,7 @@ in
         };
 
         "custom/wallpaper" = {
-          format = "🖼️";
+          format = "";
           tooltip = "Change Wallpaper";
           on-click = "change-wallpaper";
         };
@@ -406,9 +438,24 @@ in
           interval = 2;
         };
         "custom/poweroff" = {
-          format = "⏻";
+          format = "󰐥";
           tooltip = "Power Menu";
           on-click = "${turnoffMenu}/bin/start";
+        };
+      } // lib.optionalAttrs ((args.host or "") == "icicle") {
+        "custom/portrait" = {
+          exec = "${portraitStatus}/bin/portrait-status";
+          format = "{}";
+          tooltip = "Toggle portrait / landscape";
+          on-click = "${portraitToggle}/bin/portrait-toggle";
+          interval = 2;
+        };
+        "custom/keyboard" = {
+          format = "󰌌";
+          tooltip = "Toggle on-screen keyboard (wvkbd)";
+          # -x: match executable name only (avoid matching the shell running this command)
+          # SIGRTMIN toggles visibility; start if not running
+          on-click = "pkill -SIGRTMIN -x wvkbd-mobintl 2>/dev/null || wvkbd-mobintl &";
         };
       };
     };

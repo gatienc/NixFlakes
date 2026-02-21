@@ -23,6 +23,11 @@
     impermanence.url = "github:nix-community/impermanence";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     stylix.url = "github:danth/stylix";
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 
   outputs =
