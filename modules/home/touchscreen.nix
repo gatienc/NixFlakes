@@ -17,7 +17,6 @@
       inputs.hyprgrass.packages.${pkgs.system}.default
     ];
     settings = {
-      exec-once = lib.mkAfter [ "${pkgs.wvkbd}/bin/wvkbd-mobintl" ];
       plugin.gestures = {
         workspace_swipe = true;
         workspace_swipe_cancel_ratio = 0.15;

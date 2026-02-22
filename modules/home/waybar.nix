@@ -258,7 +258,7 @@ in
         };
         "custom/launcher" = {
           "format" = " ";
-          "on-click" = "fuzzel";
+          "on-click" = "sh -c 'sleep 0.1 && hyprctl dispatch hyprexpo:expo toggle'";
         };
         modules-center = [
           "hyprland/workspaces"

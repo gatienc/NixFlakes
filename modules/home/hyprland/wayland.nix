@@ -12,6 +12,7 @@ in
     enable = true;
     systemd.variables = [ "--all" ];
     systemd.enable = true;
+    plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
     settings = {
       input = {
         kb_layout = "fr";
@@ -132,6 +133,7 @@ in
         "ALT, TAB, exec, pypr fetch_client_menu"
         "$mainMod, return, exec, open -na kitty --args /Users/gatien/Documents/transcribe-cli/.venv/bin/python3.13 -m transcribe_cli.cli record --to-clipboard"
         "$mainMod, TAB, exec, ${scripts.exchangeMonitors}/bin/exchange-monitors"
+        "$mainMod, O, hyprexpo:expo, toggle"
       ];
 
       bindm = [
@@ -165,6 +167,16 @@ in
       misc = {
         disable_hyprland_logo = true;
         enable_swallow = true;
+      };
+
+      plugin = {
+        hyprexpo = {
+          columns = 3;
+          gap_size = 5;
+          bg_col = "rgb(111111)";
+          workspace_method = "center current";
+          gesture_distance = 300;
+        };
       };
 
       exec-once = [

@@ -38,15 +38,11 @@
         ".config/obsidian"
         ".config/sops"
         ".config/Cursor"
+        ".local"
 
         # Games
         ## Platforms
         ".steam"
-
-        ## Minecraft
-        ".local/share/PrismLauncher"
-        ".local/share/ATLauncher"
-        ".local/share/TLauncher"
 
         ".cache" # cache
 
