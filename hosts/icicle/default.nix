@@ -1,13 +1,14 @@
-{ inputs
-, nixpkgs
-, self
-, username
-, host
-, config
-, lib
-, pkgs
-, modulesPath
-, ...
+{
+  inputs,
+  nixpkgs,
+  self,
+  username,
+  host,
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
 }:
 
 {
@@ -15,7 +16,6 @@
   # Core configuration
   imports = [
     inputs.home-manager.nixosModules.home-manager
-
     ../../modules/core/common.nix
     ../../modules/core/persist.nix
     ../../modules/core/hyprland.nix
@@ -23,9 +23,6 @@
     ../../modules/core/stylix.nix
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
-    ../../modules/core/latex.nix
-    # ../../modules/core/python.nix
-
     ../../modules/core/laptop.nix
 
     ./hardware-configuration.nix
@@ -42,10 +39,12 @@
       imports = [
         ../../modules/home/common.nix
         ../../modules/home/desktop.nix
-        ../../modules/home/gaming.nix
+        ../../modules/home/bottles.nix
         ../../modules/home/fastfetch.nix
-        ../../modules/home/hyprland.nix
+        ../../modules/home/hyprland
+        ../../modules/home/touchscreen.nix
         ../../modules/home/waybar.nix
+        ../../modules/home/wallpaper.nix
         ../../modules/home/syncthing.nix
       ];
     };

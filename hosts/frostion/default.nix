@@ -22,7 +22,6 @@
     ../../modules/core/gnome.nix
     ../../modules/core/gaming.nix
     ../../modules/core/minecraft.nix
-    # ../../modules/core/rustdesk.nix
     ../../modules/core/lact.nix
 
     # ../../modules/core/virt-manager.nix
@@ -34,7 +33,7 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    # # extraSpecialArgs = { inherit inputs username host; };
+    extraSpecialArgs = { inherit inputs username; };
     users.${username} = {
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
@@ -43,11 +42,13 @@
         ../../modules/home/desktop.nix
         ../../modules/home/gaming.nix
         ../../modules/home/fastfetch.nix
-        ../../modules/home/hyprland.nix
+        ../../modules/home/hyprland
         ../../modules/home/waybar.nix
+        ../../modules/home/wallpaper.nix
         ../../modules/home/syncthing.nix
         ../../modules/home/3d_modeling.nix
         ../../modules/home/latex.nix
+        ../../modules/home/rofi.nix
       ];
     };
   };
@@ -55,9 +56,9 @@
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
-      6112
+      6112 # warcraft 3
       25565 # Minecraft server
-    ]; # trying to allow warcraft 3 to work
+    ];
   };
 
   services.pulseaudio.enable = false; # Disable PulseAudio
