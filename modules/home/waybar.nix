@@ -8,6 +8,7 @@
 let
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
   turnoffMenu = pkgs.pkgs.writeShellScriptBin "start" ''
+    # shell
     choice=$(printf "Lock\nLogout\nHibernate\nRestart\nShutdown\n" | fuzzel --dmenu)
     case "$choice" in
       Lock)     hyprlock ;; # Replace with your lock command if needed
@@ -22,6 +23,7 @@ in
   programs.waybar = {
     enable = true;
     style = with config.stylix.fonts; ''
+      /* syntax: css */
       * {
         border-radius: 0;
         font-family: "${monospace.name}", "${sansSerif.name}", "${emoji.name}";

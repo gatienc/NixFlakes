@@ -138,6 +138,7 @@ lib.mkMerge [
         settings.theme = "dracula";
         layouts = {
           gemini = ''
+            # syntax: hcl
             layout {
                 pane split_direction="vertical" {
                     pane
@@ -181,6 +182,7 @@ lib.mkMerge [
         };
 
         initContent = ''
+          # shell
           # Source user-managed aliases if present
           if [ -f ~/.zsh_aliases ]; then
             source ~/.zsh_aliases

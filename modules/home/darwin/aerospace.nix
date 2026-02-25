@@ -3,6 +3,7 @@
   home.file.aerospace = {
     target = ".aerospace.toml";
     text = ''
+      # syntax: toml
       after-startup-command = [
       'exec-and-forget borders active_color=rgba(143, 171, 255, 1) inactive_color=rgba(52, 51, 56, 1) width=5.0'
       ]

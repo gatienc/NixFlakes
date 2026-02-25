@@ -10,6 +10,7 @@
   };
   systemd.services."sometestservice" = {
     script = ''
+      # shell
       echo "
       Hey bro! I'm a service, and imma send this secure password:
       $(cat ${config.sops.secrets."example_key".path})

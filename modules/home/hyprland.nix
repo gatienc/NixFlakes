@@ -7,6 +7,7 @@
 }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    # shell
     swww-daemon &
     sleep 1 &
     swww img $(find ${../../assets/wallpaper} -type f | shuf -n1) &
@@ -23,6 +24,7 @@ in
   home.file = {
     ".config/hypr/pyprland.toml" = {
       text = ''
+        # syntax: toml
         [pyprland]
         plugins = ["scratchpads", "fetch_client_menu","monitors"]
 

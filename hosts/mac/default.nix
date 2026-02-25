@@ -23,6 +23,7 @@
         ../../modules/home/darwin/aerospace.nix
         ../../modules/home/darwin/kitty.nix
         ../../modules/home/fvm.nix
+        ../../modules/home/llm.nix
       ];
       home.sessionPath = [
         "$HOME/.local/bin"
