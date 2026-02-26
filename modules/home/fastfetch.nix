@@ -4,6 +4,7 @@
   home.packages = (with pkgs;
     [ fastfetch ]);
 
+  # syntax: json
   xdg.configFile."fastfetch/config.jsonc".text = ''
     {
       "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",

@@ -27,6 +27,7 @@
 
   #QOL: enabling numlock on boot
   boot.initrd.preLVMCommands = ''
+    # shell
     ${pkgs.kbd}/bin/setleds +num
   '';
 

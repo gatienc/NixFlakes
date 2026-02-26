@@ -140,6 +140,7 @@ lib.mkMerge [
         settings.theme = "dracula";
         layouts = {
           gemini = ''
+            # syntax: hcl
             layout {
                 pane split_direction="vertical" {
                     pane

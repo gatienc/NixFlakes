@@ -24,6 +24,7 @@
         ../../modules/home/darwin/kitty.nix
         ../../modules/home/darwin/wallpaper.nix
         ../../modules/home/fvm.nix
+        ../../modules/home/llm.nix
       ];
       home.sessionPath = [
         "$HOME/.local/bin"
