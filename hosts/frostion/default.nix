@@ -23,6 +23,7 @@
     ../../modules/core/gaming.nix
     ../../modules/core/minecraft.nix
     ../../modules/core/lact.nix
+    ../../modules/home/llm.nix # to test as not a AI ready GPU
 
     # ../../modules/core/virt-manager.nix
     # ../../modules/core/zen.nix

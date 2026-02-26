@@ -22,6 +22,7 @@
     ../../modules/core/remote-desktop.nix
     # ../../modules/core/hyprland.nix
     # ../../modules/core/gnome.nix
+    ../../modules/home/llm.nix # to test as not a AI ready GPU
 
     ./hardware-configuration.nix
   ];
