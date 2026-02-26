@@ -46,6 +46,8 @@
         ../../modules/home/waybar.nix
         ../../modules/home/wallpaper.nix
         ../../modules/home/syncthing.nix
+        ../../modules/home/llm.nix # to test as not a AI ready GPU
+
       ];
     };
   };

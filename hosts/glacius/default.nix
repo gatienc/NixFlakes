@@ -20,9 +20,10 @@
     ../../modules/core/fonts.nix
     ../../modules/core/gaming.nix
     ../../modules/core/remote-desktop.nix
+    ../../modules/core/rocm.nix
+    ../../modules/core/lact.nix
     # ../../modules/core/hyprland.nix
     # ../../modules/core/gnome.nix
-    ../../modules/home/llm.nix # to test as not a AI ready GPU
 
     ./hardware-configuration.nix
   ];
@@ -49,6 +50,7 @@
         ../../modules/home/gaming.nix
         ../../modules/home/fastfetch.nix
         ../../modules/home/rofi.nix
+        ../../modules/home/llm.nix
         # ../../modules/home/hyprland.nix
         # ../../modules/home/waybar.nix
         ../../modules/home/syncthing.nix
