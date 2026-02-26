@@ -11,6 +11,7 @@
   home.packages = with pkgs; [
     grim # screenshot tool
     slurp # select region for screenshot
+    loupe # image viewer
 
     ## Clipboard
     wl-clipboard
