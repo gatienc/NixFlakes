@@ -25,7 +25,7 @@ let
 
     tealdeer # tldr client
     wget # download files from the web
-    yazy # terminal file manager
+    yazi # terminal file manager
     glow # markdown previewer in terminal
 
     # archives
