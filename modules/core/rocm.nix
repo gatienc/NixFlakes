@@ -23,5 +23,7 @@
   environment.systemPackages = with pkgs; [
     rocmPackages.clr.icd
     rocmPackages.rocminfo
+    rocmPackages.rocm-smi
+    rocmPackages.amdsmi
   ];
 }
