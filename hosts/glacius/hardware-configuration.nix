@@ -23,8 +23,16 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "amdgpu"
+  ];
   boot.extraModulePackages = [ ];
+
+  # Enable ROCm compatibility for older GPUs (Polaris, Vega, etc.)
+  boot.kernelParams = [
+    "amdgpu.exp_hw_support=1"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/e883c868-625c-4c6b-95e9-050724c0d3f9";

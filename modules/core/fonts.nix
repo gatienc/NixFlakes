@@ -19,7 +19,7 @@
       inconsolata
       iosevka
       twemoji-color-font
-      openmoji-color
+      # openmoji-color  # Temporarily disabled due to test failures
       # fonts name can get in ``https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/data/fonts/nerdfonts/shas.nix`
     ]
     ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
