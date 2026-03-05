@@ -34,6 +34,7 @@
     nautilus # GUI file manager
     font-manager # GUI font manager
     remmina # remote desktop client
+    nextcloud-client # cloud sync client
     # moonlight-qt
 
     zotero # reference manager
@@ -47,7 +48,7 @@
     teams-for-linux # teams client
 
     # Office software
-    libreoffice-qt # office suite
+    #libreoffice-qt # office suite
     hunspell # spell checker
 
   ];

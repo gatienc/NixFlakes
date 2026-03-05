@@ -6,10 +6,13 @@
   username,
   ...
 }:
+
 {
   home.packages = with pkgs; [
     opencode
     ollama
+    llmfit
+    lmstudio
   ];
 
 }
