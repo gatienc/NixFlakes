@@ -84,6 +84,7 @@ let
     dysk
     gthumb
     playerctl # control media players
+    sioyek # PDF viewer
 
     poetry
 
@@ -106,7 +107,6 @@ let
     alsa-utils # ALSA sound utilities
 
     # Office software
-    libreoffice-qt # office suite
     hunspell # spell checker
 
     radeontop # GPU monitoring
@@ -436,7 +436,7 @@ lib.mkMerge [
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
-        "application/pdf" = [ "firefox.desktop" ];
+        "application/pdf" = [ "sioyek.desktop" ];
         "image/png" = [ "org.gnome.Loupe.desktop" ];
         "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
         "image/gif" = [ "org.gnome.Loupe.desktop" ];

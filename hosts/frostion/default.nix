@@ -40,6 +40,8 @@
       imports = [
         ../../modules/home/common.nix
         ../../modules/home/desktop.nix
+        ../../modules/home/dunst.nix
+        ../../modules/home/music.nix
         ../../modules/home/gaming.nix
         ../../modules/home/fastfetch.nix
         ../../modules/home/hyprland

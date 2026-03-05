@@ -39,6 +39,7 @@
       imports = [
         ../../modules/home/common.nix
         ../../modules/home/desktop.nix
+        ../../modules/home/dunst.nix
         ../../modules/home/bottles.nix
         ../../modules/home/fastfetch.nix
         ../../modules/home/hyprland

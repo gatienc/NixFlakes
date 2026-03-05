@@ -6,13 +6,13 @@
   username,
   ...
 }:
-
 {
-  home.packages = with pkgs; [
-    opencode
-    ollama
-    llmfit
-    lmstudio
-  ];
 
+  home.packages = with pkgs; [
+    yt-dlp
+    chromaprint
+    picard
+    # musicat not yetstable
+    tauon
+  ];
 }

@@ -103,6 +103,39 @@ let
   portraitStatus = pkgs.pkgs.writeShellScriptBin "portrait-status" ''
     printf "\xef\x80\xa1\n"
   '';
+  nowPlayingNotify = pkgs.pkgs.writeShellScriptBin "now-playing-notify" ''
+    last_id=""
+    playerctl metadata --format '{{status}}|{{mpris:trackid}}|{{xesam:artist}}|{{xesam:title}}|{{mpris:artUrl}}' --follow | \
+    while IFS='|' read -r status id artist title art; do
+      [ "$status" != "Playing" ] && continue
+      [ -z "$id" ] && continue
+      if [ "$id" = "$last_id" ]; then
+        continue
+      fi
+      last_id="$id"
+
+      art_path=""
+      if [ -n "$art" ]; then
+        art_path="$(printf '%s' \"$art\" | sed 's,^file://,,')"
+        case "$art_path" in
+          /*)
+            [ -f "$art_path" ] || art_path=\"\"
+            ;;
+          *)
+            art_path=\"\"
+            ;;
+        esac
+      fi
+
+      summary="Now playing"
+      body="$artist - $title"
+      if [ -n "$art_path" ]; then
+        notify-send -i "$art_path" "$summary" "$body"
+      else
+        notify-send "$summary" "$body"
+      fi
+    done
+  '';
 in
 {
   programs.waybar = {
@@ -170,13 +203,18 @@ in
       }
 
       #tray, #custom-launcher, #network, #clock, #battery, #network, #custom-mail, #custom-dbx,
-      #pulseaudio, #custom-mpd, #workspaces, #idle_inhibitor, #backlight, #disk, #cava, #custom-poweroff, #custom-gpu, #cpu, #custom-wallpaper, #custom-layout, #custom-reading-mode, #custom-blue-light, #custom-portrait, #custom-keyboard {
+      #pulseaudio, #custom-mpd, #workspaces, #idle_inhibitor, #backlight, #disk, #mpris, #custom-poweroff, #custom-gpu, #cpu, #custom-wallpaper, #custom-layout, #custom-reading-mode, #custom-blue-light, #custom-portrait, #custom-keyboard {
         padding: 6px 8px;
         background: #${config.lib.stylix.colors.base00};
       }
 
-      #cava {
-      border-radius: 0px 0px 15px 0px;
+      #mpris {
+        padding-left: 10px;
+        margin-left: 0;
+      }
+
+      #mpris label {
+        padding: 0;
       }
 
       #network,
@@ -184,6 +222,15 @@ in
       #custom-wallpaper, #custom-reading-mode, #custom-blue-light, #custom-portrait, #custom-keyboard,
       #idle_inhibitor, #backlight {
         color: #${config.lib.stylix.colors.base05};
+      }
+
+      #custom-wallpaper {
+        padding-right: 12px;
+      }
+
+      .modules-left > widget:last-child > * {
+        border-radius: 0px 0px 15px 0px;
+        margin-right: 12px;
       }
 
       #tray {}
@@ -215,34 +262,38 @@ in
           "custom/reading-mode"
           "custom/blue-light"
           "custom/wallpaper"
-        ] ++ lib.optionals ((args.host or "") == "icicle") [ "custom/portrait" "custom/keyboard" ] ++ [
-          "cava"
+        ]
+        ++ lib.optionals ((args.host or "") == "icicle") [
+          "custom/portrait"
+          "custom/keyboard"
+        ]
+        ++ [
+          "mpris"
         ];
-        cava = {
-          framerate = 30;
-          autosens = true;
-          bars = 12;
-          lower_cutoff_freq = 50;
-          higher_cutoff_freq = 20000;
-          hide_on_silence = true;
-          format_silent = "quiet";
-          method = "pulse";
-          stereo = false;
-          reverse = false;
-          bar_delimiter = 0;
-          monstercat = false;
-          waves = false;
-          noise_reduction = 0.77;
-          format-icons = [
-            "▁"
-            "▂"
-            "▄"
-            "▆"
-            "█"
-          ];
-          actions = {
-            on-click-right = "mode";
+        mpris = {
+          format = "{player_icon} {artist} - {title}";
+          format-playing = "{status_icon} {artist} - {title}";
+          format-paused = " {artist} - {title}";
+          format-stopped = "";
+          artist-len = 22;
+          title-len = 28;
+          tooltip-format = "{player} ({status})\n{album}\n{position} / {length}";
+          player-icons = {
+            default = "";
+            spotify = "";
+            firefox = "";
+            mpv = "";
+            vlc = "嗢";
           };
+          status-icons = {
+            playing = "";
+            paused = "";
+            stopped = "";
+          };
+          on-click = "playerctl play-pause";
+          on-click-right = "playerctl next";
+          on-scroll-up = "playerctl previous";
+          on-scroll-down = "playerctl position 5+";
         };
         clock = {
           "timezones" = [
@@ -444,7 +495,8 @@ in
           tooltip = "Power Menu";
           on-click = "${turnoffMenu}/bin/start";
         };
-      } // lib.optionalAttrs ((args.host or "") == "icicle") {
+      }
+      // lib.optionalAttrs ((args.host or "") == "icicle") {
         "custom/portrait" = {
           exec = "${portraitStatus}/bin/portrait-status";
           format = "{}";
@@ -460,6 +512,20 @@ in
           on-click = "pkill -SIGRTMIN -x wvkbd-mobintl 2>/dev/null || wvkbd-mobintl &";
         };
       };
+    };
+  };
+  systemd.user.services.now-playing-notify = {
+    Unit = {
+      Description = "Now playing notifications from MPRIS players";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${nowPlayingNotify}/bin/now-playing-notify";
+      Restart = "on-failure";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
     };
   };
 }
