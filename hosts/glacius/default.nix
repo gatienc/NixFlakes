@@ -22,11 +22,14 @@
     ../../modules/core/remote-desktop.nix
     ../../modules/core/rocm.nix
     ../../modules/core/lact.nix
+    ../../modules/core/minecraft.nix
     # ../../modules/core/hyprland.nix
     # ../../modules/core/gnome.nix
 
     ./hardware-configuration.nix
   ];
+
+  virtualisation.docker.enable = true;
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
@@ -57,6 +60,34 @@
         # ../../modules/home/waybar.nix
         ../../modules/home/syncthing.nix
       ];
+
+      systemd.user.services.obsidian-vault-auto-commit = {
+        Unit = {
+          Description = "Auto-commit Obsidian vault changes";
+        };
+        Service = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.bash}/bin/bash /home/${username}/Documents/obsidian/.git-hooks/auto-commit.sh";
+          StandardOutput = "append:/home/${username}/Documents/obsidian/.git-hooks/auto-commit.log";
+          StandardError = "append:/home/${username}/Documents/obsidian/.git-hooks/auto-commit.log";
+        };
+        Install = {
+          WantedBy = [ "timers.target" ];
+        };
+      };
+
+      systemd.user.timers.obsidian-vault-auto-commit = {
+        Unit = {
+          Description = "Timer for auto-committing Obsidian vault";
+        };
+        Timer = {
+          OnCalendar = "*:0/5";
+          Persistent = true;
+        };
+        Install = {
+          WantedBy = [ "timers.target" ];
+        };
+      };
     };
   };
 
