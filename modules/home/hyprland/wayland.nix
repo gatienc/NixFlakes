@@ -126,7 +126,7 @@ in
         "$mainMod CTRL, Down, resizeactive, 0 50"
         "SUPER_SHIFT, l, exec, hyprlock"
         "$mainMod, space, exec, rofi -show drun"
-        "$mainMod SHIFT, return, exec, swww-daemon & swww img $(find ${../../../assets/wallpaper} | shuf -n1) --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
+        "$mainMod SHIFT, return, exec, swww-daemon & swww img ${../../../assets/wallpaper/naduria_shrine.png} --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
         "$mainMod, R, exec, ${scripts.readingModeToggle}/bin/reading-mode-toggle"
         "$mainMod, D, exec, hyprctl keyword general:layout dwindle"
         "$mainMod SHIFT, D, exec, hyprctl keyword general:layout master"
@@ -162,6 +162,7 @@ in
         "match:class yad, float on"
         "match:class bitwarden, float on"
         "match:initial_title .*[Bb]itwarden.*, float on"
+        "float on, pin on, size 400 225, move 1500 835, match:class firefox, match:initial_title .*Picture-in-Picture.*"
       ];
 
       misc = {

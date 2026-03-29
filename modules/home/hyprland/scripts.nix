@@ -8,7 +8,7 @@ let
   startupScript = pkgs.writeShellScriptBin "start" ''
     swww-daemon &
     sleep 1 &
-    swww img $(find ${../../../assets/wallpaper} -type f | shuf -n1) &
+    swww img ${../../../assets/wallpaper/naduria_shrine.png} &
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.pyprland}/bin/pypr &
     brightnessctl set 127

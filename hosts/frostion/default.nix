@@ -21,6 +21,7 @@
     ../../modules/core/fonts.nix
     ../../modules/core/gnome.nix
     ../../modules/core/gaming.nix
+    ../../modules/core/rocm.nix
     ../../modules/core/minecraft.nix
     ../../modules/core/lact.nix
 

@@ -341,7 +341,7 @@ in
             "title<.*youtube.*>" = " ";
             "title<.*amazon.*>" = " ";
             "title<.*reddit.*>" = " ";
-            "title<.*Picture-in-Picture.*>" = " ";
+            "title<.*Picture\\-in\\-Picture.*>" = " ";
             "class<firefox>" = " ";
             "class<kitty>" = " ";
             "class<konsole>" = " ";

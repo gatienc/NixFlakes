@@ -8,7 +8,7 @@
     enable = true;
     settings = {
       background = {
-        path = lib.mkForce "${../../../assets/wallpaper/calm_cloud.png}";
+        path = lib.mkForce "${../../../assets/wallpaper/naduria_shrine.png}";
         blur_passes = 1;
         contrast = 0.8916;
         brightness = 0.8172;

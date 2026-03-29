@@ -60,4 +60,13 @@
       name = "MoreWaita";
     };
   };
+
+  programs.thunderbird = {
+    enable = true;
+    profiles = {
+      default = {
+        isDefault = true;
+      };
+    };
+  };
 }
