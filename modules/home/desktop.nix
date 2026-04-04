@@ -20,7 +20,7 @@
     xclip # clipboard manager for X11
 
     # Desktop environment
-    swww # wallpaper manager
+    awww # wallpaper manager
     fuzzel # launcher
     rofi # application launcher
     dunst # notification manager
@@ -59,6 +59,7 @@
       package = pkgs.morewaita-icon-theme;
       name = "MoreWaita";
     };
+    gtk4.theme = null;
   };
 
   programs.thunderbird = {

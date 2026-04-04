@@ -6,9 +6,9 @@
 }:
 let
   startupScript = pkgs.writeShellScriptBin "start" ''
-    swww-daemon &
+    awww-daemon &
     sleep 1 &
-    swww img ${../../../assets/wallpaper/naduria_shrine.png} &
+    awww img ${../../../assets/wallpaper/naduria_shrine.png} &
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.pyprland}/bin/pypr &
     brightnessctl set 127

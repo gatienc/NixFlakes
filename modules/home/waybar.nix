@@ -311,7 +311,7 @@ in
         };
         "custom/launcher" = {
           "format" = " ";
-          "on-click" = "sh -c 'sleep 0.1 && hyprctl dispatch hyprexpo:expo toggle'";
+          #"on-click" = "sh -c 'sleep 0.1 && hyprctl dispatch hyprexpo:expo toggle'";
         };
         modules-center = [
           "hyprland/workspaces"

@@ -21,7 +21,7 @@ let
     lazygit # git terminal
     lazydocker # docker terminal
     lazyssh
-    lazytail
+    #lazytail
     lazysql
     nmap # network exploration tool and security/port scanner
     arp-scan # network discovery tool
@@ -100,7 +100,7 @@ let
     clipse # clipboard manager
     gsimplecal # calendar
     # Desktop environment
-    swww # wallpaper manager
+    awww # wallpaper manager
     fuzzel # launcher
     rofi # application launcher
     dunst # notification manager

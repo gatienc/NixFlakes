@@ -12,7 +12,7 @@ in
     enable = true;
     systemd.variables = [ "--all" ];
     systemd.enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
+    #plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
     settings = {
       input = {
         kb_layout = "fr";
@@ -126,14 +126,14 @@ in
         "$mainMod CTRL, Down, resizeactive, 0 50"
         "SUPER_SHIFT, l, exec, hyprlock"
         "$mainMod, space, exec, rofi -show drun"
-        "$mainMod SHIFT, return, exec, swww-daemon & swww img ${../../../assets/wallpaper/naduria_shrine.png} --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
+        "$mainMod SHIFT, return, exec, awww-daemon & awww img ${../../../assets/wallpaper/naduria_shrine.png} --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
         "$mainMod, R, exec, ${scripts.readingModeToggle}/bin/reading-mode-toggle"
         "$mainMod, D, exec, hyprctl keyword general:layout dwindle"
         "$mainMod SHIFT, D, exec, hyprctl keyword general:layout master"
         "ALT, TAB, exec, pypr fetch_client_menu"
         "$mainMod, return, exec, open -na kitty --args /Users/gatien/Documents/transcribe-cli/.venv/bin/python3.13 -m transcribe_cli.cli record --to-clipboard"
         "$mainMod, TAB, exec, ${scripts.exchangeMonitors}/bin/exchange-monitors"
-        "$mainMod, O, hyprexpo:expo, toggle"
+        #"$mainMod, O, hyprexpo:expo, toggle"
       ];
 
       bindm = [
@@ -171,13 +171,13 @@ in
       };
 
       plugin = {
-        hyprexpo = {
-          columns = 3;
-          gap_size = 5;
-          bg_col = "rgb(111111)";
-          workspace_method = "center current";
-          gesture_distance = 300;
-        };
+        # hyprexpo = {
+        #   columns = 3;
+        #   gap_size = 5;
+        #   bg_col = "rgb(111111)";
+        #   workspace_method = "center current";
+        #   gesture_distance = 300;
+        # };
       };
 
       exec-once = [
