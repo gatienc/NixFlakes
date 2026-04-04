@@ -20,6 +20,9 @@ let
     fzf # A command-line fuzzy finder
     lazygit # git terminal
     lazydocker # docker terminal
+    lazyssh
+    lazytail
+    lazysql
     nmap # network exploration tool and security/port scanner
     arp-scan # network discovery tool
 
@@ -27,6 +30,8 @@ let
     wget # download files from the web
     yazi # terminal file manager
     glow # markdown previewer in terminal
+
+    helix # tui ide
 
     # archives
     zip
