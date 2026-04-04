@@ -29,8 +29,7 @@
     # GUI software
     obsidian
     bitwarden-desktop
-    vscode
-    code-cursor
+    vscodium-fhs
     nautilus # GUI file manager
     font-manager # GUI font manager
     remmina # remote desktop client

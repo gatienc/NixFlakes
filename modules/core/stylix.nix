@@ -22,7 +22,7 @@
     };
     # https://tinted-theming.github.io/base16-gallery/
     # Dracula, Nord, cattpuccin-mocha
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    base16Scheme = ./themes/flexoki-dark.yaml;
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.atkynson-mono;

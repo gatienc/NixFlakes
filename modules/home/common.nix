@@ -59,6 +59,7 @@ let
     age # age encryption tool
     ssh-to-age # ssh to age encryption tool
     sops # secrets management tool
+    nil # nix language server
 
     # System information
     ncdu # disk space navigator
