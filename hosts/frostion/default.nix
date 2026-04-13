@@ -24,6 +24,7 @@
     ../../modules/core/rocm.nix
     ../../modules/core/minecraft.nix
     ../../modules/core/lact.nix
+    ../../modules/core/ebook-reader.nix
 
     # ../../modules/core/virt-manager.nix
     # ../../modules/core/zen.nix

@@ -23,8 +23,20 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "usb_f_gadget"
+    "libcomposite"
+  ];
   boot.extraModulePackages = [ ];
+
+  boot.kernelParams = [ "amdgpu.sg_display=0" ];
+
+  services.thermald.enable = lib.mkDefault true;
+
+  services.power-profiles-daemon.enable = lib.mkDefault true;
+
+  services.xserver.dpi = 282;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/38b42d55-6504-49ba-803d-bd70eb18a34b";

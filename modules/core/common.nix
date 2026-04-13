@@ -8,6 +8,9 @@
   ...
 }:
 {
+  #services.freshrss.enable = true;
+  #services.freshrss.authType = "none";
+  #services.freshrss.baseUrl = "https://fresh.org";
 
   imports = [
     # inputs.sops-nix.nixosModules.sops
@@ -42,6 +45,8 @@
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     micro
+    gvfs
+    libmtp
   ];
   environment.variables.EDITOR = "micro";
 
