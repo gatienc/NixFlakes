@@ -36,7 +36,7 @@
     remmina # remote desktop client
     nextcloud-client # cloud sync client
     # moonlight-qt
-	
+
     zotero # reference manager
     filezilla # ftp client
     vlc # video player
@@ -46,7 +46,7 @@
     vesktop
 
     teams-for-linux # teams client
-
+    slack
 
     # Office software
     #libreoffice-qt # office suite

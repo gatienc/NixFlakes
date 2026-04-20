@@ -29,6 +29,14 @@
   ];
   boot.extraModulePackages = [ ];
 
+  services.thermald.enable = lib.mkDefault true;
+
+  services = {
+    auto-cpufreq.enable = true;
+    tlp.enable = true;
+    power-profiles-daemon.enable = false;
+  };
+
   # Enable ROCm compatibility for older GPUs (Polaris, Vega, etc.)
   boot.kernelParams = [
     "amdgpu.exp_hw_support=1"

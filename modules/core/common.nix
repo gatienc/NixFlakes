@@ -29,10 +29,14 @@
   };
 
   #QOL: enabling numlock on boot
-  boot.initrd.preLVMCommands = ''
-    # shell
-    ${pkgs.kbd}/bin/setleds +num
-  '';
+  boot.initrd.systemd.services.numlock = {
+    description = "Enable numlock";
+    before = [ "initrd-switch-root.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.kbd}/bin/setleds +num";
+    };
+  };
 
   networking.networkmanager.enable = true;
 

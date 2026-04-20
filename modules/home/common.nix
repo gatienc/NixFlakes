@@ -120,6 +120,9 @@ let
     pavucontrol # control audio devices
     pulsemixer # control audio devices
     pamixer # control audio volume
+
+    # AI coding agents
+    pi-coding-agent
   ];
 
 in
@@ -420,6 +423,11 @@ lib.mkMerge [
           if [ -f ~/.zsh_aliases ]; then
             source ~/.zsh_aliases
           fi
+
+          # Source local zshrc for user-managed config (not managed by Nix)
+          if [ -f ~/.local_zshrc ]; then
+            source ~/.local_zshrc
+          fi
         '';
 
         oh-my-zsh = {
@@ -469,6 +477,7 @@ lib.mkMerge [
       nixswitch = "sudo nixos-rebuild switch";
       logout = "hyprctl dispatch exit";
       clip = "wl-copy";
+      jail-project = "mkdir -p .git && cp /home/gatien/NixFlakes/templates/jail-agent/flake.nix . && nix flake init -t /home/gatien/NixFlakes/templates/jail-agent --override-input nixpkgs github:NixOS/nixpkgs/nixos-unstable";
     };
   })
 

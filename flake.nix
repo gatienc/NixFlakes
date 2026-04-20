@@ -54,7 +54,11 @@
           ];
           specialArgs = {
             host = "glacius";
-            inherit self inputs username;
+            inherit
+              self
+              inputs
+              username
+              ;
           };
         };
         icicle = nixpkgs.lib.nixosSystem {
@@ -66,7 +70,11 @@
           ];
           specialArgs = {
             host = "icicle";
-            inherit self inputs username;
+            inherit
+              self
+              inputs
+              username
+              ;
           };
         };
         droplet = nixpkgs.lib.nixosSystem {
@@ -74,7 +82,11 @@
           modules = [ ./hosts/droplet ];
           specialArgs = {
             host = "droplet";
-            inherit self inputs username;
+            inherit
+              self
+              inputs
+              username
+              ;
           };
         };
         frostion = nixpkgs.lib.nixosSystem {
@@ -85,7 +97,11 @@
           ];
           specialArgs = {
             host = "frostion";
-            inherit self inputs username;
+            inherit
+              self
+              inputs
+              username
+              ;
           };
         };
       };

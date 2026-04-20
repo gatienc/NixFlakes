@@ -1,0 +1,118 @@
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+
+{
+  imports = [
+    ./bluetooth.nix
+  ];
+
+  services.home-assistant = {
+    enable = true;
+    configDir = "/var/lib/home-assistant";
+
+    extraComponents = [
+      "matter"
+      "bluetooth"
+      "bluetooth_le_tracker"
+      "network"
+    ];
+
+    customComponents = with pkgs.home-assistant-custom-components; [
+      adaptive_lighting
+      prometheus_sensor
+    ];
+
+    extraPackages =
+      py: with py; [
+        numpy
+        pyturbojpeg
+      ];
+
+    config = {
+      homeassistant = {
+        name = "Home";
+        latitude = 50.85045;
+        longitude = 4.34878;
+        elevation = 50;
+        unit_system = "metric";
+        temperature_unit = "C";
+        time_zone = "Europe/Brussels";
+        currency = "EUR";
+
+        customize_glob = {
+          "light.*" = {
+            icon = "mdi:lamps";
+          };
+        };
+      };
+
+      http = {
+        server_port = 8123;
+        use_x_forwarded_for = true;
+        trusted_proxies = [
+          "127.0.0.1"
+          "::1"
+        ];
+      };
+
+      lovelace = {
+        mode = "storage";
+      };
+
+      logger = {
+        default = "info";
+        logs = {
+          "homeassistant.core" = "warning";
+          "homeassistant.components" = "info";
+        };
+      };
+
+      hue = {
+        autodetect = false;
+      };
+    };
+
+    openFirewall = true;
+  };
+
+  systemd.services.matter-server = {
+    description = "Matter Server for Home Assistant";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+
+    serviceConfig = {
+      Type = "simple";
+      User = "home-assistant";
+      Group = "home-assistant";
+      ExecStart = "${pkgs.python-matter-server}/bin/matter-server";
+      Restart = "on-failure";
+      RestartSec = "5s";
+    };
+
+    environment = {
+      MATTER_SERVER_HEX_CODE = "";
+    };
+  };
+
+  users.users.home-assistant = {
+    isSystemUser = true;
+    group = "home-assistant";
+    extraGroups = [ "bluetooth" ];
+  };
+
+  users.groups.home-assistant = { };
+
+  environment.systemPackages = with pkgs; [
+    libjpeg
+  ];
+
+  networking.firewall.allowedTCPPorts = [
+    8123 # Home Assistant
+    5580 # Matter Server
+  ];
+}

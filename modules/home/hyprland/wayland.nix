@@ -181,6 +181,7 @@ in
       };
 
       exec-once = [
+        "eval $(gnome-keyring-daemon --start)"
         "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE"
         "hyprshade install"
         "systemctl --user enable --now hyprshade.timer"

@@ -6,6 +6,9 @@
 }:
 let
   startupScript = pkgs.writeShellScriptBin "start" ''
+    eval $(gnome-keyring-daemon --start --components=secrets,ssh)
+    export GNOME_KEYRING_SOCKET GNOME_KEYRING_PID SSH_AUTH_SOCK
+
     awww-daemon &
     sleep 1 &
     awww img ${../../../assets/wallpaper/naduria_shrine.png} &
