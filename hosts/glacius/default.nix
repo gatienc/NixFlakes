@@ -43,6 +43,7 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
+    extraSpecialArgs = { inherit inputs username; };
     users.${username} = {
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
@@ -55,6 +56,7 @@
         ../../modules/home/fastfetch.nix
         ../../modules/home/rofi.nix
         ../../modules/home/llm.nix
+        ../../modules/home/jailed-agents.nix
         # ../../modules/home/hyprland.nix
         # ../../modules/home/waybar.nix
         ../../modules/home/syncthing.nix

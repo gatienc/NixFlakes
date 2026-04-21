@@ -55,6 +55,7 @@
         ../../modules/home/latex.nix
         ../../modules/home/rofi.nix
         ../../modules/home/llm.nix # to test as not a AI ready GPU
+        ../../modules/home/jailed-agents.nix
 
       ];
     };
