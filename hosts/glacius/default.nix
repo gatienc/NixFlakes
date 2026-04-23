@@ -30,6 +30,12 @@
   ];
 
   virtualisation.docker.enable = true;
+
+  services.ollama = {
+    enable = true;
+    openFirewall = true;
+  };
+
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [

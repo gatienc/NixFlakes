@@ -24,6 +24,14 @@
           animation = "fromRight"
           lazy = true
           size = "15% 25%"
+
+          [scratchpads.browser]
+          animation = "fromRight"
+          command = "firefox --new-instance --class firefox-drop http://localhost:8085"
+          class = "firefox-drop"
+          size = "75% 60%"
+          max_size = "1920px 100%"
+          margin = 50
         '';
         executable = false;
       };

@@ -140,6 +140,7 @@ lib.mkMerge [
       git = {
         enable = true;
         lfs.enable = true;
+        signing.format = null;
         settings.user.name = "Gatien Chenu";
         settings.user.email = "gatien+dev@chenu.me";
       };
@@ -189,6 +190,15 @@ lib.mkMerge [
           whatismyip = "curl https://ipinfo.io/ip";
           c = "clear";
           g = "lazygit";
+
+          # AI coding agents - jailed by default for security
+          opencode = "jailed-opencode";
+          oc = "jailed-opencode";
+          pi = "jailed-pi";
+
+          # Non-jailed versions for full system access
+          free-opencode = "opencode";
+          free-pi = "pi";
         };
         plugins = [
           {

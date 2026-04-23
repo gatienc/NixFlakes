@@ -123,6 +123,7 @@ in
           (readwrite (noescape "~/.cache/pi"))
           (readwrite (noescape "~/.local/share/pi"))
 
+          (fwd-env "OPENCODE_API_KEY")
           (add-pkg-deps commonAgentPkgs)
           (add-pkg-deps extraPkgs)
         ]
@@ -153,6 +154,7 @@ in
         (readwrite (noescape "~/.config/pi"))
         (readwrite (noescape "~/.cache/pi"))
         (readwrite (noescape "~/.local/share/pi"))
+        (fwd-env "OPENCODE_API_KEY")
         (add-pkg-deps commonAgentPkgs)
       ]
     ))

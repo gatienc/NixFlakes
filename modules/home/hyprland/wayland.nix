@@ -84,6 +84,7 @@ in
         "$mainMod, P, pin"
         "$mainMod CTRL, V,exec, pypr toggle volume"
         "$mainMod,A,exec,pypr toggle term"
+        "$mainMod,Z,exec,pypr toggle qute"
         "$mainMod,Y,exec,pypr attach"
         "$mainMod SHIFT, M, exit,"
         '', Print, exec, grim -g "$(slurp -d)" - | wl-copy''

@@ -14,9 +14,11 @@
   # - jailed-pi (restricted to cwd, network, and config dirs)
   home.packages = with pkgs; [
     opencode
-    ollama
     llmfit
-    lmstudio
+  ] ++ lib.optionals pkgs.stdenv.isDarwin [
+    # ollama is managed as a NixOS service on Linux
+    # but needs to be installed as a package on macOS
+    ollama
   ];
 
 }

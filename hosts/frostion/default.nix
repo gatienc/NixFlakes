@@ -40,6 +40,10 @@
     users.${username} = {
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
+
+      stylix.targets.firefox.enable = false;
+      stylix.targets.qt.platform = "qtct";
+
       imports = [
         ../../modules/home/common.nix
         ../../modules/home/desktop.nix
@@ -61,13 +65,30 @@
     };
   };
 
+  services.open-webui = {
+    enable = true;
+    port = 8085;
+  };
+
+  services.ollama = {
+    enable = true;
+    # Optional: set environment variables or extra args
+    # environmentVariables = {
+    #   OLLAMA_HOST = "0.0.0.0:11434";
+    # };
+  };
+
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [
       6112 # warcraft 3
       25565 # Minecraft server
+      8085 # open-webui
     ];
   };
+
+  # Local DNS entry for open-webui.me
+  networking.hosts."127.0.0.1" = [ "open-webui.me" ];
 
   services.pulseaudio.enable = false; # Disable PulseAudio
   security.rtkit.enable = true; # For better real-time audio performance

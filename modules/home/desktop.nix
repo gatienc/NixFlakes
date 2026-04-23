@@ -47,10 +47,14 @@
 
     teams-for-linux # teams client
     slack
+    qutebrowser # lightweight keyboard-driven browser
 
     # Office software
     #libreoffice-qt # office suite
     hunspell # spell checker
+
+    # Audio effects
+    easyeffects
 
   ];
 
