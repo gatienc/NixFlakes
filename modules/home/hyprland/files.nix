@@ -4,10 +4,10 @@
 {
   config = {
     home.file = {
-      ".config/hypr/pyprland.toml" = {
+      ".config/pypr/config.toml" = {
         text = ''
           [pyprland]
-          plugins = ["scratchpads", "fetch_client_menu","monitors"]
+          plugins = ["scratchpads", "fetch_client_menu"]
 
           [workspaces_follow_focus]
 
@@ -25,12 +25,12 @@
           lazy = true
           size = "15% 25%"
 
-          [scratchpads.browser]
-          animation = "fromRight"
-          command = "firefox --new-instance --class firefox-drop http://localhost:8085"
-          class = "firefox-drop"
+          [scratchpads.open-webui]
+          animation = "fromTop"
+          command = "chromium --app=http://localhost:8085"
+          class = "chrome-localhost__-Default"
           size = "75% 60%"
-          max_size = "1920px 100%"
+          max_size = "1920px 60%"
           margin = 50
         '';
         executable = false;

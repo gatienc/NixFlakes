@@ -123,6 +123,10 @@ let
 
     # AI coding agents
     pi-coding-agent
+
+    # Secret management
+    seahorse        # GNOME Keyring manager GUI
+    libsecret       # For secret-tool CLI
   ];
 
 in
@@ -148,19 +152,6 @@ lib.mkMerge [
       zellij = {
         enable = true;
         settings.theme = "dracula";
-        layouts = {
-          gemini = ''
-            # syntax: hcl
-            layout {
-                pane split_direction="vertical" {
-                    pane
-                    pane {
-                        command "gemini"
-                    }
-                }
-            }
-          '';
-        };
       };
       fzf.enable = true; # enables zsh integration by default
       starship.enable = true;
@@ -179,9 +170,7 @@ lib.mkMerge [
         shellAliases = {
           cd = "z";
           nano = "micro";
-          cat = "bat";
           icat = "kitty +kitten icat";
-          grep = "rg";
           diff = "batdiff";
           man = "batman";
           ls = "eza --icons --group-directories-first";
@@ -468,8 +457,23 @@ lib.mkMerge [
         "image/bmp" = [ "org.gnome.Loupe.desktop" ];
         "image/tiff" = [ "org.gnome.Loupe.desktop" ];
         "image/svg+xml" = [ "org.gnome.Loupe.desktop" ];
+        "text/html" = [ "firefox.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "x-scheme-handler/chrome" = [ "firefox.desktop" ];
+        "application/x-extension-htm" = [ "firefox.desktop" ];
+        "application/x-extension-html" = [ "firefox.desktop" ];
+        "application/x-extension-shtml" = [ "firefox.desktop" ];
+        "application/xhtml+xml" = [ "firefox.desktop" ];
+        "application/x-extension-xhtml" = [ "firefox.desktop" ];
+        "application/x-extension-xht" = [ "firefox.desktop" ];
       };
     };
+
+    # User-facing aliases (not available to jailed agents)
+    home.file.".zsh_aliases".text = ''
+      alias cat="bat"
+    '';
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     home.stateVersion = "24.05";

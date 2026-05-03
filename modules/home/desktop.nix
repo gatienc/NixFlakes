@@ -42,12 +42,10 @@
     vlc # video player
     smile # emoji picker
     ### Discord
-    discord
     vesktop
 
-    teams-for-linux # teams client
     slack
-    qutebrowser # lightweight keyboard-driven browser
+    chromium # for web app mode
 
     # Office software
     #libreoffice-qt # office suite

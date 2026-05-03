@@ -84,7 +84,7 @@ in
         "$mainMod, P, pin"
         "$mainMod CTRL, V,exec, pypr toggle volume"
         "$mainMod,A,exec,pypr toggle term"
-        "$mainMod,Z,exec,pypr toggle qute"
+        "$mainMod,Z,exec,pypr toggle open-webui"
         "$mainMod,Y,exec,pypr attach"
         "$mainMod SHIFT, M, exit,"
         '', Print, exec, grim -g "$(slurp -d)" - | wl-copy''
@@ -161,9 +161,18 @@ in
         "match:class pavucontrol, float on"
         "match:class blueman-manager, float on"
         "match:class yad, float on"
-        "match:class bitwarden, float on"
+        "match:class chromium, float on"
+        "match:class chromium-drop, float on"
+        #"match:class bitwarden, float on"
         "match:initial_title .*[Bb]itwarden.*, float on"
         "float on, pin on, size 400 225, move 1500 835, match:class firefox, match:initial_title .*Picture-in-Picture.*"
+        "float on, size 900 300,match:initial_title .*'Open WebUI'.*"
+        "match:class chromium-drop, float on"
+        "match:initial_title .*Open WebUI.*, float on"
+        "match:class chrome-localhost__-Default, float on"
+        "match:initial_title .*localhost_/.*,float on"
+        "match:class org.gnome.Nautilus, float on"
+        "match:class dolphin, float on"
       ];
 
       misc = {
@@ -182,8 +191,7 @@ in
       };
 
       exec-once = [
-        "eval $(gnome-keyring-daemon --start)"
-        "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE"
+        "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd HYPRLAND_INSTANCE_SIGNATURE WAYLAND_DISPLAY DISPLAY SSH_AUTH_SOCK"
         "hyprshade install"
         "systemctl --user enable --now hyprshade.timer"
         "${scripts.sessionStart}/bin/hyprland-session-start"

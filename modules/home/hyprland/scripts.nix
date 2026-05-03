@@ -6,8 +6,14 @@
 }:
 let
   startupScript = pkgs.writeShellScriptBin "start" ''
-    eval $(gnome-keyring-daemon --start --components=secrets,ssh)
-    export GNOME_KEYRING_SOCKET GNOME_KEYRING_PID SSH_AUTH_SOCK
+    # Start gnome-keyring daemon only if not already running (PAM may have started it)
+    if [ -z "$SSH_AUTH_SOCK" ]; then
+      eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+      export SSH_AUTH_SOCK
+    fi
+
+    # Start polkit authentication agent for keyring dialogs
+    ${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1 &
 
     awww-daemon &
     sleep 1 &

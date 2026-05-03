@@ -29,6 +29,10 @@
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -52,6 +56,7 @@
           modules = [
             ./hosts/glacius
             stylix.nixosModules.stylix
+            inputs.nix-index-database.nixosModules.nix-index
           ];
           specialArgs = {
             host = "glacius";
@@ -68,6 +73,7 @@
             ./hosts/icicle
             impermanence.nixosModules.impermanence
             stylix.nixosModules.stylix
+            inputs.nix-index-database.nixosModules.nix-index
           ];
           specialArgs = {
             host = "icicle";
@@ -80,7 +86,10 @@
         };
         droplet = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/droplet ];
+          modules = [
+            ./hosts/droplet
+            inputs.nix-index-database.nixosModules.nix-index
+          ];
           specialArgs = {
             host = "droplet";
             inherit
@@ -95,6 +104,7 @@
           modules = [
             ./hosts/frostion
             stylix.nixosModules.stylix
+            inputs.nix-index-database.nixosModules.nix-index
           ];
           specialArgs = {
             host = "frostion";
@@ -113,6 +123,7 @@
           modules = [
             inputs.home-manager.darwinModules.home-manager
             stylix.darwinModules.stylix
+            inputs.nix-index-database.darwinModules.nix-index
             ./hosts/mac
             {
               home-manager.useGlobalPkgs = true;

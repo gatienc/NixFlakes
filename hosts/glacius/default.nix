@@ -23,6 +23,7 @@
     ../../modules/core/rocm.nix
     ../../modules/core/lact.nix
     ../../modules/core/minecraft.nix
+    # ../../modules/core/affinity.nix
     # ../../modules/core/hyprland.nix
     # ../../modules/core/gnome.nix
 
@@ -63,6 +64,7 @@
         ../../modules/home/rofi.nix
         ../../modules/home/llm.nix
         ../../modules/home/jailed-agents.nix
+        ../../modules/home/tts.nix
         # ../../modules/home/hyprland.nix
         # ../../modules/home/waybar.nix
         ../../modules/home/syncthing.nix

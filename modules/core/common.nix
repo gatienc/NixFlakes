@@ -22,6 +22,8 @@
   environment.localBinInPath = true; # add local bin to path
   services.gvfs.enable = true; # for Nautilus
   programs.nix-ld.enable = true; # to run non-nix executables
+  programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;
   nixpkgs.config.allowUnfree = true;
   nix.settings = {
     experimental-features = "nix-command flakes"; # Enable Flakes
@@ -42,6 +44,8 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 2; # Show boot menu for 2 seconds then auto-boot
+  boot.loader.systemd-boot.editor = false; # Disable kernel param editing for security
 
   # User settings
   users.mutableUsers = false;
@@ -51,7 +55,17 @@
     micro
     gvfs
     libmtp
+    nix-output-monitor # Pretty output for nix builds
   ];
+
+  # Nix Helper for better rebuild UX
+  programs.nh = {
+    enable = true;
+    flake = "/home/${username}/NixFlakes";
+    # Optional: clean old generations automatically
+    # clean.enable = true;
+    # clean.extraArgs = "--keep-since 7d --keep 5";
+  };
   environment.variables.EDITOR = "micro";
 
   # Locale
