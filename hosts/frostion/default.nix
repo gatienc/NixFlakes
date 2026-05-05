@@ -37,6 +37,7 @@
     ../../modules/core/gaming.nix
     ../../modules/core/rocm.nix
     ../../modules/core/appimage.nix
+    ../../modules/core/python.nix
     # ../../modules/core/minecraft.nix
     ../../modules/core/lact.nix
     ../../modules/core/ebook-reader.nix
