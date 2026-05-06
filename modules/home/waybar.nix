@@ -436,7 +436,7 @@ in
             car = "";
             default = [ "" ];
           };
-          on-click-right = "blueman-manager";
+          on-click-right = "kitty bluetuith";
           on-click = "pavucontrol";
         };
 
