@@ -20,6 +20,7 @@
     users.${username} = {
       imports = [
         ../../modules/home/common.nix
+        ../../modules/home/zellij.nix
         ../../modules/home/darwin/aerospace.nix
         ../../modules/home/darwin/kitty.nix
         ../../modules/home/darwin/wallpaper.nix

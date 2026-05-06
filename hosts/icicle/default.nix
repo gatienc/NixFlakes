@@ -44,6 +44,7 @@
       home.homeDirectory = "/home/${username}";
       imports = [
         ../../modules/home/common.nix
+        ../../modules/home/zellij.nix
         ../../modules/home/desktop.nix
         ../../modules/home/dunst.nix
         ../../modules/home/bottles.nix
@@ -53,6 +54,7 @@
         ../../modules/home/waybar.nix
         ../../modules/home/wallpaper.nix
         ../../modules/home/syncthing.nix
+        ../../modules/home/llm.nix
         ../../modules/home/jailed-agents.nix
 
       ];

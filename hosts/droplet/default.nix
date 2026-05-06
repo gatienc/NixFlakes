@@ -28,6 +28,7 @@
       home.homeDirectory = "/home/${username}";
       imports = [
         ../../modules/home/common.nix
+        ../../modules/home/zellij.nix
       ];
     };
   };
