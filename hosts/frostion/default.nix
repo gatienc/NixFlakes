@@ -37,6 +37,7 @@
     ../../modules/core/gaming.nix
     ../../modules/core/rocm.nix
     ../../modules/core/appimage.nix
+    ../../modules/core/python.nix
     # ../../modules/core/minecraft.nix
     ../../modules/core/lact.nix
     ../../modules/core/ebook-reader.nix
@@ -62,6 +63,7 @@
 
       imports = [
         ../../modules/home/common.nix
+        ../../modules/home/zellij.nix
         ../../modules/home/desktop.nix
         ../../modules/home/dunst.nix
         #../../modules/home/music.nix
@@ -74,7 +76,7 @@
         ../../modules/home/3d_modeling.nix
         #../../modules/home/latex.nix
         ../../modules/home/rofi.nix
-        #../../modules/home/llm.nix # to test as not a AI ready GPU
+        ../../modules/home/llm.nix
         ../../modules/home/jailed-agents.nix
         ../../modules/home/neovim.nix
         ../../modules/home/typst.nix

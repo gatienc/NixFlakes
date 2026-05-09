@@ -25,9 +25,9 @@ in
 
       general = {
         monitor = [
-          "desc:Sharp Corporation 0x1479, 1920x1280@60, auto, 1.25"
-          "desc:Iiyama North America PL2470H 0x00000117, 1920x1080@60, 0x0, 1"
-          "desc:AU Optronics 0xB69B, 1920x1080@165, 1920x0, 1"
+          "desc:Sharp Corporation 0x1479, 1920x1280@60, 0x0, 1.25"
+          "desc:Iiyama North America PL2470H 0x00000117, 1920x1080@144, 1920x0, 1"
+          "desc:AU Optronics 0xB69B, 1920x1080@165, 3840x0, 1"
         ];
         gaps_in = 5;
         gaps_out = [

@@ -44,6 +44,7 @@ let
 
   # Directories that need to exist for jailed agents
   agentConfigDirs = [
+    "${config.home.homeDirectory}/.agents"
     "${config.home.homeDirectory}/.config/opencode"
     "${config.home.homeDirectory}/.local/share/opencode"
     "${config.home.homeDirectory}/.local/state/opencode"
@@ -98,6 +99,7 @@ in
         commonJailOptions
         ++ [
           # Config directories for opencode
+          (readwrite (noescape "~/.agents"))
           (readwrite (noescape "~/.config/opencode"))
           (readwrite (noescape "~/.local/share/opencode"))
           (readwrite (noescape "~/.local/state/opencode"))
@@ -119,6 +121,7 @@ in
         commonJailOptions
         ++ [
           # Config directories for pi
+          (readwrite (noescape "~/.agents"))
           (readwrite (noescape "~/.config/pi"))
           (readwrite (noescape "~/.cache/pi"))
           (readwrite (noescape "~/.local/share/pi"))
@@ -138,6 +141,7 @@ in
       with jail.combinators;
       commonJailOptions
       ++ [
+        (readwrite (noescape "~/.agents"))
         (readwrite (noescape "~/.config/opencode"))
         (readwrite (noescape "~/.local/share/opencode"))
         (readwrite (noescape "~/.local/state/opencode"))
@@ -151,6 +155,7 @@ in
       with jail.combinators;
       commonJailOptions
       ++ [
+        (readwrite (noescape "~/.agents"))
         (readwrite (noescape "~/.config/pi"))
         (readwrite (noescape "~/.cache/pi"))
         (readwrite (noescape "~/.local/share/pi"))

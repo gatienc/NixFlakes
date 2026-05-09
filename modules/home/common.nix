@@ -125,8 +125,8 @@ let
     pi-coding-agent
 
     # Secret management
-    seahorse        # GNOME Keyring manager GUI
-    libsecret       # For secret-tool CLI
+    seahorse # GNOME Keyring manager GUI
+    libsecret # For secret-tool CLI
   ];
 
 in
@@ -149,10 +149,6 @@ lib.mkMerge [
         settings.user.email = "gatien+dev@chenu.me";
       };
       firefox.enable = true;
-      zellij = {
-        enable = true;
-        settings.theme = "dracula";
-      };
       fzf.enable = true; # enables zsh integration by default
       starship.enable = true;
       kitty = {
@@ -186,8 +182,8 @@ lib.mkMerge [
           pi = "jailed-pi";
 
           # Non-jailed versions for full system access
-          free-opencode = "opencode";
-          free-pi = "pi";
+          free-opencode = "${pkgs.opencode}/bin/opencode";
+          free-pi = "${pkgs.pi-coding-agent}/bin/pi";
         };
         plugins = [
           {
@@ -305,7 +301,7 @@ lib.mkMerge [
             # If already in a virtualenv, do nothing
             if [[ -n "$VIRTUAL_ENV" && "$PWD" != *"''${VIRTUAL_ENV:h}"* ]]; then
               deactivate
-              return  
+              return
             fi
 
             [[ -n "$VIRTUAL_ENV" ]] && return

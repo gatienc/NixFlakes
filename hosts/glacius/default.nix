@@ -23,6 +23,7 @@
     ../../modules/core/rocm.nix
     ../../modules/core/lact.nix
     ../../modules/core/minecraft.nix
+    ../../modules/core/python.nix
     # ../../modules/core/affinity.nix
     # ../../modules/core/hyprland.nix
     # ../../modules/core/gnome.nix
@@ -56,6 +57,7 @@
       home.homeDirectory = "/home/${username}";
       imports = [
         ../../modules/home/common.nix
+        ../../modules/home/zellij.nix
         ../../modules/home/desktop.nix
         ../../modules/home/dunst.nix
         ../../modules/home/music.nix
