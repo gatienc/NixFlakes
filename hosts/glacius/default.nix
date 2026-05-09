@@ -9,6 +9,14 @@
 }:
 
 {
+  nixpkgs.overlays = [
+    (final: prev: {
+      openldap = prev.openldap.overrideAttrs (old: {
+        doCheck = false;
+      });
+    })
+  ];
+
   # Core configuration
   imports = [
     inputs.home-manager.nixosModules.home-manager
