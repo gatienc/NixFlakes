@@ -48,7 +48,7 @@
     chromium # for web app mode
 
     # Office software
-    #libreoffice-qt # office suite
+    onlyoffice-desktopeditors # office suite (lightweight alt)
     hunspell # spell checker
 
     # Audio effects
