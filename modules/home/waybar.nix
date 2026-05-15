@@ -158,8 +158,8 @@ in
         font-size: 16px;
       }
       #custom-mail, #custom-dbx, #custom-layout, #custom-reading-mode, #custom-blue-light,
-      #custom-wallpaper, #custom-portrait, #custom-poweroff, #custom-mpd,
-      #network, #idle_inhibitor, #backlight, #pulseaudio, #battery, #disk, #cpu {
+      #custom-wallpaper, #custom-portrait,       #custom-poweroff, #custom-mpd,
+      #network, #backlight, #pulseaudio, #battery, #disk, #cpu {
         font-size: 11px;
       }
 
@@ -203,7 +203,7 @@ in
       }
 
       #tray, #custom-launcher, #network, #clock, #battery, #network, #custom-mail, #custom-dbx,
-      #pulseaudio, #custom-mpd, #workspaces, #idle_inhibitor, #backlight, #disk, #mpris, #custom-poweroff, #custom-gpu, #cpu, #custom-wallpaper, #custom-layout, #custom-reading-mode, #custom-blue-light, #custom-portrait, #custom-keyboard {
+      #pulseaudio, #custom-mpd, #workspaces, #backlight, #disk, #mpris, #custom-poweroff, #custom-gpu, #cpu, #custom-wallpaper, #custom-layout, #custom-reading-mode, #custom-blue-light, #custom-portrait, #custom-keyboard {
         padding: 6px 8px;
         background: #${config.lib.stylix.colors.base00};
       }
@@ -220,7 +220,7 @@ in
       #network,
       #pulseaudio, #custom-mail, #custom-dbx, #custom-mpd, #custom-layout,
       #custom-wallpaper, #custom-reading-mode, #custom-blue-light, #custom-portrait, #custom-keyboard,
-      #idle_inhibitor, #backlight {
+      #backlight {
         color: #${config.lib.stylix.colors.base05};
       }
 
@@ -236,11 +236,6 @@ in
       #tray {}
       #battery {
         color: #${config.lib.stylix.colors.base05};
-      }
-
-      #idle_inhibitor {
-        border-radius: 0px 0px 0px 15px;
-        margin-left: 10px;
       }
 
       #poweroff {
@@ -322,20 +317,20 @@ in
           all-outputs = true;
           sort-by-number = true;
           format-icons = {
+            "1" = "1";
+            "2" = "2";
+            "3" = "3 ";
+            "4" = "4 ";
+            "5" = "5";
+            "6" = "6";
+            "7" = "7";
+            "8" = "8";
+            "9" = "9";
+            "10" = "10";
+            "slack" = " ";
+            "mail" = " ";
             "focused" = "";
-            # "default" = "";
-            # "0" = "0";
-            # "1" = "一";
-            # "2" = "二";
-            # "3" = "三";
-            # "4" = "四";
-            # "5" = "五";
-            # "6" = "六";
-            # "7" = "七";
-            # "8" = "八";
-            # "9" = "九";
-            # "10" = "十";
-
+            "default" = " ";
           };
           window-rewrite = {
             "title<.*youtube.*>" = " ";
@@ -354,15 +349,7 @@ in
             "class<codeblocks>" = "󰅩 ";
           };
         };
-        idle_inhibitor = {
-          format = "{icon}";
-          "format-icons" = {
-            "activated" = "󰅶"; # mdi:lock-open-outline
-            "deactivated" = "󰌾"; # mdi:lock-outline
-          };
-        };
         modules-right = [
-          "idle_inhibitor"
           "cpu"
           # "custom/gpu"
           "disk"
