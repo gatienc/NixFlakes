@@ -32,6 +32,9 @@ let
     eza
     fd
     fzf
+    python3
+    uv
+    marimo
   ];
 
   # Common sandbox options shared by all agents
@@ -46,9 +49,13 @@ let
   agentConfigDirs = [
     "${config.home.homeDirectory}/.agents"
     "${config.home.homeDirectory}/.config/opencode"
+    "${config.home.homeDirectory}/.config/opencode-jailed"
     "${config.home.homeDirectory}/.local/share/opencode"
     "${config.home.homeDirectory}/.local/state/opencode"
     "${config.home.homeDirectory}/.cache/opencode"
+    "${config.home.homeDirectory}/.local/state/marimo"
+    "${config.home.homeDirectory}/.cache/uv"
+    "${config.home.homeDirectory}/.local/share/uv"
     "${config.home.homeDirectory}/.config/pi"
     "${config.home.homeDirectory}/.cache/pi"
     "${config.home.homeDirectory}/.local/share/pi"
@@ -98,12 +105,68 @@ in
         with jail.combinators;
         commonJailOptions
         ++ [
+          # Write managed config files to writable dir (runs on host before jail starts)
+          (add-runtime ''
+            CONFIG_DIR="${config.home.homeDirectory}/.config/opencode-jailed"
+            mkdir -p "$CONFIG_DIR"
+            cat > "$CONFIG_DIR/opencode.json" << 'EOF'
+{
+  "plugin": ["opencode-websearch"],
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["~/.config/opencode/jailed-instructions.md"],
+  "agent": {
+    "build": {
+      "permission": "allow"
+    }
+  }
+}
+EOF
+            cat > "$CONFIG_DIR/jailed-instructions.md" << 'EOF'
+# Jailed Agent
+
+You are running inside a **bubblewrap (bwrap) sandbox** with restricted filesystem access.
+
+## Filesystem Access
+
+| Path | Access |
+|------|--------|
+| `/tmp` | readwrite |
+| Current working directory | readwrite |
+| `~/.agents/` | readwrite — installed skills |
+| `~/.config/opencode/` | readwrite — your config |
+| `~/.local/share/opencode/` | readwrite |
+| `~/.local/state/opencode/` | readwrite |
+| `~/.cache/opencode/` | readwrite |
+| `~/.local/state/marimo/` | readwrite — marimo server registry |
+| `~/.cache/uv/` | readwrite — uv cache |
+| `~/.local/share/uv/` | readwrite — uv tool installs |
+
+Everything else is **inaccessible**: `~/.ssh`, `~/.gnupg`, `/etc`, other users' homes, system files.
+
+## Network
+
+Network access is **enabled**.
+
+## Constraint
+
+You cannot escape the sandbox. Python, bash, and all tools are restricted by the kernel to the paths above. If you need access outside these, ask the user.
+EOF
+          '')
+
           # Config directories for opencode
+          (readwrite (noescape "/tmp"))
           (readwrite (noescape "~/.agents"))
-          (readwrite (noescape "~/.config/opencode"))
+          (rw-bind (noescape "~/.config/opencode-jailed") (noescape "~/.config/opencode"))
           (readwrite (noescape "~/.local/share/opencode"))
           (readwrite (noescape "~/.local/state/opencode"))
           (readwrite (noescape "~/.cache/opencode"))
+
+          # Marimo server registry (discover/start marimo sessions)
+          (readwrite (noescape "~/.local/state/marimo"))
+
+          # UV cache/tool dirs (for uvx to download and run packages)
+          (readwrite (noescape "~/.cache/uv"))
+          (readwrite (noescape "~/.local/share/uv"))
 
           (add-pkg-deps commonAgentPkgs)
           (add-pkg-deps extraPkgs)
@@ -141,11 +204,68 @@ in
       with jail.combinators;
       commonJailOptions
       ++ [
+        # Write managed config files to writable dir (runs on host before jail starts)
+        (add-runtime ''
+          CONFIG_DIR="${config.home.homeDirectory}/.config/opencode-jailed"
+          mkdir -p "$CONFIG_DIR"
+          cat > "$CONFIG_DIR/opencode.json" << 'EOF'
+{
+  "plugin": ["opencode-websearch"],
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["~/.config/opencode/jailed-instructions.md"],
+  "agent": {
+    "build": {
+      "permission": "allow"
+    }
+  }
+}
+EOF
+          cat > "$CONFIG_DIR/jailed-instructions.md" << 'EOF'
+# Jailed Agent
+
+You are running inside a **bubblewrap (bwrap) sandbox** with restricted filesystem access.
+
+## Filesystem Access
+
+| Path | Access |
+|------|--------|
+| `/tmp` | readwrite |
+| Current working directory | readwrite |
+| `~/.agents/` | readwrite — installed skills |
+| `~/.config/opencode/` | readwrite — your config |
+| `~/.local/share/opencode/` | readwrite |
+| `~/.local/state/opencode/` | readwrite |
+| `~/.cache/opencode/` | readwrite |
+| `~/.local/state/marimo/` | readwrite — marimo server registry |
+| `~/.cache/uv/` | readwrite — uv cache |
+| `~/.local/share/uv/` | readwrite — uv tool installs |
+
+Everything else is **inaccessible**: `~/.ssh`, `~/.gnupg`, `/etc`, other users' homes, system files.
+
+## Network
+
+Network access is **enabled**.
+
+## Constraint
+
+You cannot escape the sandbox. Python, bash, and all tools are restricted by the kernel to the paths above. If you need access outside these, ask the user.
+EOF
+        '')
+
+        (readwrite (noescape "/tmp"))
         (readwrite (noescape "~/.agents"))
-        (readwrite (noescape "~/.config/opencode"))
+        (rw-bind (noescape "~/.config/opencode-jailed") (noescape "~/.config/opencode"))
         (readwrite (noescape "~/.local/share/opencode"))
         (readwrite (noescape "~/.local/state/opencode"))
         (readwrite (noescape "~/.cache/opencode"))
+
+        # Marimo server registry (discover/start marimo sessions)
+        (readwrite (noescape "~/.local/state/marimo"))
+
+        # UV cache/tool dirs (for uvx to download and run packages)
+        (readwrite (noescape "~/.cache/uv"))
+        (readwrite (noescape "~/.local/share/uv"))
+
         (add-pkg-deps commonAgentPkgs)
       ]
     ))
