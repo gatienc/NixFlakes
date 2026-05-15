@@ -67,6 +67,11 @@
     # clean.extraArgs = "--keep-since 7d --keep 5";
   };
   environment.variables.EDITOR = "micro";
+  environment.sessionVariables = {
+    SSL_CERT_FILE = "/etc/ssl/certs/ca-certificates.crt";
+    REQUESTS_CA_BUNDLE = "/etc/ssl/certs/ca-certificates.crt";
+    CURL_CA_BUNDLE = "/etc/ssl/certs/ca-certificates.crt";
+  };
 
   # Locale
   time.timeZone = "Europe/Paris";
