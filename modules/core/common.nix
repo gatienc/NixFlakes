@@ -50,6 +50,8 @@
   # User settings
   users.mutableUsers = false;
 
+  services.fail2ban.enable = true;
+
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     micro

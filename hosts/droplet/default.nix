@@ -20,6 +20,11 @@
     ./hardware-configuration.nix
   ];
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ];
+  };
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;

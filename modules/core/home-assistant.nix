@@ -36,12 +36,12 @@
     config = {
       homeassistant = {
         name = "Home";
-        latitude = 50.85045;
-        longitude = 4.34878;
+        latitude = 48.8566;
+        longitude = 2.3522;
         elevation = 50;
         unit_system = "metric";
         temperature_unit = "C";
-        time_zone = "Europe/Brussels";
+        time_zone = "Europe/Paris";
         currency = "EUR";
 
         customize_glob = {

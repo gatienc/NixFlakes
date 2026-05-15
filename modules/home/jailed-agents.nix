@@ -116,7 +116,7 @@ in
   "instructions": ["~/.config/opencode/jailed-instructions.md"],
   "agent": {
     "build": {
-      "permission": "allow"
+      "permission": ["allow"]
     }
   }
 }
@@ -215,7 +215,7 @@ EOF
   "instructions": ["~/.config/opencode/jailed-instructions.md"],
   "agent": {
     "build": {
-      "permission": "allow"
+      "permission": ["allow"]
     }
   }
 }
