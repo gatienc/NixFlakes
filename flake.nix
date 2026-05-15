@@ -50,6 +50,12 @@
       lib = nixpkgs.lib;
     in
     {
+      packages.${system}.mkchromecast = nixpkgs.legacyPackages.${system}.callPackage ./modules/home/mkchromecast.nix { };
+
+      overlays.default = final: prev: {
+        mkchromecast = final.callPackage ./modules/home/mkchromecast.nix { };
+      };
+
       nixosConfigurations = {
         glacius = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -57,6 +63,7 @@
             ./hosts/glacius
             stylix.nixosModules.stylix
             inputs.nix-index-database.nixosModules.nix-index
+            { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
           specialArgs = {
             host = "glacius";
@@ -74,6 +81,7 @@
             impermanence.nixosModules.impermanence
             stylix.nixosModules.stylix
             inputs.nix-index-database.nixosModules.nix-index
+            { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
           specialArgs = {
             host = "icicle";
@@ -89,6 +97,7 @@
           modules = [
             ./hosts/droplet
             inputs.nix-index-database.nixosModules.nix-index
+            { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
           specialArgs = {
             host = "droplet";
@@ -105,6 +114,7 @@
             ./hosts/frostion
             stylix.nixosModules.stylix
             inputs.nix-index-database.nixosModules.nix-index
+            { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
           ];
           specialArgs = {
             host = "frostion";
@@ -125,6 +135,7 @@
             stylix.darwinModules.stylix
             inputs.nix-index-database.darwinModules.nix-index
             ./hosts/mac
+            { nixpkgs.overlays = [ self.outputs.overlays.default ]; }
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

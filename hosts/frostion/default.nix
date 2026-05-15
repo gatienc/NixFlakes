@@ -42,7 +42,9 @@
     ../../modules/core/lact.nix
     ../../modules/core/ebook-reader.nix
     #../../modules/core/home-assistant.nix
+    ../../modules/core/printing.nix
     ../../modules/core/laptop.nix
+    ../../modules/core/syncthing.nix
     # ../../modules/core/affinity.nix
     # ../../modules/core/virt-manager.nix
     # ../../modules/core/zen.nix

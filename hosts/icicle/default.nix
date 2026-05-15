@@ -30,7 +30,9 @@
     ../../modules/core/stylix.nix
     ../../modules/core/ssh.nix
     ../../modules/core/fonts.nix
+    ../../modules/core/printing.nix
     ../../modules/core/laptop.nix
+    ../../modules/core/syncthing.nix
 
     ./hardware-configuration.nix
   ];
