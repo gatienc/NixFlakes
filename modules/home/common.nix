@@ -82,6 +82,9 @@ let
     figlet # text art generator
     cmatrix # terminal screensaver
     asciiquarium # aquarium in terminal
+
+    # Chromecast
+    mkchromecast
   ];
 
   # Linux-only packages
