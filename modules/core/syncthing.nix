@@ -2,7 +2,7 @@
   services.syncthing = {
     enable = true;
     user = username;
-    dataDir = "/home/${username}/.local/share/syncthing";
+    dataDir = "/home/${username}/.config/syncthing";
     configDir = "/home/${username}/.config/syncthing";
     openDefaultPorts = true;
   };
