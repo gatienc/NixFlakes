@@ -26,7 +26,7 @@ in
       general = {
         monitor = [
           "desc:Sharp Corporation 0x1479, 1920x1280@60, 0x0, 1.25"
-          "desc:Iiyama North America PL2470H 0x00000117, 1920x1080@144, 1920x0, 1"
+          "desc:Iiyama North America PL2470H 0x00000117, 1920x1080@120, 1920x0, 1, vrr, 0"
           "desc:AU Optronics 0xB69B, 1920x1080@165, 3840x0, 1"
         ];
         gaps_in = 5;
@@ -126,6 +126,10 @@ in
         "$mainMod CTRL, Up, resizeactive, 0 -50"
         "$mainMod CTRL, Down, resizeactive, 0 50"
         "SUPER_SHIFT, l, exec, hyprlock"
+        "$mainMod, S, workspace, name:slack"
+        "$mainMod SHIFT, S, movetoworkspace, name:slack"
+        "$mainMod, M, workspace, name:mail"
+        "$mainMod SHIFT, M, movetoworkspace, name:mail"
         "$mainMod, space, exec, rofi -show drun"
         "$mainMod SHIFT, return, exec, awww-daemon & awww img ${../../../assets/wallpaper/naduria_shrine.png} --transition-fps 60 --transition-duration 2 --transition-type any --transition-pos top-right --transition-bezier .3,0,0,.99 --transition-angle 135"
         "$mainMod, R, exec, ${scripts.readingModeToggle}/bin/reading-mode-toggle"
@@ -173,6 +177,10 @@ in
         "match:initial_title .*localhost_/.*,float on"
         "match:class org.gnome.Nautilus, float on"
         "match:class dolphin, float on"
+        "match:class obsidian, workspace 3"
+        "match:class Slack, workspace name:slack"
+        "match:class Zotero, workspace 4"
+        "match:class Thunderbird, workspace name:mail"
       ];
 
       misc = {
@@ -197,6 +205,10 @@ in
         "${scripts.sessionStart}/bin/hyprland-session-start"
         "hyprshade auto"
         "hyprctl seterror disable"
+        "obsidian"
+        "slack"
+        "zotero"
+        "thunderbird"
       ];
     };
   };
