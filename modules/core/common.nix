@@ -13,8 +13,8 @@
   #services.freshrss.baseUrl = "https://fresh.org";
 
   imports = [
-    # inputs.sops-nix.nixosModules.sops
-    # ./secrets.nix
+    inputs.sops-nix.nixosModules.sops
+    ./secrets.nix
     ./user.nix
     ./network.nix
   ];

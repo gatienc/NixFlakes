@@ -47,8 +47,6 @@
     ../../modules/core/syncthing.nix
     # ../../modules/core/affinity.nix
     # ../../modules/core/virt-manager.nix
-    # ../../modules/core/zen.nix
-
     ./hardware-configuration.nix
   ];
 
@@ -83,6 +81,8 @@
         ../../modules/home/neovim.nix
         ../../modules/home/typst.nix
         ../../modules/home/tts.nix
+        ../../modules/home/qbittorrent.nix
+        ../../modules/home/zen.nix
       ];
     };
   };

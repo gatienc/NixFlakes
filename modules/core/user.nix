@@ -1,9 +1,8 @@
-{ pkgs, inputs, username, host, ... }:
+{ pkgs, inputs, username, host, config, ... }:
 {
-
   users.users.${username} = {
     isNormalUser = true;
-    initialPassword = "123";
+    hashedPasswordFile = config.sops.secrets."password-${host}".path;
     description = "${username}";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
