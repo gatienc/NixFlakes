@@ -14,6 +14,7 @@ let
     bat-extras.batdiff # extra features for bat
     bat-extras.batman # extra features for bat
     jless # Terminal json viewer
+    jq # command-line JSON processor
     eza # A modern replacement for ‘ls’
     fd # replacement for find
     ripgrep # replacement for grep
@@ -85,6 +86,9 @@ let
 
     # Chromecast
     mkchromecast
+
+    # Shells
+    xonsh
   ];
 
   # Linux-only packages

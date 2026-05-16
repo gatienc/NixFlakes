@@ -53,6 +53,7 @@
   services.fail2ban.enable = true;
 
   programs.zsh.enable = true;
+  environment.shells = with pkgs; [ zsh xonsh ];
   environment.systemPackages = with pkgs; [
     micro
     gvfs

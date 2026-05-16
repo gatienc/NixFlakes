@@ -151,6 +151,6 @@
     ];
   };
   system.stateVersion = 5;
-  environment.shells = [ pkgs.zsh ];
+  environment.shells = [ pkgs.zsh pkgs.xonsh ];
 
 }
