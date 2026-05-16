@@ -1,6 +1,6 @@
 { pkgs, inputs, config, username, host, lib, ... }:
 let
-  hosts = [ "glacius" "icicle" "frostion" "droplet" ];
+  hosts = [ "glacius" "icicle" "frostion" ];
   passwordSecrets = builtins.map (h: "password-${h}") hosts;
 in {
   sops.defaultSopsFile = ../../secrets/secrets.yaml;
