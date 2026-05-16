@@ -14,6 +14,7 @@
       # file you won't be able to easily use journalctl to look at journals for
       # previous boots.
       "/etc/machine-id"
+      "/etc/shadow"
     ];
     users.gatien = {
       directories = [
