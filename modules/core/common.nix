@@ -48,7 +48,7 @@
   boot.loader.systemd-boot.editor = false; # Disable kernel param editing for security
 
   # User settings
-  users.mutableUsers = false;
+  users.mutableUsers = true;
 
   services.fail2ban.enable = true;
 
