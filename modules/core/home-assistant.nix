@@ -23,14 +23,14 @@
     ];
 
     customComponents = with pkgs.home-assistant-custom-components; [
-      adaptive_lighting
-      prometheus_sensor
+      #will add library here
     ];
 
     extraPackages =
       py: with py; [
         numpy
         pyturbojpeg
+        gtts
       ];
 
     config = {
@@ -60,8 +60,21 @@
         ];
       };
 
+      auth_providers = [
+        {
+          type = "trusted_networks";
+          trusted_networks = [
+            "127.0.0.1"
+            "::1"
+          ];
+        }
+        {
+          type = "homeassistant";
+        }
+      ];
+
       lovelace = {
-        mode = "storage";
+        resource_mode = "storage";
       };
 
       logger = {
@@ -77,7 +90,7 @@
       };
     };
 
-    openFirewall = true;
+    openFirewall = false;
   };
 
   systemd.services.matter-server = {
@@ -89,9 +102,10 @@
       Type = "simple";
       User = "home-assistant";
       Group = "home-assistant";
-      ExecStart = "${pkgs.python-matter-server}/bin/matter-server";
+      ExecStart = "${pkgs.python-matter-server}/bin/matter-server --storage-path /var/lib/matter-server";
       Restart = "on-failure";
       RestartSec = "5s";
+      StateDirectory = "matter-server";
     };
 
     environment = {
@@ -112,7 +126,6 @@
   ];
 
   networking.firewall.allowedTCPPorts = [
-    8123 # Home Assistant
     5580 # Matter Server
   ];
 }

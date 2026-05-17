@@ -8,15 +8,17 @@
 {
   services.jellyfin = {
     enable = true;
-    openFirewall = true;
+    openFirewall = false;
   };
 
   networking.firewall.allowedTCPPorts = [
     7359 # Jellyfin discovery (SSDP)
   ];
 
-  systemd.services.jellyfin.serviceConfig = {
-    StateDirectory = "jellyfin";
-    CacheDirectory = "jellyfin";
+  systemd.services.jellyfin = {
+    serviceConfig = {
+      StateDirectory = "jellyfin";
+      CacheDirectory = "jellyfin";
+    };
   };
 }

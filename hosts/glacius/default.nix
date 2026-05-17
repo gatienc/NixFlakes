@@ -31,10 +31,13 @@
     ../../modules/core/rocm.nix
     ../../modules/core/jellyfin.nix
     ../../modules/core/lact.nix
-    ../../modules/core/minecraft.nix
+    # ../../modules/core/minecraft.nix
     ../../modules/core/miniflux.nix
     ../../modules/core/python.nix
-    ../../modules/core/adguardhome.nix
+    ../../modules/core/home-assistant.nix
+    ../../modules/core/immich.nix
+    ../../modules/core/reverse-proxy.nix
+    ../../modules/core/transmission.nix
     ../../modules/core/syncthing.nix
     # ../../modules/core/affinity.nix
     # ../../modules/core/hyprland.nix
