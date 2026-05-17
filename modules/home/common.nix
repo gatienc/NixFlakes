@@ -182,6 +182,7 @@ lib.mkMerge [
           whatismyip = "curl https://ipinfo.io/ip";
           c = "clear";
           g = "lazygit";
+          lzh = "lazyssh";
 
           # AI coding agents - jailed by default for security
           opencode = "jailed-opencode";
